@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
+    "index-404": "copy pages\\index.js pages\\_error.js",
+    "dev": "npm run index-404 && next",
+    "build": "npm run index-404 && next build",
     "start": "next start -p $PORT"
   },
   "keywords": [],

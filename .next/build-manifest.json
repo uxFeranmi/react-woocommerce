@@ -1,38 +1,20 @@
 {
-  "devFiles": [],
+  "devFiles": [
+    "static/development/dll/dll_d6a88dbe3071bd165157.js",
+    "static/development/dll/dll_d6a88dbe3071bd165157.js.map"
+  ],
   "pages": {
-    "/": [
-      "static/runtime/webpack-08f7b238829422e3b9b2.js",
-      "static/chunks/commons.5e5a76f17851bb30fb71.js",
-      "static/runtime/main-3c9f69a29ab97a4ee5be.js"
-    ],
     "/_app": [
-      "static/runtime/webpack-08f7b238829422e3b9b2.js",
-      "static/chunks/commons.5e5a76f17851bb30fb71.js",
-      "static/runtime/main-3c9f69a29ab97a4ee5be.js"
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ],
     "/_error": [
-      "static/runtime/webpack-08f7b238829422e3b9b2.js",
-      "static/chunks/commons.5e5a76f17851bb30fb71.js",
-      "static/runtime/main-3c9f69a29ab97a4ee5be.js"
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ],
     "/_polyfills": [
-      "static/runtime/polyfills-ebd4705da3402b2d78e1.js"
-    ],
-    "/index": [
-      "static/runtime/webpack-08f7b238829422e3b9b2.js",
-      "static/chunks/commons.5e5a76f17851bb30fb71.js",
-      "static/runtime/main-3c9f69a29ab97a4ee5be.js"
-    ],
-    "/p/[id]": [
-      "static/runtime/webpack-08f7b238829422e3b9b2.js",
-      "static/chunks/commons.5e5a76f17851bb30fb71.js",
-      "static/runtime/main-3c9f69a29ab97a4ee5be.js"
-    ],
-    "/product": [
-      "static/runtime/webpack-08f7b238829422e3b9b2.js",
-      "static/chunks/commons.5e5a76f17851bb30fb71.js",
-      "static/runtime/main-3c9f69a29ab97a4ee5be.js"
+      "static/runtime/polyfills.js",
+      "static/runtime/polyfills.js.map"
     ]
   }
 }
