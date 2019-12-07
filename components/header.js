@@ -8,19 +8,19 @@ const Header = () => (
       <nav>
         <Link href="#">
           <li>
-            <i className="fas fa-user"></i>
+            <i className="fa fa-user"></i>
             <a>Login/Register</a>
           </li>
         </Link>
         <Link href="#">
           <li>
-            <i className="fas fa-question-circle"></i>
+            <i className="fa fa-question-circle"></i>
             <a>Help</a>
           </li>
         </Link>
         <Link href="#">
           <li>
-            <i className="fas fa-shopping-bag"></i>
+            <i className="fa fa-shopping-bag"></i>
             <a>Shop</a>
           </li>
         </Link>

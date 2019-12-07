@@ -3,6 +3,7 @@ import Link from 'next/link';
 // import fetch from 'isomorphic-unfetch';
 import wooApi from '../constants/woo_api';
 import "../styles.scss";
+import Head from 'next/head';
 
 const PostLink = props => (
   <li>
@@ -15,6 +16,10 @@ const PostLink = props => (
 export default function Blog(props) {
   return (
     <Layout>
+      <Head>
+        <title>IT Supplies</title>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"></link>
+      </Head>
       <h1>My Blog</h1>
       <ul>
         <PostLink id="hello-nextjs" />
