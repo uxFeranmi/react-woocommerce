@@ -7,8 +7,8 @@
     "index-404": "run-script-os",
     "index-404:win32": "copy pages\\index.js pages\\_error.js",
     "index-404:darwin:linux": "cp pages/index.js pages/_error.js",
-    "dev": "npm run index-404 && next",
-    "build": "npm run index-404 && next build",
+    "dev": "next",
+    "build": "next build",
     "start": "next start -p $PORT"
   },
   "keywords": [],
