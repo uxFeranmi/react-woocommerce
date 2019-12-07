@@ -1,15 +1,15 @@
 import { useRouter } from 'next/router';
 import Header from './header';
-import {Helmet} from "react-helmet";
+import Head from 'next/head';
 
 export default function Layout(props) {
   const router = useRouter();
 
   return (
     <main>
-      <Helmet>
+      <Head>
         <link rel="icon" href="https://s.gravatar.com/avatar/21fdb061656b2126f0827b618714ecd5?size=100&default=retro" />
-      </Helmet>
+      </Head>
 
       <Header />
 

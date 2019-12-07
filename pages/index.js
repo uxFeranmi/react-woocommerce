@@ -18,7 +18,7 @@ export default function Blog(props) {
     <Layout>
       <Head>
         <title>IT Supplies</title>
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous"></link>
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin="anonymous"></link>
       </Head>
       <h1>My Blog</h1>
       <ul>
@@ -45,10 +45,9 @@ Blog.getInitialProps = async function() {
   });
   
   if (!response) return {};
-
+  
   // Successful request
   console.log("Response Status:", response.status);
-  console.log("Response Headers:", response.headers);
   console.log("Total of pages:", response.headers['x-wp-totalpages']);
   console.log("Total of items:", response.headers['x-wp-total']);
 

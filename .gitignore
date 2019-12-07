@@ -2,3 +2,5 @@ node_modules
 .next/cache
 .next/server
 .next/static
+.next/BUILD_ID
+.env
