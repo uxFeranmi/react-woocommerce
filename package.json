@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "index-404": "copy pages\\index.js pages\\_error.js",
+    "index-404": "run-script-os",
+    "index-404:win32": "copy pages\\index.js pages\\_error.js",
+    "index-404:darwin:linux": "cp pages/index.js pages/_error.js",
     "dev": "npm run index-404 && next",
     "build": "npm run index-404 && next build",
     "start": "next start -p $PORT"
@@ -17,5 +19,8 @@
     "next": "^9.1.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "run-script-os": "^1.0.7"
   }
 }
