@@ -1,6 +1,8 @@
-import Layout from '../components/MyLayout';
+import Layout from '../components/my_layout';
 import Link from 'next/link';
-import fetch from 'isomorphic-unfetch';
+// import fetch from 'isomorphic-unfetch';
+import wooApi from '../constants/woo_api';
+import "../styles.scss";
 
 const PostLink = props => (
   <li>
@@ -20,25 +22,32 @@ export default function Blog(props) {
         <PostLink id="deploy-nextjs" />
       </ul>
       <ul>
-        {props.shows.map(show => (
-          <li key={show.id}>
-            <Link href="/p/[id]" as={`/p/${show.id}`}>
-              <a>{show.name}</a>
-            </Link>
-          </li>
-        ))}
+        {props.products.map(product => product.name)}
       </ul>      
     </Layout>
   );
 }
 
 Blog.getInitialProps = async function() {
-  const res = await fetch('https://api.tvmaze.com/search/shows?q=batman');
-  const data = await res.json();
+  // Get List of products
+  const response = await wooApi.get("products", {
+    per_page: 20, // 20 products per page
+  }).catch((error) => {
+    // Invalid request, for 4xx and 5xx statuses
+    console.log("Response Status:", error.response.status);
+    console.log("Response Headers:", error.response.headers);
+    console.log("Response Data:", error.response.data);
+  });
+  
+  if (!response) return {};
 
-  console.log(`Show data fetched. Count: ${data.length}`);
+  // Successful request
+  console.log("Response Status:", response.status);
+  console.log("Response Headers:", response.headers);
+  console.log("Total of pages:", response.headers['x-wp-totalpages']);
+  console.log("Total of items:", response.headers['x-wp-total']);
 
   return {
-    shows: data.map(entry => entry.show)
+    products: response.data,
   };
 };

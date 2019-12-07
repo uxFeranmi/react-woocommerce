@@ -1,18 +1,32 @@
 import Link from 'next/link';
-
-const linkStyle = {
-  marginRight: 15
-};
+import './styles/header.scss';
 
 const Header = () => (
-  <div>
-    <Link href="/">
-      <a style={linkStyle}>Home</a>
-    </Link>
-    <Link href="/product">
-      <a style={linkStyle}>Product</a>
-    </Link>
-  </div>
+  <header className="app-header">
+    <div className="app-header__thin-strip">
+      <small>One Year Warranty On All Products. Shop Now!</small>
+      <nav>
+        <Link href="#">
+          <li>
+            <i className="fas fa-user"></i>
+            <a>Login/Register</a>
+          </li>
+        </Link>
+        <Link href="#">
+          <li>
+            <i className="fas fa-question-circle"></i>
+            <a>Help</a>
+          </li>
+        </Link>
+        <Link href="#">
+          <li>
+            <i className="fas fa-shopping-bag"></i>
+            <a>Shop</a>
+          </li>
+        </Link>
+      </nav>
+    </div>
+  </header>
 );
 
 export default Header;

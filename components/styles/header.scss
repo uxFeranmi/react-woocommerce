@@ -1,0 +1,22 @@
+.app-header {
+  display: flex;
+  flex-flow: column nowrap;
+
+  &__thin-strip {
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+
+    nav {
+      display: flex;
+
+      li {
+        display: block;
+        margin: 10px;
+      }
+    }
+  }
+}
