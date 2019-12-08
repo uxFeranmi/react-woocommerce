@@ -13,10 +13,10 @@ const Header = (props) => (
     <HeaderThinStrip className="app-header__thin-strip" />
 
     <div className="app-header__main nav-bar">
-      <div className="nav-bar__title">
+      <h1 className="nav-bar__title">
         <img src={`${staticPath}/logo.png`} alt="Logo" />
-        <h1>IT Supplies.co</h1>
-      </div>
+        IT Supplies.co
+      </h1>
 
       <nav className="nav-bar__nav main-nav">  
         <DropdownMenu
@@ -31,6 +31,18 @@ const Header = (props) => (
       <div className="app-header__quick-links">
         <Link href="#">
           <a><i className="fa fa-check-square-o" aria-label="Compare products"></i></a>
+        </Link>
+        <Link href="#">
+          <a><i className="fa fa-heart-o" aria-label="Your wishlist"></i></a>
+        </Link>
+        <Link href="#">
+          <a>
+            <i className="fa fa-shopping-cart"
+              aria-label="Your shopping cart">
+            </i>
+            <span className="cart-items-count"></span>
+            <span className="cart-total-price"></span>
+          </a>
         </Link>
       </div>
     </div>
