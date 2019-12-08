@@ -21,11 +21,14 @@
   }
 
   &__main {
-    display: flex;
+    
   }
 }
 
 .nav-bar {
+  display: flex;
+  align-items: center;
+  
   &__title {
     display: flex;
   }
