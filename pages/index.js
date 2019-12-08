@@ -13,13 +13,40 @@ const PostLink = props => (
   </li>
 );
 
+const getCategoryTree = () => {
+  // Make API call.
+
+  // Build the array.
+  const categoryTree = [
+    ['Servers', 'link', [
+      ['Rack Servers', 'link'],
+      ['Tower Servers', 'Link'],
+      ['Blade Servers', 'Link'],
+    ]],
+    ['Accessories', 'Link', [
+      ['Memory', 'link'],
+      ['Power Supplies', 'link'],
+      ['Hard Drives', 'link'],
+      ['Processors', 'link'],
+      ['Controllers', 'link'],
+      ['Adapters', 'link'],
+      ['Rail Kits', 'link'],
+      ['Cables', 'link'],
+      ['Others', 'link'],
+    ]],
+    ['HPE Networking', 'link', [
+      ['Networking Attached Storage', 'link'],
+      ['MSA', 'link'],
+      ['Tape Drives', 'link'],
+    ]],
+  ];
+
+  return categoryTree;
+};
+
 export default function Blog(props) {
   return (
-    <Layout>
-      <Head>
-        <title>IT Supplies</title>
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin="anonymous"></link>
-      </Head>
+    <Layout categories={props.categoryTree}>
       <h1>My Blog</h1>
       <ul>
         <PostLink id="hello-nextjs" />
@@ -53,5 +80,8 @@ Blog.getInitialProps = async function() {
 
   return {
     products: response.data,
+    categoryTree: getCategoryTree(),
   };
 };
+
+

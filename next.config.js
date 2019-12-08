@@ -14,5 +14,6 @@ module.exports = withSass({
   // Expose env vars to app at build time.
   env: {
     nodeEnv,
+    staticPath: nodeEnv === 'production' ? 'http://itsupplies.co/static/' : '',
   },
 });
