@@ -5,7 +5,7 @@ const DropdownMenu = (props) => (
   <div>
     <h3 className="main-nav__toggle">
       Categories 
-      <i class="fa fa-chevron-down" aria-hidden="true"></i>
+      <i className="fa fa-chevron-down" aria-hidden="true"></i>
     </h3>
 
     <ul>
@@ -21,7 +21,7 @@ const DropdownMenu = (props) => (
           </li>
           <li className="dropdown-item">
             Accessories 
-            <i class="fa fa-chevron-right dropdown-item__expand"></i>
+            <i className="fa fa-chevron-right dropdown-item__expand"></i>
           </li>
         </ul>
       </li>
