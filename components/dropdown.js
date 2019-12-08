@@ -2,29 +2,48 @@ import Link from 'next/link';
 import './styles/dropdown.scss';
 
 const DropdownMenu = (props) => (
-  <div>
-    <h3 className="main-nav__toggle">
-      Categories 
-      <i className="fa fa-chevron-down" aria-hidden="true"></i>
-    </h3>
+  <div className={`${props.parentBlock}__dropdown dropdown`}>
+    {console.log(props)}
+    {props.child ? (
+      <div className="dropdown__toggle is-child">
+        <Link href={props.label[1]}>
+          <a>{props.label[0]}</a>
+        </Link>
+        <button>
+          <i className="fa fa-chevron-right"
+            aria-label="Expand">
+          </i>
+        </button>
+      </div>
+     ) : (
+      <button className={`${props.parentBlock}__label dropdown__toggle`}>
+        Categories
+        <i className="fa fa-chevron-down"
+          aria-hidden="true">
+        </i>
+      </button>
+    )}
 
-    <ul>
-      <li className="dropdown-item">
-        Servers
-      </li>
-      <li className="dropdown-item">
-        Accessories 
-        <i className="fa fa-chevron-right dropdown-item__expand"></i>
-        <ul>
-          <li className="dropdown-item">
-            Servers
+    <ul className={`${props.parentBlock}__items dropdown__items`}>
+      {props.items.map((item, index) => {
+        const renderedItem = item.length === 3 ? (
+          <li key={index}>
+            <DropdownMenu
+              label={[item[0], item[1]] }
+              items={[...item[2]]}
+              child={true}
+            />
           </li>
-          <li className="dropdown-item">
-            Accessories 
-            <i className="fa fa-chevron-right dropdown-item__expand"></i>
+        ) : (
+          <li key={index}>
+            <Link href={item[1]}>
+              <a>{item[0]}</a>
+            </Link>
           </li>
-        </ul>
-      </li>
+        );
+
+        return renderedItem;
+      })}
     </ul>
   </div>
 );

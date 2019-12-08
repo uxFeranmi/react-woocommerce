@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Header from './header';
 import Head from 'next/head';
+import "../styles.scss";
 
 export default function Layout(props) {
   const router = useRouter();
@@ -13,7 +14,7 @@ export default function Layout(props) {
         <link rel="icon" href="https://s.gravatar.com/avatar/21fdb061656b2126f0827b618714ecd5?size=100&default=retro" />
       </Head>
 
-      <Header />
+      <Header categories={props.categories} />
 
       {props.children}
     </main>

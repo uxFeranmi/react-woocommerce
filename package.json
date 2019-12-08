@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "index-404": "run-script-os",
-    "index-404:win32": "copy pages\\index.js pages\\_error.js",
-    "index-404:darwin:linux": "cp pages/index.js pages/_error.js",
     "dev": "next",
     "build": "next build",
-    "start": "next start -p $PORT"
+    "start": "next start -p $PORT",
+    "index-404": "run-script-os",
+    "index-404:win32": "copy pages\\index.js pages\\_error.js",
+    "index-404:darwin:linux": "cp pages/index.js pages/_error.js"
   },
   "keywords": [],
   "author": "",

@@ -2,8 +2,7 @@ import Layout from '../components/my_layout';
 import Link from 'next/link';
 // import fetch from 'isomorphic-unfetch';
 import wooApi from '../constants/woo_api';
-import "../styles.scss";
-import Head from 'next/head';
+// import Head from 'next/head';
 
 const PostLink = props => (
   <li>

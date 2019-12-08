@@ -40,9 +40,9 @@ const Header = (props) => (
 
       <nav className="nav-bar__nav main-nav">  
         <DropdownMenu
-          title="Categories"
+          label="Categories"
           items={props.categories}
-          ParentBlock="main-nav" 
+          parentBlock="main-nav" 
         />
       </nav>
     </div>
