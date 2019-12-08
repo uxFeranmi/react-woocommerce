@@ -1,0 +1,14 @@
+
+RewriteBase /
+    
+# If redirecting to another path, consider using [END] flag instead of [L].
+RewriteRule static/ - [L]
+
+# Woo API.
+RewriteRule woo/ - [L]
+
+# Forward requests for frontend assets to Next.js app.
+    # Account for Apache rewriting root route to index.html.var
+#RewriteRule ^index.html.var$ http://stac-demos.herokuapp.com/ [P]
+    # Catch-all. Send to Next.js app.
+RewriteRule ^(.*)$ http://stac-demos.herokuapp.com/$1 [P]
