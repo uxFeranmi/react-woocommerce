@@ -1,21 +1,14 @@
 .app-header {
+  background-color: white;
   display: flex;
   flex-flow: column nowrap;
 
   &__thin-strip {
-    background-color: white;
-    color: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 15px;
-
+    
     nav {
-      display: flex;
 
-      li {
-        display: block;
-        margin: 10px;
+      a {
+
       }
     }
   }
@@ -28,6 +21,9 @@
 .nav-bar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  color: black;
   
   &__title {
     display: flex;
