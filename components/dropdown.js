@@ -28,3 +28,5 @@ const DropdownMenu = (props) => (
     </ul>
   </div>
 );
+
+export default DropdownMenu;

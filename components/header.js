@@ -1,4 +1,7 @@
 import Link from 'next/link';
+
+import DropdownMenu from '../components/dropdown';
+
 import './styles/header.scss';
 
 const staticPath = process.env.staticPath || '';
