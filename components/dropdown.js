@@ -14,7 +14,7 @@ const DropdownMenu = (props) => (
       </li>
       <li className="dropdown-item">
         Accessories 
-        <i class="fa fa-chevron-right dropdown-item__expand"></i>
+        <i className="fa fa-chevron-right dropdown-item__expand"></i>
         <ul>
           <li className="dropdown-item">
             Servers
