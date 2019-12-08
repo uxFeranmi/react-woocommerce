@@ -19,4 +19,18 @@
       }
     }
   }
+
+  &__main {
+    display: flex;
+  }
+}
+
+.nav-bar {
+  &__title {
+    display: flex;
+  }
+
+  &__nav {
+
+  }
 }
