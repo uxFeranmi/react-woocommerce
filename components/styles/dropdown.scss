@@ -7,6 +7,13 @@
     border: none;
   }
 
+  &:not(.is-child) &__toggle {
+
+    .fa-bars {
+      display: none;
+    }
+  }
+
   &__items {
     display: none;
     position: absolute;
@@ -22,6 +29,47 @@
 
     #{$block}__items {
       display: block;
+    }
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .dropdown {
+    $block: ".dropdown";
+    
+    &__toggle {
+      
+    }
+
+    &:not(.is-child) &__toggle {
+
+      span {
+        display: none;
+      }
+
+      .fa-chevron-down {
+        display: none;
+      }
+
+      .fa-bars {
+        display: initial;
+        color: var(--primary-color);
+      }
+    }
+  
+    &__items {
+      
+    }
+  
+    &.is-child &__items {
+      
+    }
+  
+    &.is-expanded {
+  
+      #{$block}__items {
+        
+      }
     }
   }
 }

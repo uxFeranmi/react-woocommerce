@@ -26,7 +26,7 @@ const DropdownMenu = (props) => {
       {props.child ? (
         <div className="dropdown__toggle is-child">
           <Link href={props.key}>
-            <a>{props.label[0]}</a>
+            <a>{props.label}</a>
           </Link>
 
           <button onClick={()=> setExpanded(!expanded)}>
@@ -37,12 +37,15 @@ const DropdownMenu = (props) => {
         </div>
       ) : (
         <button onClick={()=> setExpanded(!expanded)}
-            className={`${props.parentBlock}__label dropdown__toggle`}
+            className="dropdown__toggle"
           >
-          Categories
+          <span>{props.label}</span>
           &nbsp;
           <i className="fa fa-chevron-down"
             aria-hidden="true">
+          </i>
+          <i className="fa fa-bars"
+            aria-label={props.label}>
           </i>
         </button>
       )}

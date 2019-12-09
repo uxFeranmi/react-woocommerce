@@ -1,12 +1,13 @@
 .product-search {
   display: flex;
+  justify-content: space-between;
   border: 2px solid rgb(27, 20, 100);
   border-radius: 1000px;
   height: 40px;
   overflow: hidden;
 
   input {
-    flex-basis: 70%;
+    flex-basis: 65%;
     padding-left: 25px;
     border: none;
   }
@@ -17,10 +18,30 @@
   }
 
   button {
-    flex-basis: 11%;
+    flex-basis: 10%;
     background-color: rgb(27, 20, 100);
     border: none;
     color: white;
     font-size: 1.5em;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .product-search {
+  
+    input {
+      flex-basis: 80%;      
+    }
+  
+    select {
+      display: none;
+    }
+  
+    button {
+      flex-basis: 20%;
+      background-color: transparent;
+      color: var(--primary-color);
+      font-size: 1.2em;
+    }
   }
 }
