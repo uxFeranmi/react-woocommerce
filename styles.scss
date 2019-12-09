@@ -7,9 +7,11 @@
 :root {
   background-color: gray;
   color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --primary-color: rgb(27, 20, 100);
 }
 
 a {
   text-decoration: none;
+  color: var(--primary-color);
 }
