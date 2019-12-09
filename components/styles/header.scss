@@ -66,7 +66,7 @@
 
 .main-nav {
   display: flex;
-  
+
   &__quick-links {
     display: none;
   }
@@ -88,6 +88,8 @@
   .nav-bar {
     
     &__title {
+      width: 70%;
+      margin: 10px 0;
   
       img {
 
@@ -102,7 +104,10 @@
     }
   
     &__nav {
-  
+      width: 30%;
+      margin: 10px 0;
+      display: flex;
+      justify-content: flex-end;
     }
   
     &__search {
