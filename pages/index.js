@@ -46,14 +46,9 @@ const getCategoryTree = () => {
 export default function Blog(props) {
   return (
     <Layout categories={props.categoryTree}>
-      <h1>My Blog</h1>
+      <h1>All Products</h1>
       <ul>
-        <PostLink id="hello-nextjs" />
-        <PostLink id="learn-nextjs" />
-        <PostLink id="deploy-nextjs" />
-      </ul>
-      <ul>
-        {props.products.map(product => product.name)}
+        {props.products.map(product => <p>{product.name}</p>)}
       </ul>      
     </Layout>
   );
