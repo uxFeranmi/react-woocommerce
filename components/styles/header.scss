@@ -29,7 +29,9 @@
 
     img {
       display: block;
+      object-fit: fill;
       height: 1em;
+      width: 1em;
       margin-right: 20px;
     }
 
@@ -87,10 +89,9 @@
     &__title {
       width: 70%;
       margin: 10px 0;
-      font-size: small;
+      font-size: 2em;
   
       img {
-        height: 1em;
         margin-right: 5px;
       }
   
@@ -137,5 +138,12 @@
 @media screen and (max-width: 520px) {
   .app-header {
     padding: 0;
+  }
+
+  .nav-bar {
+    
+    &__title {
+      font-size: small;
+    }
   }
 }
