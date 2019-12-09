@@ -1,6 +1,7 @@
 .app-header {
   background-color: white;
   display: flex;
+  flex-wrap: wrap;
   flex-flow: column nowrap;
 
   &__thin-strip {
@@ -14,6 +15,7 @@
 
 .nav-bar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   padding: 20px 30px;
@@ -58,6 +60,67 @@
       display: block;
       margin-right: 30px;
       font-size: 1.8em;
+    }
+  }
+}
+
+.main-nav {
+  display: flex;
+  
+  &__quick-links {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .app-header {
+    
+  
+    &__thin-strip {
+      display: none;
+    }
+  
+    &__main {
+      
+    }
+  }
+
+  .nav-bar {
+    
+    &__title {
+  
+      img {
+
+      }
+  
+      span {
+  
+        small {
+          
+        }
+      }
+    }
+  
+    &__nav {
+  
+    }
+  
+    &__search {
+      width: 100%;
+    }
+  
+    &__quick-links {
+      display: none;
+  
+      a {
+        
+      }
+    }
+  }
+
+  .main-nav {
+    &__quick-links {
+      display: flex;
     }
   }
 }

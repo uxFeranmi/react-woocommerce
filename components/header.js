@@ -20,7 +20,26 @@ const Header = (props) => (
         </span>
       </h1>
 
-      <nav className="nav-bar__nav main-nav">  
+      <nav className="nav-bar__nav main-nav">
+        <div className="main-nav__quick-links">
+          <Link href="#">
+            <a>
+              <i className="fa fa-user"
+                aria-label="Login/Register">
+              </i>              
+            </a>
+          </Link>
+          <Link href="#">
+            <a>
+              <i className="fa fa-shopping-cart"
+                aria-label="Your shopping cart">
+              </i>
+              <span className="cart-items-count"></span>
+              <span className="cart-total-price"></span>
+            </a>
+          </Link>
+        </div>
+
         <DropdownMenu
           label="Categories"
           items={props.categories}
