@@ -18,8 +18,8 @@
   }
 
   button {
-    flex-basis: 10%;
-    background-color: rgb(27, 20, 100);
+    padding: 0 15px;
+    background-color: var(--primary-color);
     border: none;
     color: white;
     font-size: 1.5em;
@@ -30,7 +30,7 @@
   .product-search {
   
     input {
-      flex-basis: 80%;      
+      flex-basis: 100%;      
     }
   
     select {
@@ -38,7 +38,7 @@
     }
   
     button {
-      flex-basis: 20%;
+      padding: 0 20px;
       background-color: transparent;
       color: var(--primary-color);
       font-size: 1.2em;

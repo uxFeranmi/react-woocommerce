@@ -29,11 +29,8 @@
 
     img {
       display: block;
-      height: 1.5em;
-      object-fit: contain;
+      height: 1em;
       margin-right: 20px;
-      //border: 2px solid var(--primary-color);
-      padding: 5px;
     }
 
     span {
@@ -74,7 +71,7 @@
 
 @media screen and (max-width: 1130px) {
   .app-header {
-    
+    padding: 0 10%;
   
     &__thin-strip {
       display: none;
@@ -90,9 +87,11 @@
     &__title {
       width: 70%;
       margin: 10px 0;
+      font-size: small;
   
       img {
-
+        height: 1em;
+        margin-right: 5px;
       }
   
       span {
@@ -124,8 +123,19 @@
   }
 
   .main-nav {
+
     &__quick-links {
       display: flex;
+
+      a {
+        margin-right: 10px;
+      }
     }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .app-header {
+    padding: 0;
   }
 }
