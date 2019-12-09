@@ -15,14 +15,16 @@ const Header = (props) => (
     <div className="app-header__main nav-bar">
       <h1 className="nav-bar__title">
         <img src={`${staticPath}/logo.png`} alt="Logo" />
-        IT Supplies.co
+        <span>
+          IT Supplies<small>.co</small>
+        </span>
       </h1>
 
       <nav className="nav-bar__nav main-nav">  
         <DropdownMenu
           label="Categories"
           items={props.categories}
-          parentBlock="main-nav" 
+          className="main-nav__dropdown" 
         />
       </nav>
 

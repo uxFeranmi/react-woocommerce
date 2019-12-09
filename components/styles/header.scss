@@ -22,10 +22,24 @@
   &__title {
     display: flex;
     align-items: center;
+    color: var(--primary-color);
+    white-space: nowrap;
 
     img {
-      height: 1em;
-      margin-right: 15px;
+      display: block;
+      height: 1.5em;
+      object-fit: contain;
+      margin-right: 20px;
+      //border: 2px solid var(--primary-color);
+      padding: 5px;
+    }
+
+    span {
+      //display: block;
+
+      small {
+        font-size: 0.6em;
+      }
     }
   }
 

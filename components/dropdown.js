@@ -19,13 +19,13 @@ const DropdownMenu = (props) => {
   }, [expanded]);
 
   return (
-    <div className={`${props.parentBlock}__dropdown dropdown ${expanded ? 'is-expanded' : ''} ${props.child ? 'is-child' : ''}`}
+    <div className={`${props.className} dropdown ${expanded ? 'is-expanded' : ''} ${props.child ? 'is-child' : ''}`}
          ref={elem => (dropdown = elem)}
          onBlur={()=> setExpanded(false)}
         >
       {props.child ? (
         <div className="dropdown__toggle is-child">
-          <Link href={props.label[1]}>
+          <Link href={props.key}>
             <a>{props.label[0]}</a>
           </Link>
 
@@ -48,17 +48,18 @@ const DropdownMenu = (props) => {
       )}
 
       <ul className={`${props.parentBlock}__items dropdown__items`}>
-        {props.items.map((item, index) => {
+        {props.items.map((item) => {
           const renderedItem = item.length === 3 ? (
-            <li key={index}>
+            <li key={item[1]}>
               <DropdownMenu
-                label={[item[0], item[1]] }
+                label={item[0]}
+                key={item[1]}
                 items={[...item[2]]}
                 child={true}
               />
             </li>
           ) : (
-            <li key={index}>
+            <li key={item[1]}>
               <Link href={item[1]}>
                 <a>{item[0]}</a>
               </Link>

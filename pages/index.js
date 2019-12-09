@@ -17,26 +17,26 @@ const getCategoryTree = () => {
 
   // Build the array.
   const categoryTree = [
-    ['Servers', 'link', [
-      ['Rack Servers', 'link'],
-      ['Tower Servers', 'Link'],
-      ['Blade Servers', 'Link'],
+    ['Servers', 'link/1', [
+      ['Rack Servers', 'link/2'],
+      ['Tower Servers', 'Link/3'],
+      ['Blade Servers', 'Link/4'],
     ]],
-    ['Accessories', 'Link', [
-      ['Memory', 'link'],
-      ['Power Supplies', 'link'],
-      ['Hard Drives', 'link'],
-      ['Processors', 'link'],
-      ['Controllers', 'link'],
-      ['Adapters', 'link'],
-      ['Rail Kits', 'link'],
-      ['Cables', 'link'],
-      ['Others', 'link'],
+    ['Accessories', 'Link/5', [
+      ['Memory', 'link/6'],
+      ['Power Supplies', 'link/7'],
+      ['Hard Drives', 'link/8'],
+      ['Processors', 'link/9'],
+      ['Controllers', 'link/10'],
+      ['Adapters', 'link/11'],
+      ['Rail Kits', 'link/12'],
+      ['Cables', 'link/13'],
+      ['Others', 'link/14'],
     ]],
-    ['HPE Networking', 'link', [
-      ['Networking Attached Storage', 'link'],
-      ['MSA', 'link'],
-      ['Tape Drives', 'link'],
+    ['HPE Networking', 'link/15', [
+      ['Networking Attached Storage', 'link/16'],
+      ['MSA', 'link/17'],
+      ['Tape Drives', 'link/18'],
     ]],
   ];
 
