@@ -1,3 +1,5 @@
+import './styles/search.scss';
+
 const Search = props => {
   return (
     <form className={`${props.className} product-search`}>

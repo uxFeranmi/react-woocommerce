@@ -10,18 +10,21 @@ const HeaderThinStrip = props => {
         <Link href="#">
           <a>
             <i className="fa fa-user"></i>
+            &nbsp;
             Login/Register
           </a>
         </Link>
         <Link href="#">
           <a>
             <i className="fa fa-question-circle"></i>
+            &nbsp;
             Help
           </a>
         </Link>
         <Link href="#">
           <a>
             <i className="fa fa-shopping-cart"></i>
+            &nbsp;
             Shop
           </a>
         </Link>

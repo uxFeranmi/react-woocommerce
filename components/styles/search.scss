@@ -1,0 +1,26 @@
+.product-search {
+  display: flex;
+  border: 2px solid blue;
+  border-radius: 1000px;
+  height: 40px;
+  overflow: hidden;
+
+  input {
+    width: 70%;
+    padding-left: 25px;
+    border: none;
+  }
+
+  select {
+    width: 20%;
+    border: none;
+  }
+
+  button {
+    width: 11%;
+    background-color: blue;
+    border: none;
+    color: white;
+    font-size: 1.5em;
+  }
+}

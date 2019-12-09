@@ -5,12 +5,6 @@
 
   &__thin-strip {
     
-    nav {
-
-      a {
-
-      }
-    }
   }
 
   &__main {
@@ -22,7 +16,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: 20px 30px;
   color: black;
   
   &__title {
@@ -31,10 +25,25 @@
 
     img {
       height: 1em;
+      margin-right: 15px;
     }
   }
 
   &__nav {
 
+  }
+
+  &__search {
+    width: 40vw;
+  }
+
+  &__quick-links {
+    display: flex;
+
+    a {
+      display: block;
+      margin-right: 30px;
+      font-size: 1.8em;
+    }
   }
 }

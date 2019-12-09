@@ -19,7 +19,7 @@ const DropdownMenu = (props) => {
   }, [expanded]);
 
   return (
-    <div className={`${props.parentBlock}__dropdown dropdown ${expanded ? 'is-expanded' : ''}`}
+    <div className={`${props.parentBlock}__dropdown dropdown ${expanded ? 'is-expanded' : ''} ${props.child ? 'is-child' : ''}`}
          ref={elem => (dropdown = elem)}
          onBlur={()=> setExpanded(false)}
         >
@@ -40,6 +40,7 @@ const DropdownMenu = (props) => {
             className={`${props.parentBlock}__label dropdown__toggle`}
           >
           Categories
+          &nbsp;
           <i className="fa fa-chevron-down"
             aria-hidden="true">
           </i>

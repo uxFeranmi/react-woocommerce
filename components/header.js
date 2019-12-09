@@ -26,9 +26,9 @@ const Header = (props) => (
         />
       </nav>
 
-      <Search className="app-header__search" />
+      <Search className="nav-bar__search" />
 
-      <div className="app-header__quick-links">
+      <div className="nav-bar__quick-links">
         <Link href="#">
           <a><i className="fa fa-check-square-o" aria-label="Compare products"></i></a>
         </Link>

@@ -1,8 +1,21 @@
 .dropdown {
   $block: ".dropdown";
+  position: relative;
+  
+  &__toggle {
+    background-color: transparent;
+    border: none;
+  }
 
   &__items {
     display: none;
+    position: absolute;
+    top: 110%;
+    background-color: white;
+  }
+
+  &.is-child &__items {
+    position: initial;
   }
 
   &.is-expanded {
