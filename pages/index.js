@@ -3,6 +3,7 @@ import Link from 'next/link';
 // import fetch from 'isomorphic-unfetch';
 import wooApi from '../constants/woo_api';
 // import Head from 'next/head';
+import './styles/index.scss';
 
 const PostLink = props => (
   <li>
@@ -46,10 +47,17 @@ const getCategoryTree = () => {
 export default function Blog(props) {
   return (
     <Layout categories={props.categoryTree}>
-      <h1>All Products</h1>
-      <ul>
-        {props.products.map(product => <p>{product.name}</p>)}
-      </ul>      
+      <section className="landing-section">
+        <div className="dark-background"></div>
+        <div className="landing-section__content">
+          <h2 className="landing-section__text">
+            Affordable, Reliable.
+          </h2>
+          <p className="landing-section__text">
+            We sell only the best quality products
+          </p>
+        </div>
+      </section>
     </Layout>
   );
 }
