@@ -7,6 +7,9 @@
     background-color: transparent;
     border: none;
     z-index: 6;
+    &:focus {
+      outline: none;
+    }
 
     i {
       font-size: 1.3em;
