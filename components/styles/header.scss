@@ -31,8 +31,8 @@
     img {
       display: block;
       object-fit: fill;
-      height: 1em;
-      width: 1em;
+      height: 1.3em;
+      width: 1.2em;
       margin-right: 20px;
     }
 
@@ -144,7 +144,7 @@
   .nav-bar {
     
     &__title {
-      font-size: small;
+      font-size: 0.9em;
     }
   }
 }

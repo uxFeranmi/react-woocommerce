@@ -5,7 +5,7 @@ import './styles/child_dropdown.scss';
 const ChildDropdown = (props) => {
   return (
     <div className={`${props.className} child-dropdown ${props.expanded[props.link] ? 'is-expanded' : ''}`}
-        >
+    >
       <div className="child-dropdown__title">
         <Link href={props.link}>
           <a>{props.label}</a>

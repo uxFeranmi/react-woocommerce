@@ -3,8 +3,14 @@
   position: relative;
   
   &__toggle {
+    position: relative;
     background-color: transparent;
     border: none;
+    z-index: 6;
+
+    i {
+      font-size: 1.3em;
+    }
 
     .small-screen-indicator {
       display: none;
@@ -21,10 +27,17 @@
     padding: 10px 20px;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.5);
     z-index: 5;
+    overflow: auto;
 
     li {
       display: block;
       white-space: nowrap;
+      padding: 10px;
+      border-bottom: 1px solid gray;
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
     }
   }
 
@@ -57,7 +70,13 @@
     }
   
     &__items {
-      
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 80vw;
+      flex-flow: column nowrap;
+      padding-top: 10vh;
     }
   
     &.is-expanded {

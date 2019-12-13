@@ -1,8 +1,20 @@
 .child-dropdown {
   $block: ".child-dropdown";
   
-  &__toggle {
-    
+  &__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      margin-right: 10px;
+    }
+
+    button {
+      background-color: transparent;
+      color: var(--primary-color);
+      border: none;
+    }
   }
 
   &__items {
@@ -10,11 +22,29 @@
     padding-left: 10px;
 
     li {
-      white-space: nowrap;
+      
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
     }
   }
 
   &.is-expanded {
+    
+    #{$block}__title {
+
+      a {
+        
+      }
+
+      button {
+        
+        i {
+          transform: rotate(90deg);
+        }
+      }
+    }
 
     #{$block}__items {
       display: block;
