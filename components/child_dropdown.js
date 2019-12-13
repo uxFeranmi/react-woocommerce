@@ -1,49 +1,46 @@
 import React from 'react';
 import Link from 'next/link';
-import './styles/dropdown.scss';
+import './styles/child_dropdown.scss';
 
 const ChildDropdown = (props) => {
   return (
-    <div className={`${props.className} child-dropdown ${expanded ? 'is-expanded' : ''}`}
-         ref={elem => (dropdown = elem)}
-         onBlur={()=> setExpanded(false)}
+    <div className={`${props.className} child-dropdown ${props.expanded[props.link] ? 'is-expanded' : ''}`}
         >
-      <div className="dropdown__toggle is-child">
-        <Link href={props.key}>
+      <div className="child-dropdown__title">
+        <Link href={props.link}>
           <a>{props.label}</a>
         </Link>
 
-        <button onClick={()=> setExpanded(!expanded)}>
+        <button onClick={()=> props.toggleExpanded(props.link)}>
           <i className="fa fa-chevron-right"
             aria-label="Expand">
           </i>
         </button>
       </div>
 
-      <ul className={'dropdown__items'}>
+      <ul className="child-dropdown__items">
         {props.items.map((item) => {
-          const renderedItem = item.length === 3 ? (
+          if (item.length === 3) return (
             <li key={item[1]}>
               <ChildDropdown
                 label={item[0]}
-                key={item[1]}
-                items={[...item[2]]}
-                child={true}
+                link={item[1]}
+                items={item[2]}
+                toggleExpanded={props.toggleExpanded}
               />
             </li>
-          ) : (
+          )
+          else return (
             <li key={item[1]}>
               <Link href={item[1]}>
                 <a>{item[0]}</a>
               </Link>
             </li>
           );
-
-          return renderedItem;
         })}
       </ul>
     </div>
   );
 };
 
-export default DropdownMenu;
+export default ChildDropdown;

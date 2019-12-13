@@ -1,0 +1,18 @@
+.child-dropdown {
+  $block: ".child-dropdown";
+  
+  &__toggle {
+    
+  }
+
+  &__items {
+    display: none;
+  }
+
+  &.is-expanded {
+
+    #{$block}__items {
+      display: block;
+    }
+  }
+}

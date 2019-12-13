@@ -1,77 +1,74 @@
 import React from 'react';
 import Link from 'next/link';
+
 import './styles/dropdown.scss';
+
+import ChildDropdown from './child_dropdown';
 
 
 const DropdownMenu = (props) => {
   const { useState, useEffect } = React;
-  
-  let dropdown;
 
-  let [ expanded, setExpanded ] = useState({
+  let itemsContainer, rootToggle, blurred;
+
+  let [ isExpanded, setExpanded ] = useState({
     root: false,
   });
 
-  /*useEffect(() => {
-    if (expanded)
-      dropdown.focus();
-    
-    return;
-    //
-  }, [expanded]);*/
-
   return (
-    <div className={`${props.className} dropdown ${expanded ? 'is-expanded' : ''} ${props.child ? 'is-child' : ''}`}
-         ref={elem => (dropdown = elem)}
-         onBlur={()=> setExpanded(false)}
-        >
-      {props.child ? (
-        <div className="dropdown__toggle is-child">
-          <Link href={props.key}>
-            <a>{props.label}</a>
-          </Link>
+    <div className={`${props.className} dropdown ${isExpanded.root ? 'is-expanded' : ''}`}
+    >
+      <button className="dropdown__toggle"
+        ref={(elem)=> rootToggle = elem}
+        onClick={()=> {
+          setExpanded({
+            ...isExpanded,
+            root: !isExpanded.root,
+          });
+        }}
+      >
+        <span>{props.label}</span>
+        &nbsp;
+        <i className={`
+              wide-screen-indicator fa
+              ${isExpanded.root ? 'fa-window-close' : 'fa-chevron-down'}
+            `}
+          aria-hidden="true">
+        </i>
+        <i className={`
+              small-screen-indicator fa 
+              ${isExpanded.root ? 'fa-window-close' : 'fa-bars'}
+            `}
+          aria-label={props.label}>
+        </i>
+      </button>
 
-          <button onClick={()=> setExpanded(!expanded)}>
-            <i className="fa fa-chevron-right"
-              aria-label="Expand">
-            </i>
-          </button>
-        </div>
-      ) : (
-        <button onClick={()=> setExpanded(!expanded)}
-            className="dropdown__toggle"
-          >
-          <span>{props.label}</span>
-          &nbsp;
-          <i className="fa fa-chevron-down"
-            aria-hidden="true">
-          </i>
-          <i className="fa fa-bars"
-            aria-label={props.label}>
-          </i>
-        </button>
-      )}
-
-      <ul className={`${props.parentBlock}__items dropdown__items`}>
+      <ul className="dropdown__items"
+        tabIndex="-1"
+        ref={(elem)=> itemsContainer = elem}
+      >
         {props.items.map((item) => {
-          const renderedItem = item.length === 3 ? (
+          if (item.length === 3) return (
             <li key={item[1]}>
-              <DropdownMenu
+              <ChildDropdown
                 label={item[0]}
-                key={item[1]}
-                items={[...item[2]]}
-                child={true}
+                link={item[1]}
+                items={item[2]}
+                expanded={isExpanded}
+                toggleExpanded={(id)=> setExpanded({
+                  ...isExpanded,
+                  [id]: !isExpanded[id], // The link should be the id.
+                })}
               />
             </li>
-          ) : (
+          );
+          else return (
             <li key={item[1]}>
               <Link href={item[1]}>
                 <a>{item[0]}</a>
               </Link>
             </li>
           );
-
-          return renderedItem;
         })}
       </ul>
     </div>
