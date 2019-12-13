@@ -58,6 +58,18 @@ export default function Blog(props) {
           </p>
         </div>
       </section>
+
+      <section className="bestsellers">
+        <div className="bestsellers__header">
+          <h2 className="bestsellers__title">
+            Bestsellers
+          </h2>
+
+          <ul className="bestsellers__categories-list">
+
+          </ul>
+        </div>
+      </section>
     </Layout>
   );
 }
