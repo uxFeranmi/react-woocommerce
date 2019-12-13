@@ -9,8 +9,6 @@ import ChildDropdown from './child_dropdown';
 const DropdownMenu = (props) => {
   const { useState, useEffect } = React;
 
-  let itemsContainer, rootToggle, blurred;
-
   let [ isExpanded, setExpanded ] = useState({
     root: false,
   });
@@ -19,7 +17,6 @@ const DropdownMenu = (props) => {
     <div className={`${props.className} dropdown ${isExpanded.root ? 'is-expanded' : ''}`}
     >
       <button className="dropdown__toggle"
-        ref={(elem)=> rootToggle = elem}
         onClick={()=> {
           setExpanded({
             ...isExpanded,
@@ -45,7 +42,6 @@ const DropdownMenu = (props) => {
 
       <ul className="dropdown__items"
         tabIndex="-1"
-        ref={(elem)=> itemsContainer = elem}
       >
         {props.items.map((item) => {
           if (item.length === 3) return (

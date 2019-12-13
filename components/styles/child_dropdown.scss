@@ -7,6 +7,11 @@
 
   &__items {
     display: none;
+    padding-left: 10px;
+
+    li {
+      white-space: nowrap;
+    }
   }
 
   &.is-expanded {
