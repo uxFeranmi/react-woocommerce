@@ -8,15 +8,17 @@ const DropdownMenu = (props) => {
   
   let dropdown;
 
-  let [ expanded, setExpanded ] = useState(false);
+  let [ expanded, setExpanded ] = useState({
+    root: false,
+  });
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (expanded)
       dropdown.focus();
     
     return;
     //
-  }, [expanded]);
+  }, [expanded]);*/
 
   return (
     <div className={`${props.className} dropdown ${expanded ? 'is-expanded' : ''} ${props.child ? 'is-child' : ''}`}
