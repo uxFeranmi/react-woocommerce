@@ -49,15 +49,27 @@ export default function Blog(props) {
     <Layout categories={props.categoryTree}>
       <section className="landing-section">
         {props.carousel.map((media)=> {
-          if (media.mime_type.split('/')[0] === 'image')
-            return (
-              <img className="landing-section__content"
-                alt={media.alt_text}
-                src={media.source_url}
-              />
-            );
-          else if (media.mime_type.split('/')[0] === 'video')
-            return
+          const type = media.mime_type.split('/')[0];
+
+          return ( <Link href="/p/[id]" as={`/p/${props.id}`} key={media.id}>
+            <a className="landing-section__content">
+              <span className="landing-section__content-mask"></span>
+              {
+                type === 'image' ? (
+                  <img
+                    alt={media.alt_text}
+                    src={media.source_url}
+                  /> 
+                ) : type === 'video' ? (
+                  <video preload="metadata" autoPlay="autoplay">
+                    <source type={media.mime_type} 
+                      src={media.source_url}
+                    />
+                  </video>
+                ) : 'Something went wrong'
+              }
+            </a>
+          </Link> );
         })}
       </section>
 
