@@ -1,9 +1,9 @@
 import Layout from '../components/my_layout';
 import Link from 'next/link';
-import wooApi from '../constants/woo_api';
+import wooApi from '../services/woo_api';
 // import Head from 'next/head';
 import './styles/index.scss';
-import wpApi from '../constants/wp_api';
+import wpApi from '../services/wp_api';
 
 const PostLink = props => (
   <li>
@@ -48,15 +48,17 @@ export default function Blog(props) {
   return (
     <Layout categories={props.categoryTree}>
       <section className="landing-section">
-        <div className="dark-background"></div>
-        <div className="landing-section__content">
-          <h2 className="landing-section__text">
-            Affordable, Reliable.
-          </h2>
-          <p className="landing-section__text">
-            We sell only the best quality products
-          </p>
-        </div>
+        {props.carousel.map((media)=> {
+          if (media.mime_type.split('/')[0] === 'image')
+            return (
+              <img className="landing-section__content"
+                alt={media.alt_text}
+                src={media.source_url}
+              />
+            );
+          else if (media.mime_type.split('/')[0] === 'video')
+            return
+        })}
       </section>
 
       <section className="bestsellers">
@@ -66,7 +68,7 @@ export default function Blog(props) {
           </h2>
 
           <ul className="bestsellers__categories-list">
-            {props.carousel.map((media)=> media.source_url)}
+            
           </ul>
         </div>
       </section>
