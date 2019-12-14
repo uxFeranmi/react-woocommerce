@@ -1,9 +1,9 @@
 import Layout from '../components/my_layout';
 import Link from 'next/link';
-// import fetch from 'isomorphic-unfetch';
 import wooApi from '../constants/woo_api';
 // import Head from 'next/head';
 import './styles/index.scss';
+import wpApi from '../constants/wp_api';
 
 const PostLink = props => (
   <li>
@@ -66,7 +66,7 @@ export default function Blog(props) {
           </h2>
 
           <ul className="bestsellers__categories-list">
-
+            {props.carousel.map((media)=> media.source_url)}
           </ul>
         </div>
       </section>
@@ -75,27 +75,42 @@ export default function Blog(props) {
 }
 
 Blog.getInitialProps = async function() {
-  // Get List of products
-  const response = await wooApi.get("products", {
-    per_page: 20, // 20 products per page
-  }).catch((error) => {
-    // Invalid request, for 4xx and 5xx statuses
-    console.log("Response Status:", error.response.status);
-    console.log("Response Headers:", error.response.headers);
-    console.log("Response Data:", error.response.data);
-  });
-  
-  if (!response) return {};
-  
-  // Successful request
-  console.log("Response Status:", response.status);
-  console.log("Total of pages:", response.headers['x-wp-totalpages']);
-  console.log("Total of items:", response.headers['x-wp-total']);
+  try {
+    // Get List of products
+    const {data: products} = await wooApi.get("products", {
+      per_page: 20, // 20 products per page
+    });
 
-  return {
-    products: response.data,
-    categoryTree: getCategoryTree(),
-  };
+    const categoryTree = getCategoryTree();
+
+    const carousel = await wpApi('get', '/media', {categories: 31});
+
+    console.log(carousel);
+    return {
+      products,
+      categoryTree,
+      carousel,
+    };
+  }
+
+  catch (error) {
+    if (error.response) {
+      // Server responded with a status code outside the 2xx range.
+      console.log(error.response.status);
+      //
+    } else if (error.request) {
+      // The request was made but no response was received
+      console.log('No response recieved');
+      //
+    } else {
+      // Something happened in setting up the request that triggered an Error
+      console.log('Error', error.message);
+    }
+
+    console.log('Config', error.config);
+    
+    return {};
+  }
 };
 
 
