@@ -25,4 +25,14 @@
     flex-wrap: wrap;
     width: 100vw;
   }
+
+  &__list-item {
+    display: block;
+    width: 16%;
+    margin: 20px 3%;
+
+    .product-card {
+      width: 100%;
+    }
+  }
 }

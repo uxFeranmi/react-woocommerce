@@ -6,14 +6,14 @@ const ProductCard = (props)=> {
   const {product} = props;
   const {categories, images} = product;
 
-  return (<div className={`${props.className} product-card`}>
+  return (<div className="product-card">
     <small className="product-card__categories">
-      {categories.map((category)=> (
+      {categories.map((category, index)=> (
         <Link href="categories/[id]" as={`categories/${category.slug}_${category.id}`}
           key={category.id}
         >
           <a>
-            {`${category.name}, `}
+            {`${category.name}${index + 1 < categories.length ? ', ' : ''}`}
           </a>
         </Link>
       ))}
