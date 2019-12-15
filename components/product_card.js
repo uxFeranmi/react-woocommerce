@@ -28,20 +28,6 @@ const ProductCard = (props)=> {
       </a>
     </Link>
 
-    {/*{id, categories, name, permalink, price, sale_price, images}
-    image: {
-      id: 181,
-      date_created: '2019-12-07T06:06:07',
-      date_created_gmt: '2019-12-07T04:06:07',
-      date_modified: '2019-12-07T06:06:08',
-      date_modified_gmt: '2019-12-07T04:06:08',
-      src: 'http://itsupplies.co/woo/wp-content/uploads/2019/08/album_2_angle.jpg',
-      name: 'Greatest Hits &#8211; Volume 2',
-      alt: ''
-    },
-    categories: [ { id: 11, name: 'Music', slug: 'music' } ]
-    */}
-
     <Link href="products/[id]" as={`products/${product.id}`}>
       <a className="product-card__name">
         {product.name}
@@ -49,8 +35,9 @@ const ProductCard = (props)=> {
     </Link>
 
     <span className="product-card__price">
-      {product.price /*product.regular_price*/}
-      <small>{product.sale_price}</small>
+      &#8358;{product.price /*product.sale_price*/}
+      {/*<small>&#8358;{console.log('price', product.regular_price)}</small>
+        <small>&#8358;{product.sale_price}</small>*/}
     </span>
 
     <div className="product-card__actions">
