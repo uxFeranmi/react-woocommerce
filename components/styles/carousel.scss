@@ -1,0 +1,35 @@
+.carousel {
+  width: 100%;
+
+  &__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: none;
+
+    &.is-current-slide {
+      display: block;
+    }
+  }
+
+  &__content-mask {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+  }
+
+  &__content {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+  }
+}

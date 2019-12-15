@@ -1,17 +1,12 @@
-import Layout from '../components/my_layout';
 import Link from 'next/link';
-import wooApi from '../services/woo_api';
 // import Head from 'next/head';
-import './styles/index.scss';
+
+import Layout from '../components/my_layout';
+import wooApi from '../services/woo_api';
 import wpApi from '../services/wp_api';
 
-const PostLink = props => (
-  <li>
-    <Link href="/p/[id]" as={`/p/${props.id}`}>
-      <a>{props.id}</a>
-    </Link>
-  </li>
-);
+import './styles/index.scss';
+import Carousel from '../components/carousel';
 
 const getCategoryTree = () => {
   // Make API call.
@@ -44,33 +39,11 @@ const getCategoryTree = () => {
   return categoryTree;
 };
 
-export default function Blog(props) {
+export default function Homepage(props) {
   return (
     <Layout categories={props.categoryTree}>
       <section className="landing-section">
-        {props.carousel.map((media)=> {
-          const type = media.mime_type.split('/')[0];
-
-          return ( <Link href="/p/[id]" as={`/p/${props.id}`} key={media.id}>
-            <a className="landing-section__content">
-              <span className="landing-section__content-mask"></span>
-              {
-                type === 'image' ? (
-                  <img
-                    alt={media.alt_text}
-                    src={media.source_url}
-                  /> 
-                ) : type === 'video' ? (
-                  <video preload="metadata" autoPlay="autoplay">
-                    <source type={media.mime_type} 
-                      src={media.source_url}
-                    />
-                  </video>
-                ) : 'Something went wrong'
-              }
-            </a>
-          </Link> );
-        })}
+        <Carousel mediaItems={props.carousel} />
       </section>
 
       <section className="bestsellers">
@@ -88,7 +61,7 @@ export default function Blog(props) {
   );
 }
 
-Blog.getInitialProps = async function() {
+Homepage.getInitialProps = async function() {
   try {
     // Get List of products
     const {data: products} = await wooApi.get("products", {
