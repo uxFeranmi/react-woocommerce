@@ -19,11 +19,13 @@
 }
 
 .bestsellers {
+  width: 100%;
 
   &__list {
     display: flex;
     flex-wrap: wrap;
-    width: 100vw;
+    justify-content: space-evenly;
+    width: 100%;
   }
 
   &__list-item {

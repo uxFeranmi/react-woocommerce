@@ -52,15 +52,15 @@ export default function Homepage(props) {
           <h2 className="bestsellers__title">
             Bestsellers
           </h2>
-
-          <ul className="bestsellers__list">
-            {props.products.map((product)=> (
-              <li className="bestsellers__list-item">
-                <ProductCard product={product} key={product.id} />
-              </li>
-            ))}
-          </ul>
         </div>
+
+        <ul className="bestsellers__list">
+          {props.products.map((product)=> (
+            <li className="bestsellers__list-item" key={product.id}>
+              <ProductCard product={product} />
+            </li>
+          ))}
+        </ul>
       </section>
     </Layout>
   );
