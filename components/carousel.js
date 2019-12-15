@@ -12,14 +12,11 @@ const Carousel = (props)=> {
     nextSlide = 0;
 
   const switchSlides = ()=> {
-    console.log('Slideshow interval');
     if (slides[nextSlide])
       slides[nextSlide].classList.add('is-current-slide');
-    console.log(slides[nextSlide]);
 
     if (slides[prevSlide])
       slides[prevSlide].classList.remove('is-current-slide');
-    console.log(slides[prevSlide]);
 
     if (slides.length > 1) {
       prevSlide = nextSlide;
@@ -27,7 +24,6 @@ const Carousel = (props)=> {
         nextSlide = 0;
       else
         nextSlide = nextSlide + 1;
-      console.log(nextSlide);
     }
   };
 
@@ -37,7 +33,6 @@ const Carousel = (props)=> {
     slideshow = setInterval(switchSlides, 5000);
 
     window.onscroll = ()=> {
-      console.log('onScroll event');
       // If the carousel is almost scrolled out of view... (only bottom 10px visible)
       if (carousel && carousel.getBoundingClientRect().bottom < 10)
         if (slideshow) {
@@ -55,7 +50,7 @@ const Carousel = (props)=> {
     {props.mediaItems.map((media, index)=> {
       const type = media.mime_type.split('/')[0];
 
-      return ( <Link href={media.caption} key={media.id}>
+      return ( <Link href={media.source_url} key={media.id} prefetch={false}>
         <a className="carousel__link"
           ref={(elem)=> slides.push(elem)}
         >

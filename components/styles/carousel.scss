@@ -6,10 +6,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
     width: 100%;
     display: block;
     opacity: 0;
+    overflow: hidden;
     transition: all .2s ease;
 
     &.is-current-slide {
@@ -34,6 +34,5 @@
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1;
   }
 }
