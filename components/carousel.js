@@ -1,53 +1,55 @@
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import './styles/carousel.scss';
 
 const Carousel = (props)=> {
-  let [playing, setPlaying] = useState(true);
-
   let slides = [],
     slideshow,
     prevSlide,
     carousel,
+    playing = true,
     nextSlide = 0;
 
+  const switchSlides = ()=> {
+    console.log('Slideshow interval');
+    if (slides[nextSlide])
+      slides[nextSlide].classList.add('is-current-slide');
+    console.log(slides[nextSlide]);
+
+    if (slides[prevSlide])
+      slides[prevSlide].classList.remove('is-current-slide');
+    console.log(slides[prevSlide]);
+
+    if (slides.length > 1) {
+      prevSlide = nextSlide;
+      if (nextSlide + 1 === slides.length)
+        nextSlide = 0;
+      else
+        nextSlide = nextSlide + 1;
+      console.log(nextSlide);
+    }
+  };
+
   useEffect(()=> {
-    console.log('Scroll effect');
+    clearInterval(slideshow);
+    switchSlides(); //Dont't wait 5 secs before displaying the first slide.
+    slideshow = setInterval(switchSlides, 5000);
+
     window.onscroll = ()=> {
       console.log('onScroll event');
       // If the carousel is almost scrolled out of view... (only bottom 10px visible)
       if (carousel && carousel.getBoundingClientRect().bottom < 10)
-        if (playing) setPlaying(false);
+        if (slideshow) {
+          clearInterval(slideshow);
+          slideshow = null;
+        }
       else
-        if (!playing) setPlaying(true);
-    }
-  }, []);
-
-  useEffect(()=> {
-    console.log('Slideshow effect');
-    if (!playing)
-      return clearInterval(slideshow);
-
-    slideshow = setInterval(()=> {
-      console.log('Slideshow interval');
-      slides[nextSlide].classList.add('is-current-slide');
-      console.log(slides[nextSlide]);
-
-      if (prevSlide)
-        slides[prevSlide].classList.remove('is-current-slide');
-      console.log(slides[prevSlide]);
-
-      if (slides.length > 1) {
-        prevSlide = nextSlide;
-        if (nextSlide + 1 === slides.length)
-          nextSlide = 0;
-        else
-          nextSlide = nextSlide + 1;
-        console.log(nextSlide);
-      }
-    }, 5000);
-  }, [playing]);
+        if (!slideshow) {
+          slideshow = setInterval(switchSlides, 5000);
+        }
+    };
+  });
 
   return (<div className={`${props.className} carousel`} ref={(elem)=> carousel = elem}>
     {props.mediaItems.map((media, index)=> {
