@@ -1,9 +1,11 @@
 .product-card {
-  width: 15vw;
+  width: 20vw;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
   padding: 10px;
+  box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 
   &__categories {
     display: block;
