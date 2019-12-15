@@ -7,7 +7,7 @@ const ProductCard = (props)=> {
   const {categories, images} = product;
 
   return (<div className={`${props.className} product-card`}>
-    <span className="product-card__categories">
+    <small className="product-card__categories">
       {categories.map((category)=> (
         <Link href="categories/[id]" as={`categories/${category.slug}_${category.id}`}
           key={category.id}
@@ -17,7 +17,7 @@ const ProductCard = (props)=> {
           </a>
         </Link>
       ))}
-    </span>
+    </small>
 
     {/*href="products/[id]" as={`products/${product.slug}_${product.id}`}*/}
     <Link href={product.permalink} prefetch={false}>
