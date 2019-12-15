@@ -7,7 +7,6 @@ import wpApi from '../services/wp_api';
 
 import './styles/index.scss';
 import Carousel from '../components/carousel';
-import ProductCard from '../components/product_card';
 
 const getCategoryTree = () => {
   // Make API call.
@@ -54,9 +53,7 @@ export default function Homepage(props) {
           </h2>
 
           <ul className="bestsellers__categories-list">
-            {props.products.map((product)=> (
-              <ProductCard product={product} key={product.id} />
-            ))}
+            
           </ul>
         </div>
       </section>
@@ -67,19 +64,15 @@ export default function Homepage(props) {
 Homepage.getInitialProps = async function() {
   try {
     // Get List of products
-    let {data: products} = await wooApi.get("products", {
-      per_page: 10, // 10 products per page
-    });
-
-    products = products.map((product)=> {
-      const {id, categories, name, permalink, price, sale_price, images} = product;
-
-      return {id, categories, name, permalink, price, sale_price, images};
+    const {data: products} = await wooApi.get("products", {
+      per_page: 20, // 20 products per page
     });
 
     const categoryTree = getCategoryTree();
 
     const carousel = await wpApi('get', '/media', {categories: 31});
+
+    console.log(carousel.map((item)=> item.source_url));
 
     return {
       products,
