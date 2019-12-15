@@ -9,7 +9,7 @@ const Carousel = (props)=> {
 
       return ( <Link href={media.caption} key={media.id}>
         <a className="carousel__link is-current-slide">
-          <span className="landing-section__content-mask"></span>
+          <span className="carousel__content-mask"></span>
           {
             type === 'image' ? (
               <img className="carousel__content"
