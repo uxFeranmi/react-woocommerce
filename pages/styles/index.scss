@@ -17,3 +17,12 @@
     text-shadow: 1px 1px black;
   }
 }
+
+.bestsellers {
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+  }
+}

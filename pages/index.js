@@ -53,7 +53,7 @@ export default function Homepage(props) {
             Bestsellers
           </h2>
 
-          <ul className="bestsellers__categories-list">
+          <ul className="bestsellers__list">
             {props.products.map((product)=> (
               <ProductCard product={product} key={product.id} />
             ))}

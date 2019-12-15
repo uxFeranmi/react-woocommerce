@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import './styles/product_card.scss';
+
 const ProductCard = (props)=> {
   const {product} = props;
   const {categories, images} = product;
@@ -7,9 +9,11 @@ const ProductCard = (props)=> {
   return (<div className={`${props.className} product-card`}>
     <span className="product-card__categories">
       {categories.map((category)=> (
-        <Link href="categories/[id]" as={`categories/${category.slug}_${category.id}`}>
+        <Link href="categories/[id]" as={`categories/${category.slug}_${category.id}`}
+          key={category.id}
+        >
           <a>
-            {category.name},
+            {`${category.name}, `}
           </a>
         </Link>
       ))}
@@ -61,7 +65,7 @@ const ProductCard = (props)=> {
       </button>
 
       <button className="product-card__order">
-        <i className="fa fa-check-box"></i>
+        <i className="fa fa-check-square-o"></i>
         <span>Compare</span>
       </button>
     </div>
