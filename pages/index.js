@@ -72,7 +72,8 @@ Homepage.getInitialProps = async function() {
 
     const carousel = await wpApi('get', '/media', {categories: 31});
 
-    console.log(carousel);
+    console.log(carousel.map((item)=> item.source_url));
+
     return {
       products,
       categoryTree,

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import './styles/dropdown.scss';
@@ -7,8 +7,6 @@ import ChildDropdown from './child_dropdown';
 
 
 const DropdownMenu = (props) => {
-  const { useState, useEffect } = React;
-
   let [ isExpanded, setExpanded ] = useState({
     root: false,
   });

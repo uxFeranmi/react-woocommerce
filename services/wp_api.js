@@ -11,8 +11,6 @@ const wpApi = async (method, endpoint, params = {}, body = {})=> {
     data: body,
   });
 
-  console.log(res.data);
-
   return res.data;
 }
 
