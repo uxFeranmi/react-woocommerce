@@ -47,7 +47,7 @@ const Carousel = (props)=> {
   });
 
   return (<div className={`${props.className} carousel`} ref={(elem)=> carousel = elem}>
-    {props.mediaItems.map((media, index)=> {
+    {props.mediaItems.map((media)=> {
       const type = media.mime_type.split('/')[0];
 
       return ( <Link href={media.source_url} key={media.id} prefetch={false}>

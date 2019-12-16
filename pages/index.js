@@ -1,5 +1,6 @@
 import Link from 'next/link';
 // import Head from 'next/head';
+import { useEffect, useState } from 'react';
 
 import Layout from '../components/my_layout';
 import wooApi from '../services/woo_api';
@@ -41,10 +42,22 @@ const getCategoryTree = () => {
 };
 
 export default function Homepage(props) {
+  let [welcomeBanners, setWelcomeBanners] = useState(props.carousel);
+
+  useEffect(()=> {
+    if (window.innerHeight < window.innerWidth)
+      wpApi('get', '/media', {categories: 31}) //Landscape mode
+        .then((banners)=> setWelcomeBanners(banners));
+      
+      //window.onload = normalizeViewportHeight;
+      //window.onresize = normalizeViewportHeight;
+    
+  }, []);
+
   return (
     <Layout categories={props.categoryTree}>
       <section className="landing-section">
-        <Carousel mediaItems={props.carousel} />
+        <Carousel mediaItems={welcomeBanners} />
       </section>
 
       <section className="bestsellers">
@@ -142,7 +155,7 @@ Homepage.getInitialProps = async ()=> {
 
     const categoryTree = getCategoryTree();
 
-    const carousel = await wpApi('get', '/media', {categories: 31});
+    const carousel = await wpApi('get', '/media', {categories: 32}) //Portrait mode by default.
 
     return {
       products,
