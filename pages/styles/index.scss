@@ -40,83 +40,33 @@
   }
 
   @media screen and (max-width: 850px) {
-    
-
-    &__list {
-      
-    }
-
     &__list-item {
       width: 25%;
-
-      .product-card {
-        
-      }
     }
   }
 
   @media screen and (max-width: 620px) {
-    
-
-    &__list {
-      
-    }
-
     &__list-item {
       width: 35%;
-
-      .product-card {
-        
-      }
     }
   }
 
   @media screen and (max-width: 480px) {
-    
-
-    &__list {
-      
-    }
-
     &__list-item {
       width: 45%;
-
-      .product-card {
-        
-      }
     }
   }
 
   @media screen and (max-width: 420px) {
-    
-
-    &__list {
-      
-    }
-
-    &__list-item {
+   &__list-item {
       width: 45%;
       margin: 20px 5px;
-
-      .product-card {
-        
-      }
     }
   }
 
   @media screen and (max-width: 300px) {
-    
-
-    &__list {
-      
-    }
-
     &__list-item {
       width: 80%;
-
-      .product-card {
-        
-      }
     }
   }
 }
