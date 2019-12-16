@@ -41,7 +41,7 @@ const ProductCard = (props)=> {
     </span>
 
     <div className="product-card__actions">
-      <button className="product-card__actions__order">
+      <button className="product-card__actions__order button is-with-icon">
         <i className="fa fa-shopping-cart"></i>
         <span>Order</span>
       </button>
