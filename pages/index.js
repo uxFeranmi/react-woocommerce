@@ -65,13 +65,13 @@ export default function Homepage(props) {
 
       <footer className="footer-section">{/*custom order*/}
         <ul className="footer-section__main">
-          <li>
-            <h3>Contact Us</h3>
-            <ul className="footer-section__contact">
-              <li>
-                For enquires, send us an email at<br />
-                talktous@itsupplies.co
-              </li>
+          <li className="footer-section__contact">
+            <h3>
+              <i className="fa fa-envelope-o" aria-hidden="true"></i>
+              For enquires, send us an email at<br />
+              talktous@itsupplies.co
+            </h3>
+            <ul>
               <li>+234 703 761 0856</li>
               <li>+234 802 103 7811</li>
               <li>+234 705 485 8666</li>
@@ -80,9 +80,9 @@ export default function Homepage(props) {
             </ul>
           </li>
 
-          <li>
+          <li className="footer-section__quick-links">
             <h3>quick links</h3>
-            <ul className="footer-section__quick-links">
+            <ul>
               <li>About Us</li>
               <li>Shop</li>
               <li>Servers</li>
@@ -91,9 +91,9 @@ export default function Homepage(props) {
             </ul>
           </li>
 
-          <li>
+          <li className="footer-section__account">
             <h3>Account</h3>
-            <ul className="footer-section__account">
+            <ul>
               <li>My Account</li>
               <li>Checkout</li>
               <li>Cart</li>
@@ -102,9 +102,9 @@ export default function Homepage(props) {
             </ul>
           </li>
 
-          <li>
+          <li className="footer-section__help">
             <h3>Help</h3>
-            <ul className="footer-section__help">
+            <ul>
               <li>Shipping and returns</li>
               <li>Privacy Policy</li>
               <li>Terms and Conditions</li>
@@ -113,7 +113,8 @@ export default function Homepage(props) {
         </ul>
 
         <div className="footer-section__thin-strip">
-          © 2013 - 2019 IT Supplies Co. - All Rights Reserved. | Terms & Conditions | Privacy Policy |
+          © 2013 - 2019 <strong>IT Supplies Co.</strong> - All Rights Reserved.
+          | <strong>Terms & Conditions</strong> | <strong>Privacy Policy</strong> |
         </div>
       </footer>
     </Layout>
