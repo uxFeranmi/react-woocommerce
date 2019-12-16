@@ -91,16 +91,31 @@ export default function Homepage(props) {
               talktous@itsupplies.co
             </h3>
             <ul>
-              <li>+234 703 761 0856</li>
-              <li>+234 802 103 7811</li>
-              <li>+234 705 485 8666</li>
-              <li>Twitter:@itsupplies</li>
-              <li>Instagram: itsupplies</li>
+              <li>
+                <i className="fa fa-phone" aria-hidden="true"></i>
+                &nbsp; +234 703 761 0856
+              </li>
+              <li>
+                <i className="fa fa-phone" aria-hidden="true"></i>
+                &nbsp; +234 802 103 7811
+              </li>
+              <li>
+                <i className="fa fa-phone" aria-hidden="true"></i>
+                &nbsp; +234 705 485 8666
+              </li>
+              <li>
+                <i className="fa fa-twitter" aria-hidden="true"></i>
+                &nbsp; @itsupplies
+              </li>
+              <li>
+                <i className="fa fa-instagram" aria-hidden="true"></i>
+                &nbsp; itsupplies
+              </li>
             </ul>
           </li>
 
           <li className="footer-section__quick-links">
-            <h3>quick links</h3>
+            <h3>Quick links</h3>
             <ul>
               <li>About Us</li>
               <li>Shop</li>
@@ -124,7 +139,7 @@ export default function Homepage(props) {
           <li className="footer-section__help">
             <h3>Help</h3>
             <ul>
-              <li>Shipping and returns</li>
+              <li>Shipping and Returns</li>
               <li>Privacy Policy</li>
               <li>Terms and Conditions</li>
             </ul>
@@ -132,8 +147,11 @@ export default function Homepage(props) {
         </ul>
 
         <div className="footer-section__thin-strip">
-          © 2013 - 2019 <strong>IT Supplies Co.</strong> - All Rights Reserved.
-          | <strong>Terms & Conditions</strong> | <strong>Privacy Policy</strong> |
+          <div className="footer">
+            <span>© 2013 - 2019 <strong>IT Supplies Co.</strong> - All Rights Reserved.</span>
+            <strong>Terms & Conditions</strong> 
+            <strong>Privacy Policy</strong>
+          </div>
         </div>
       </footer>
     </Layout>
