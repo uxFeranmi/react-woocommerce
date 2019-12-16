@@ -41,17 +41,17 @@ const ProductCard = (props)=> {
     </span>
 
     <div className="product-card__actions">
-      <button className="product-card__wishlist">
+      <button className="product-card__actions__order">
         <i className="fa fa-shopping-cart"></i>
         <span>Order</span>
       </button>
 
-      <button className="product-card__compare">
+      <button className="product-card__actions__wishlist">
         <i className="fa fa-heart"></i>
         <span>Wishlist</span>
       </button>
 
-      <button className="product-card__order">
+      <button className="product-card__actions__compare">
         <i className="fa fa-check-square-o"></i>
         <span>Compare</span>
       </button>
