@@ -62,11 +62,65 @@ export default function Homepage(props) {
           ))}
         </ul>
       </section>
+
+      <footer className="footer-section">{/*custom order*/}
+        <ul className="footer-section__main">
+          <li>
+            <h3>Contact Us</h3>
+            <ul className="footer-section__contact">
+              <li>
+                For enquires, send us an email at<br />
+                talktous@itsupplies.co
+              </li>
+              <li>+234 703 761 0856</li>
+              <li>+234 802 103 7811</li>
+              <li>+234 705 485 8666</li>
+              <li>Twitter:@itsupplies</li>
+              <li>Instagram: itsupplies</li>
+            </ul>
+          </li>
+
+          <li>
+            <h3>quick links</h3>
+            <ul className="footer-section__quick-links">
+              <li>About Us</li>
+              <li>Shop</li>
+              <li>Servers</li>
+              <li>Accessories</li>
+              <li>HPE Networking</li>
+            </ul>
+          </li>
+
+          <li>
+            <h3>Account</h3>
+            <ul className="footer-section__account">
+              <li>My Account</li>
+              <li>Checkout</li>
+              <li>Cart</li>
+              <li>Wishlist</li>
+              <li>Compare</li>
+            </ul>
+          </li>
+
+          <li>
+            <h3>Help</h3>
+            <ul className="footer-section__help">
+              <li>Shipping and returns</li>
+              <li>Privacy Policy</li>
+              <li>Terms and Conditions</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div className="footer-section__thin-strip">
+          © 2013 - 2019 IT Supplies Co. - All Rights Reserved. | Terms & Conditions | Privacy Policy |
+        </div>
+      </footer>
     </Layout>
   );
 }
 
-Homepage.getInitialProps = async function() {
+Homepage.getInitialProps = async ()=> {
   try {
     // Get List of products
     let {data: products} = await wooApi.get("products", {

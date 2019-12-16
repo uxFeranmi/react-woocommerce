@@ -70,3 +70,30 @@
     }
   }
 }
+
+.footer-section {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: var(--pale-bg);
+  margin-top: 20px;
+
+  &__main {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+    > li {
+      display: block;
+      margin-right: 10px;
+    }
+  }
+
+  &__thin-strip {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
