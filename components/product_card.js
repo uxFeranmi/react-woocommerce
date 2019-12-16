@@ -46,7 +46,7 @@ const ProductCard = (props)=> {
         <span>Order</span>
       </button>
 
-      <button className="product-card__actions__wishlist">
+      {/*<button className="product-card__actions__wishlist">
         <i className="fa fa-heart"></i>
         <span>Wishlist</span>
       </button>
@@ -54,7 +54,7 @@ const ProductCard = (props)=> {
       <button className="product-card__actions__compare">
         <i className="fa fa-check-square-o"></i>
         <span>Compare</span>
-      </button>
+      </button>*/}
     </div>
   </div>);
 };

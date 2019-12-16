@@ -51,7 +51,14 @@
       color: var(--primary-color);
     }
 
-    &__order {
+    button#{&}__order {
+      width: 70%;
+      flex-direction: row;
+      padding: 5px;
+      margin: 0 15% 10px;
+      border-radius: 1000px;
+      border: 1px solid var(--primary-color);
+
       i {
         font-size: large;
       }
