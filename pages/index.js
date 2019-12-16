@@ -55,11 +55,17 @@ export default function Homepage(props) {
         </div>
 
         <ul className="bestsellers__list">
-          {props.products.map((product)=> (
-            <li className="bestsellers__list-item" key={product.id}>
-              <ProductCard product={product} />
-            </li>
-          ))}
+          {props.products.map((product, index)=> {
+            //Skip final product if odd-numbered.
+            if (index + 1 === props.products.length)
+              return '';
+              
+            return (
+              <li className="bestsellers__list-item" key={product.id}>
+                <ProductCard product={product} />
+              </li>
+            );
+          })}
         </ul>
       </section>
 
