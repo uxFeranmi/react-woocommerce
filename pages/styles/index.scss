@@ -125,6 +125,12 @@
         color: var(--pale-text);
         white-space: nowrap;
         margin-right: 20px;
+
+        @media screen and (max-width: 580px) {
+          &:first-child {display: block;}
+          display: none;
+
+        }
       }
     }
 
