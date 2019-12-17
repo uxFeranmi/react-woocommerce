@@ -82,6 +82,34 @@ export default function Homepage(props) {
         </ul>
       </section>
 
+      <section className="featured-category">
+        <div className="featured-category__header">
+          <h2 className="featured-category__title">
+            Servers
+          </h2>
+
+          <ul className="featured-category__sub-categories">
+            <li>Rack Servers</li>
+            <li>Tower Servers</li>
+            <li>Blade Servers</li>
+          </ul>
+
+          <button className="featured-category__see-all">See all &#10132;</button>
+        </div>
+
+        <img src={''} alt="" />
+
+        <ul className="featured-category__products">
+          {props.products.map((product, index)=> {              
+            return (
+              <li className="featured-category__list-item" key={product.id}>
+                <ProductCard product={product} />
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
       <footer className="footer-section">{/*custom order*/}
         <ul className="footer-section__main">
           <li className="footer-section__contact">
