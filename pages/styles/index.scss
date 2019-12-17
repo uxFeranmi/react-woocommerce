@@ -119,6 +119,7 @@
       align-items: flex-end;
 
       li {
+        &:first-child {display: none;}
         display: block;
         font-size: 1em;
         color: var(--pale-text);
@@ -157,6 +158,26 @@
 
   @media screen and (max-width: 850px) {
     &__list-item {
+      width: 40%;
+    }
+  }
+
+  @media screen and (max-width: 780px) {
+    &__list-item {
+      width: 45%;
+    }
+  }
+
+  @media screen and (max-width: 720px) {
+    &__image {
+      display: none;
+    }
+
+    &__products {
+      width: 100%;
+    }
+
+    &__list-item {
       width: 25%;
     }
   }
@@ -164,12 +185,6 @@
   @media screen and (max-width: 620px) {
     &__list-item {
       width: 35%;
-    }
-  }
-
-  @media screen and (max-width: 480px) {
-    &__list-item {
-      width: 45%;
     }
   }
 
