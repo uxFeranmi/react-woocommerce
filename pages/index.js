@@ -88,16 +88,22 @@ export default function Homepage(props) {
             Servers
           </h2>
 
-          <ul className="featured-category__sub-categories">
-            <li>Rack Servers</li>
-            <li>Tower Servers</li>
-            <li>Blade Servers</li>
-          </ul>
-
-          <button className="featured-category__see-all">See all &#10132;</button>
+          <div className="featured-category__nav">
+            <ul>
+              <li>Types <i className="fa fa-chevron-down"></i></li>
+              <li>Rack Servers</li>
+              <li>Tower Servers</li>
+              <li>Blade Servers</li>
+            </ul>
+            <button className="featured-category__see-all">
+              See all &#10132;
+            </button>
+          </div>
         </div>
 
-        <img src={''} alt="" />
+        <img src="http://itsupplies.co/woo/wp-content/uploads/2019/08/album_2_flat.jpg"
+          alt="" className="featured-category__image"
+        />
 
         <ul className="featured-category__products">
           {props.products.map((product, index)=> {              

@@ -87,6 +87,9 @@
 }
 
 .featured-category {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   width: 100%;
   padding: 10px 10%;
 
@@ -96,6 +99,8 @@
 
   &__header {
     display: flex;
+    width: 100%;
+    //flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
@@ -106,37 +111,43 @@
 
   }
 
-  &__sub-categories {
+  &__nav {
     display: flex;
-    align-items: flex-end;
 
-    li {
-      display: block;
-      font-size: 1em;
-      color: var(--pale-text);
+    ul {
+      display: flex;
+      align-items: flex-end;
 
-      &:not(:last-child) {
+      li {
+        display: block;
+        font-size: 1em;
+        color: var(--pale-text);
+        white-space: nowrap;
         margin-right: 20px;
       }
     }
+
+    button {
+      white-space: nowrap;
+    }
   }
 
-  &__see-all {
-
+  &__image {
+    width: 40%;
   }
 
   &__products {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    width: 100%;
-    padding-left: -10px;
+    width: 60%;
+    overflow-x: scroll;
   }
 
   &__list-item {
     display: block;
-    width: 20%;
+    width: 35%;
     margin: 20px 10px;
+    flex-shrink: 0;
 
     .product-card {
       width: 100%;
