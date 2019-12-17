@@ -146,7 +146,19 @@
     padding: 10px 5%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.05);
+  }
 
-    
+  &__copyright {
+    display: flex;
+    align-items: center;
+
+    > * {
+      display: block;
+      padding: 0 15px;
+
+      &:not(:last-child) {
+        border-right: 1px solid;
+      }
+    }
   }
 }

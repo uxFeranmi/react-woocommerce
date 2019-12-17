@@ -147,7 +147,7 @@ export default function Homepage(props) {
         </ul>
 
         <div className="footer-section__thin-strip">
-          <div className="footer">
+          <div className="footer-section__copyright">
             <span>© 2013 - 2019 <strong>IT Supplies Co.</strong> - All Rights Reserved.</span>
             <strong>Terms & Conditions</strong> 
             <strong>Privacy Policy</strong>
