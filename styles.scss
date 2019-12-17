@@ -11,6 +11,12 @@
   --primary-color: rgb(27, 20, 100);
   --pale-bg: #F8F8F8;
   --pale-text: rgb(51, 62, 72);
+  overflow-x: hidden;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 a {

@@ -1,0 +1,142 @@
+.featured-category {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  padding: 10px 10%;
+
+  @media screen and (max-width: 1130px){
+    padding: 10px;
+  }
+
+  &__header {
+    display: flex;
+    width: 100%;
+    //flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px;
+    border-bottom: 1px solid var(--pale-text);
+  }
+  
+  &__title {
+
+  }
+
+  &__nav {
+    display: flex;
+    position: relative;
+
+    &__toggle-list {
+      display: none;
+      @media screen and (max-width: 580px) {
+        display: block;
+      }
+    }
+
+    ul {
+      display: flex;
+      align-items: flex-end;
+
+      li {
+        display: block;
+        font-size: 1em;
+        color: var(--pale-text);
+        white-space: nowrap;
+        margin-right: 20px;
+      }
+
+      @media screen and (max-width: 580px) {
+        display: none;
+        position: absolute;
+        top: 115%;
+        right: 0;
+        background-color: white;
+        border-top: 2px solid var(--primary-color);
+        padding: 20px;
+        box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.5);
+
+        &.is-expanded {
+          display: initial;
+        }
+
+        li {
+          margin-right: 0;
+          margin-bottom: 15px;
+        }
+      }
+    }
+
+    &__see-all {
+      white-space: nowrap;
+    }
+  }
+
+  &__image {
+    width: 40%;
+  }
+
+  &__products {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    overflow-x: scroll;
+  }
+
+  &__list-item {
+    display: block;
+    width: 35%;
+    margin: 20px 10px;
+    flex-shrink: 0;
+
+    .product-card {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    &__list-item {
+      width: 40%;
+    }
+  }
+
+  @media screen and (max-width: 780px) {
+    &__list-item {
+      width: 45%;
+    }
+  }
+
+  @media screen and (max-width: 720px) {
+    &__image {
+      display: none;
+    }
+
+    &__products {
+      width: 100%;
+    }
+
+    &__list-item {
+      width: 25%;
+    }
+  }
+
+  @media screen and (max-width: 620px) {
+    &__list-item {
+      width: 35%;
+    }
+  }
+
+  @media screen and (max-width: 420px) {
+   &__list-item {
+      width: 45%;
+      margin: 20px 5px;
+    }
+  }
+
+  @media screen and (max-width: 300px) {
+    &__list-item {
+      width: 80%;
+    }
+  }
+}

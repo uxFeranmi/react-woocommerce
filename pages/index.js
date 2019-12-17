@@ -6,9 +6,11 @@ import Layout from '../components/my_layout';
 import wooApi from '../services/woo_api';
 import wpApi from '../services/wp_api';
 
-import './styles/index.scss';
 import Carousel from '../components/carousel';
 import ProductCard from '../components/product_card';
+
+import FeaturedCategory from '../sections/homepage/featured_category';
+import './styles/index.scss';
 
 const getCategoryTree = () => {
   // Make API call.
@@ -82,39 +84,7 @@ export default function Homepage(props) {
         </ul>
       </section>
 
-      <section className="featured-category">
-        <div className="featured-category__header">
-          <h2 className="featured-category__title">
-            Servers
-          </h2>
-
-          <div className="featured-category__nav">
-            <ul>
-              <li>Types <i className="fa fa-chevron-down"></i></li>
-              <li>Rack Servers</li>
-              <li>Tower Servers</li>
-              <li>Blade Servers</li>
-            </ul>
-            <button className="featured-category__see-all">
-              See all &#10132;
-            </button>
-          </div>
-        </div>
-
-        <img src="http://itsupplies.co/woo/wp-content/uploads/2019/08/album_2_flat.jpg"
-          alt="" className="featured-category__image"
-        />
-
-        <ul className="featured-category__products">
-          {props.products.map((product, index)=> {              
-            return (
-              <li className="featured-category__list-item" key={product.id}>
-                <ProductCard product={product} />
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+      <FeaturedCategory products={props.products} />
 
       <footer className="footer-section">{/*custom order*/}
         <ul className="footer-section__main">
