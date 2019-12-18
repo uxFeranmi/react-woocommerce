@@ -1,8 +1,18 @@
 import Link from 'next/link';
+import {useState} from 'react';
 
 import './styles/footer.scss';
 
+
 const Footer = ()=> {
+  let [expanded, setExpanded] = useState({});
+
+  const toggleExpanded = (list)=> {
+    setExpanded({
+      [list]: !expanded[list],
+    });
+  };
+
   return (
     <footer className="app-footer">{/*custom order*/}
       <ul className="app-footer__main">
@@ -37,8 +47,11 @@ const Footer = ()=> {
         </li>
 
         <li className="app-footer__quick-links">
-          <h3>Quick links</h3>
-          <ul>
+          <h3 onClick={()=> toggleExpanded('quickLinks')}>
+            Quick links
+            <i className={`fa fa-chevron-${expanded.quickLinks ? 'left' : 'down'}`}></i>
+          </h3>
+          <ul className={`${expanded.quickLinks ? 'is-expanded': ''}`}>
             <li>About Us</li>
             <li>Shop</li>
             <li>Servers</li>
@@ -48,8 +61,11 @@ const Footer = ()=> {
         </li>
 
         <li className="app-footer__account">
-          <h3>Account</h3>
-          <ul>
+          <h3 onClick={()=> toggleExpanded('account')}>
+            Account
+            <i className={`fa fa-chevron-${expanded.account ? 'left' : 'down'}`}></i>
+          </h3>
+          <ul className={`${expanded.account ? 'is-expanded': ''}`}>
             <li>My Account</li>
             <li>Checkout</li>
             <li>Cart</li>
@@ -59,8 +75,11 @@ const Footer = ()=> {
         </li>
 
         <li className="app-footer__help">
-          <h3>Help</h3>
-          <ul>
+          <h3 onClick={()=> toggleExpanded('help')}>
+            Help
+            <i className={`fa fa-chevron-${expanded.help ? 'left' : 'down'}`}></i>
+          </h3>
+          <ul className={`${expanded.help ? 'is-expanded': ''}`}>
             <li>Shipping and Returns</li>
             <li>Privacy Policy</li>
             <li>Terms and Conditions</li>
@@ -70,7 +89,7 @@ const Footer = ()=> {
 
       <div className="app-footer__thin-strip">
         <div className="app-footer__copyright">
-          <span>© 2013 - 2019 <strong>IT Supplies Co.</strong> - All Rights Reserved.</span>
+          <span>© 2019 <strong>IT Supplies Co.</strong> - All Rights Reserved.</span>
         </div>
       </div>
     </footer>
