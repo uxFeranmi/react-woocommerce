@@ -7,9 +7,10 @@ import wooApi from '../services/woo_api';
 import wpApi from '../services/wp_api';
 
 import Carousel from '../components/carousel';
-import ProductCard from '../components/product_card';
 
 import FeaturedCategory from '../sections/homepage/featured_category';
+import Bestsellers from '../sections/homepage/bestsellers';
+import FeaturedProducts from '../sections/homepage/featured_products';
 import './styles/index.scss';
 
 const getCategoryTree = () => {
@@ -62,29 +63,11 @@ export default function Homepage(props) {
         <Carousel mediaItems={welcomeBanners} />
       </section>
 
-      <section className="bestsellers">
-        <div className="bestsellers__header">
-          <h2 className="bestsellers__title">
-            Bestsellers
-          </h2>
-        </div>
-
-        <ul className="bestsellers__list">
-          {props.products.map((product, index)=> {
-            //Skip final product if odd-numbered.
-            if (index + 1 === props.products.length)
-              return '';
-              
-            return (
-              <li className="bestsellers__list-item" key={product.id}>
-                <ProductCard product={product} />
-              </li>
-            );
-          })}
-        </ul>
-      </section>
+      <Bestsellers products={props.products} />
 
       <FeaturedCategory products={props.products} />
+
+      <FeaturedProducts products={props.products} />
     </Layout>
   );
 }
