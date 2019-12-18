@@ -1,6 +1,8 @@
 import { useRouter } from 'next/router';
-import Header from './header';
 import Head from 'next/head';
+
+import Header from './header';
+import Footer from './footer';
 import "../styles.scss";
 
 const staticPath = process.env.staticPath || '';
@@ -20,6 +22,8 @@ export default function Layout(props) {
       <Header categories={props.categories} />
 
       {props.children}
+
+      <Footer />
     </main>
   );
 }
