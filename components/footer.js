@@ -19,8 +19,10 @@ const Footer = ()=> {
         <li className="app-footer__contact">
           <h3>
             <i className="fa fa-envelope-o" aria-hidden="true"></i>
-            For enquires, send us an email at<br />
-            talktous@itsupplies.co
+            <span>
+              For enquires, send us an email at<br />
+              talktous@itsupplies.co
+            </span>
           </h3>
           <ul>
             <li>

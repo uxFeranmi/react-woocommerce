@@ -11,7 +11,7 @@ export default function Layout(props) {
   const router = useRouter();
 
   return (
-    <main>
+    <main className="app-shell">
       <Head>
         <title>IT Supplies</title>
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin="anonymous"></link>

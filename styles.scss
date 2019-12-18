@@ -15,8 +15,15 @@
 }
 
 body {
-  width: 100%;
-  overflow-x: hidden;
+  //overflow-x: hidden; //Overflow on body overrides position sticky on header.
+}
+
+#__next {
+  
+}
+
+.app-shell {
+  
 }
 
 a {
