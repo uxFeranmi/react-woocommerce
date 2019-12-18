@@ -1,10 +1,12 @@
 import Link from 'next/link';
 
+import './styles/footer.scss';
+
 const Footer = ()=> {
   return (
     <footer className="app-footer">{/*custom order*/}
-      <ul className="footer-section__main">
-        <li className="footer-section__contact">
+      <ul className="app-footer__main">
+        <li className="app-footer__contact">
           <h3>
             <i className="fa fa-envelope-o" aria-hidden="true"></i>
             For enquires, send us an email at<br />
@@ -19,10 +21,10 @@ const Footer = ()=> {
               <i className="fa fa-phone" aria-hidden="true"></i>
               &nbsp; +234 802 103 7811
             </li>
-            <li>
+            {/*<li>
               <i className="fa fa-phone" aria-hidden="true"></i>
               &nbsp; +234 705 485 8666
-            </li>
+            </li>*/}
             <li>
               <i className="fa fa-twitter" aria-hidden="true"></i>
               &nbsp; @itsupplies
@@ -34,7 +36,7 @@ const Footer = ()=> {
           </ul>
         </li>
 
-        <li className="footer-section__quick-links">
+        <li className="app-footer__quick-links">
           <h3>Quick links</h3>
           <ul>
             <li>About Us</li>
@@ -45,7 +47,7 @@ const Footer = ()=> {
           </ul>
         </li>
 
-        <li className="footer-section__account">
+        <li className="app-footer__account">
           <h3>Account</h3>
           <ul>
             <li>My Account</li>
@@ -56,7 +58,7 @@ const Footer = ()=> {
           </ul>
         </li>
 
-        <li className="footer-section__help">
+        <li className="app-footer__help">
           <h3>Help</h3>
           <ul>
             <li>Shipping and Returns</li>
@@ -66,11 +68,9 @@ const Footer = ()=> {
         </li>
       </ul>
 
-      <div className="footer-section__thin-strip">
-        <div className="footer-section__copyright">
+      <div className="app-footer__thin-strip">
+        <div className="app-footer__copyright">
           <span>© 2013 - 2019 <strong>IT Supplies Co.</strong> - All Rights Reserved.</span>
-          <strong>Terms &amp; Conditions</strong> 
-          <strong>Privacy Policy</strong>
         </div>
       </div>
     </footer>

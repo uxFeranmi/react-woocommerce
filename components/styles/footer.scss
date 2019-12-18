@@ -7,11 +7,13 @@
 
   &__main {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     margin-bottom: 20px;
 
     > li {
-      display: block;
+      display: flex;
+      flex-flow: column nowrap;
       margin-right: 10px;
 
       h3 {
@@ -29,6 +31,7 @@
   }
 
   &__contact {
+    align-items: center;
 
     h3 {
       display: flex;
@@ -48,6 +51,26 @@
 
       li {
         margin-bottom: 10px !important;
+        margin-right: 15px;
+      }
+    }
+
+    @media screen and (max-width: 850px) {
+      width: 100%;
+      margin-bottom: 30px;
+
+      ul {
+        padding: 0 25%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+    }
+
+    @media screen and (max-width: 720px) {
+
+      ul {
+        padding: 0 10%;
       }
     }
   }
