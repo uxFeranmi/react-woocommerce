@@ -11,6 +11,8 @@ import getCategoryTree from '../../services/category_tree';
 import Subcategories from '../../sections/category_page/subcategories';
 import Products from '../../sections/category_page/products';
 
+import './styles/[slug_id].scss';
+
 export default function Category(props) {
   if (props.error) return JSON.stringify(props.error);
   //const router = useRouter();
