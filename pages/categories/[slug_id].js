@@ -5,18 +5,21 @@ import Link from 'next/link';
 
 import Layout from '../../components/my_layout';
 import wooApi from '../../services/woo_api';
+import getCategoryTree from '../../services/category_tree';
 //import wpApi from '../../services/wp_api';
+
+import Subcategories from '../../sections/category_page/subcategories';
+import Products from '../../sections/category_page/products';
 
 export default function Category(props) {
   if (props.error) return JSON.stringify(props.error);
   //const router = useRouter();
 
   return (
-    <Layout categories={[]}>
-      <h1>{props.slug} {props.id}</h1>
-      <p>This is the blog post content.</p>
-      <section>{props.subcategories.map((cat)=> cat.name)}</section>
-      <section>{props.products.map((prod)=> prod.name)}</section>
+    <Layout categories={props.categoryTree}>
+      <Subcategories subcategories={props.subcategories} />
+
+      <Products products={props.products} />
     </Layout>
   );
 }
@@ -45,14 +48,14 @@ Category.getInitialProps = async ({ query })=> {
       return {id, categories, name, permalink, price, sale_price, images};
     });
 
-    //const categoryTree = getCategoryTree();
+    const categoryTree = getCategoryTree();
 
     return {
       slug,
       id,
       subcategories,
       products,
-      //categoryTree,
+      categoryTree,
     };
   }
 
