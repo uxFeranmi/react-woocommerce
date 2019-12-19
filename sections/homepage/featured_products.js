@@ -1,44 +1,77 @@
+import {useState} from 'react';
 
-
+import ProductCard from '../../components/product_card';
 import './styles/featured_products.scss';
 
 const FeaturedProducts = (props)=> {
+  let [tab, switchTab] = useState(1);
+
   return (
     <section className="featured-products">
-      <div className="featured-category__header">
-        <h2 className="featured-category__title">
-          Servers
-        </h2>
-
-        <div className="featured-category__nav">
-          <button className="featured-category__nav__toggle-list"
-            onClick={toggleNavList}
+      <div className="featured-products__header">
+        <h2 className="featured-products__title">
+          <button className={`featured-products__tab ${tab === 1 ? 'is-current-tab' : ''}`}
+            onClick={()=> switchTab(1)}
           >
-            Types <i className={`fa ${navListExpanded ? 'fa-window-close' : 'fa-chevron-down'}`}></i>
+            Featured Products
           </button>
-          <ul className={`${navListExpanded ? 'is-expanded' : ''}`}>
-            <li>Rack Servers</li>
-            <li>Tower Servers</li>
-            <li>Blade Servers</li>
-          </ul>
-          <Link href="servers">
-            <a className="featured-category__nav__see-all">
-              See all &#10132;
-            </a>
-          </Link>
-        </div>
+          <button className={`featured-products__tab ${tab === 2 ? 'is-current-tab' : ''}`}
+            onClick={()=> switchTab(2)}
+          >
+            Special Offers
+          </button>
+          <button className={`featured-products__tab ${tab === 3 ? 'is-current-tab' : ''}`}
+            onClick={()=> switchTab(3)}
+          >
+            Weekly Deals
+          </button>
+        </h2>
       </div>
 
-      <ul className="featured-category__products">
-        {props.products.map((product, index)=> {              
-          return (
-            <li className="featured-category__list-item" key={product.id}>
-              <ProductCard product={product} />
-            </li>
-          );
-        })}
+      <ul className="featured-products__list">
+        {(()=> { //IIFE
+          switch (tab) {
+            case 1: //featured
+              return props.products.map((product, index)=> {
+                return (
+                  <li className="featured-products__list-item" key={product.id}>
+                    <ProductCard product={product} />
+                  </li>
+                );
+              });
+          
+            case 2: //special offers
+              return props.products.map((product, index)=> {
+                if (index % 2  !== 0) return '';              
+                return (
+                  <li className="featured-products__list-item" key={product.id}>
+                    <ProductCard product={product} />
+                  </li>
+                );
+              });
+              
+            case 3: //weekly deals
+              return props.products.map((product, index)=> {              
+                if (index % 2  !== 0 || index % 3  !== 0) return '';
+                return (
+                  <li className="featured-products__list-item" key={product.id}>
+                    <ProductCard product={product} />
+                  </li>
+                );
+              });
+
+            default: //featured
+              return props.products.map((product, index)=> {              
+                return (
+                  <li className="featured-products__list-item" key={product.id}>
+                    <ProductCard product={product} />
+                  </li>
+                );
+              });
+            // 
+          }
+        })()}
       </ul>
-      {props.products[0].name}
     </section>
   )
 };
