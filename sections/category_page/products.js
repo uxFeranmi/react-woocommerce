@@ -2,6 +2,8 @@ import Link from 'next/link';
 
 import ProductCard from '../../components/product_card';
 
+import './styles/products.scss';
+
 const Products = (props)=> {
   return (
     <section className="products-section" style={{margin: '20px'}}>
