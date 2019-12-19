@@ -6,7 +6,7 @@ import './styles/products.scss';
 
 const Products = (props)=> {
   return (
-    <section className="products-section" style={{margin: '20px'}}>
+    <section className="products-section">
       <div className="products-section__header">
         <h2 className="products-section__title">
           {props.category.name}

@@ -8,7 +8,7 @@ import "../styles.scss";
 const staticPath = process.env.staticPath || '';
 
 export default function Layout(props) {
-  const router = useRouter();
+  //const router = useRouter();
 
   return [ //Return an array of elements to keep header out of the <main> tag.
     (<Head>
