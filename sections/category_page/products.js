@@ -9,7 +9,7 @@ const Products = (props)=> {
     <section className="products-section" style={{margin: '20px'}}>
       <div className="products-section__header">
         <h2 className="products-section__title">
-          Products
+          {props.category.name}
         </h2>
       </div>
 

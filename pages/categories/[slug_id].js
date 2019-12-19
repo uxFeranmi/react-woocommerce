@@ -19,7 +19,7 @@ export default function Category(props) {
     <Layout categories={props.categoryTree}>
       <Subcategories subcategories={props.subcategories} />
 
-      <Products products={props.products} />
+      <Products products={props.products} category={props.category} />
     </Layout>
   );
 }
@@ -30,6 +30,8 @@ Category.getInitialProps = async ({ query })=> {
     const separatorIndex = slug_id.lastIndexOf('_');
     const id = slug_id.slice(separatorIndex + 1);
     const slug = slug_id.slice(0, separatorIndex);
+
+    let {data: category} = await wooApi.get(`products/categories/${id}`);
 
     // Fetch subcategories.
     let {data: subcategories} = await wooApi.get(`products/categories`, {
@@ -53,6 +55,7 @@ Category.getInitialProps = async ({ query })=> {
     return {
       slug,
       id,
+      category,
       subcategories,
       products,
       categoryTree,
