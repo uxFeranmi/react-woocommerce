@@ -45,16 +45,6 @@ const ProductCard = (props)=> {
         <i className="fa fa-shopping-cart"></i>
         <span>Order</span>
       </button>
-
-      {/*<button className="product-card__actions__wishlist">
-        <i className="fa fa-heart"></i>
-        <span>Wishlist</span>
-      </button>
-
-      <button className="product-card__actions__compare">
-        <i className="fa fa-check-square-o"></i>
-        <span>Compare</span>
-      </button>*/}
     </div>
   </div>);
 };
