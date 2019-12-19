@@ -11,10 +11,10 @@ const Products = (props)=> {
         </h2>
       </div>
 
-      <ul className="products-section__list" style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between'}}>
+      <ul className="products-section__list">
         {props.products.map((product, index)=> {
           return (
-            <li className="products-section__list-item" key={product.id} style={{display: 'block'}}>
+            <li className="products-section__list-item" key={product.id}>
               <ProductCard product={product} />
             </li>
           );

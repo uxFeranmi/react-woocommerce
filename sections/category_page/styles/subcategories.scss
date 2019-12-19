@@ -1,6 +1,13 @@
 .subcategories {
+  border: 1px solid green;
 
   &__list {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  &__list-item {
+    display: block;
   }
 }

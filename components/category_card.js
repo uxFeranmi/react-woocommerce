@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import './styles/product_card.scss';
+import './styles/category_card.scss';
 
 const CategoryCard = (props)=> {
   const {category} = props;
