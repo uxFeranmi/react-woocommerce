@@ -20,11 +20,12 @@ body {
 
 #__next {
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .app-header {
   width: 100%;
-  overflow-x: hidden;
 }
 
 .app-shell { //main
@@ -38,7 +39,7 @@ body {
 }
 
 section {
-  margin-bottom: 50px;
+  margin-bottom: 35px;
 }
 
 a {

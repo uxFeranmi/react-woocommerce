@@ -52,7 +52,7 @@ Category.getInitialProps = async ({ query })=> {
       return {id, categories, name, permalink, price, sale_price, images};
     });
 
-    const categoryTree = getCategoryTree();
+    const categoryTree = await getCategoryTree();
 
     return {
       slug,

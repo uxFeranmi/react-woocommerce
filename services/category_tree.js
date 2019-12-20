@@ -1,6 +1,10 @@
-const getCategoryTree = () => {
-  // Make API call.
+import wooApi from './woo_api';
 
+const getCategoryTree = async () => {
+  const {data: categories} = await wooApi.get(`products/categories`);
+
+  
+  
   // Build the array.
   const categoryTree = [
     ['Servers', 'link/1', [

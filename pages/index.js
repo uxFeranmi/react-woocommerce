@@ -55,7 +55,7 @@ Homepage.getInitialProps = async ()=> {
       return {id, categories, name, permalink, price, sale_price, images};
     });
 
-    const categoryTree = getCategoryTree();
+    const categoryTree = await getCategoryTree();
 
     const carousel = await wpApi('get', '/media', {categories: 32}) //Portrait mode by default.
 
