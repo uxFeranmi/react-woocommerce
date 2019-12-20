@@ -13,21 +13,23 @@ const CategoryCard = (props)=> {
           alt={image && image.alt ? image.alt : `Image showing ${name}`}
         />
       </a>
-    </Link><br />
+    </Link>
 
-    <Link href="categories/[id]" as={`categories/${slug}_${id}`}>
-      <a className="category-card__name">
-        {name}
-      </a>
-    </Link><br />
+    <div className="category-card__bezel">
+      <Link href="categories/[id]" as={`categories/${slug}_${id}`}>
+        <a className="category-card__name">
+          {name}
+        </a>
+      </Link>
 
-    <span className="category-card__count">
-      {count} products listed.
-    </span><br />
+      <span className="category-card__count">
+        {count} products listed
+      </span>
 
-    <button className="category-card__action">
-      Browse
-    </button><br />
+      <button className="category-card__action">
+        Browse
+      </button>
+    </div>
   </div>);
 };
 

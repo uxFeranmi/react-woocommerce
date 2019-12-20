@@ -11,7 +11,6 @@
   --primary-color: rgb(27, 20, 100);
   --pale-bg: #F8F8F8;
   --pale-text: rgb(51, 62, 72);
-  width: 100%;
 }
 
 body {
@@ -35,6 +34,10 @@ body {
 .app-footer {
   width: 100%;
   overflow-x: hidden;
+}
+
+section {
+  margin-bottom: 50px;
 }
 
 a {

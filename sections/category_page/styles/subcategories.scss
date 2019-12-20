@@ -1,10 +1,11 @@
 .subcategories {
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 30px;
 
   &__list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
   }
 
   &__list-item {

@@ -4,6 +4,7 @@
   flex-flow: column nowrap;
   box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.3);
   border-radius: 5px;
+  position: relative;
 
   @media screen and (max-width: 768px) {
     width: 40vw;
@@ -19,9 +20,25 @@
     }
   }
 
+  &__bezel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-image: linear-gradient(to top, white, white, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0));
+    padding: 30px 10px 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    > * {display: block;}
+  }
+
   &__name {
     display: block;
     padding: 5px 10px;
+    color: black;
+    font-weight: bold;
   }
 
   &__action {
