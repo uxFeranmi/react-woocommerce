@@ -1,12 +1,62 @@
 import wooApi from './woo_api';
 
 const getCategoryTree = async () => {
+  //Fetch all categories from the Database.
   const {data: categories} = await wooApi.get(`products/categories`);
 
+//id name slug parent description display image menu_order count
+
+  //Create an array with relevant data for each category
+  let categoryList = categories.map((category)=> {
+    return [
+      category.name,
+      `/categories/${category.slug}_${category.id}`,
+      [],
+    ];
+  });
+
+  //Loop over the array and build the subcategory tree for each element.
+  categoryList.forEach((catListItem, catListIndex)=> {
+    if (!catListItem) return;
+
+    buildList(catListIndex);
+  })
+
+  function buildList(index) {
+    //Get the id of the current category.
+    const id = categories[index].id;
+
+    //Iterate over the array of objects gotten from the database, retrieving the parent id for each member.
+    categories.forEach((category, i)=> {
+      //If you found a child of the current category being built...
+      if (category && category.parent === id) { //Null check for category is important because of deletion of processed items.
+        //Build the subtree for this subcategory first.
+        buildList(i);
+
+        //Then push the subcategory and it's entire subtree into the current parent.
+        categoryList[index][2].push(categoryList[i]);
+
+        //Now delete the subcategory that has been processed from both arrays, to prevent conflict on future iterations.
+        categories[i] = null;
+        categoryList[i] = null;
+      }
+    });
+  };
   
-  
-  // Build the array.
-  const categoryTree = [
+  console.log(categoryList);
+
+  //Filter category list to remove all null elements.
+  //Only root categories and their nested subtrees will be left.
+  const categoryTree = categoryList.filter((rootCategory)=> rootCategory ? true : false);
+
+  console.log(categoryTree);
+
+  return categoryTree;
+};
+
+export default getCategoryTree;
+
+/*const categoryTree = [
     ['Servers', 'link/1', [
       ['Rack Servers', 'link/2'],
       ['Tower Servers', 'Link/3'],
@@ -28,9 +78,4 @@ const getCategoryTree = async () => {
       ['MSA', 'link/17'],
       ['Tape Drives', 'link/18'],
     ]],
-  ];
-
-  return categoryTree;
-};
-
-export default getCategoryTree;
+  ];*/

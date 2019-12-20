@@ -9,7 +9,7 @@ const ProductCard = (props)=> {
   return (<div className="product-card">
     <small className="product-card__categories">
       {categories.map((category, index)=> (
-        <Link href="categories/[id]" as={`categories/${category.slug}_${category.id}`}
+        <Link href="/categories/[id]" as={`/categories/${category.slug}_${category.id}`}
           key={category.id}
         >
           <a>

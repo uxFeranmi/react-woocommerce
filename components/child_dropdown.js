@@ -3,8 +3,10 @@ import Link from 'next/link';
 import './styles/child_dropdown.scss';
 
 const ChildDropdown = (props) => {
+  let {expanded} = props;
+  console.log(props);
   return (
-    <div className={`${props.className} child-dropdown ${props.expanded[props.link] ? 'is-expanded' : ''}`}
+    <div className={`${props.className} child-dropdown ${expanded[props.link] ? 'is-expanded' : ''}`}
     >
       <div className="child-dropdown__title">
         <Link href={props.link}>
@@ -25,6 +27,7 @@ const ChildDropdown = (props) => {
               <ChildDropdown
                 label={item[0]}
                 link={item[1]}
+                expanded={expanded}
                 items={item[2]}
                 toggleExpanded={props.toggleExpanded}
               />
