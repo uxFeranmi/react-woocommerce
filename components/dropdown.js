@@ -43,7 +43,7 @@ const DropdownMenu = (props) => {
         tabIndex="-1"
       >
         {props.items.map((item) => {
-          if (item.length === 3) return (
+          if (item[2].length > 0) return (
             <li key={item[1]}>
               {console.log(isExpanded)}
               <ChildDropdown

@@ -14,7 +14,7 @@ const ChildDropdown = (props) => {
         </Link>
 
         <button onClick={()=> props.toggleExpanded(props.link)}>
-          <i className="fa fa-chevron-right"
+          <i className={`fa ${expanded[props.link] ? 'fa-chevron-down' : 'fa-chevron-right'}`}
             aria-label="Expand">
           </i>
         </button>
@@ -22,7 +22,7 @@ const ChildDropdown = (props) => {
 
       <ul className="child-dropdown__items">
         {props.items.map((item) => {
-          if (item.length === 3) return (
+          if (item[2].length > 0) return (
             <li key={item[1]}>
               <ChildDropdown
                 label={item[0]}
