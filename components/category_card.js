@@ -7,7 +7,7 @@ const CategoryCard = (props)=> {
   const {slug, id, image, name, count} = category;
 
   return (<div className="category-card">
-    <Link href="categories/[id]" as={`categories/${slug}_${id}`}>
+    <Link href="/categories/[id]" as={`/categories/${slug}_${id}`}>
       <a className="category-card__thumbnail">
         <img src={image ? image.src : ''}
           alt={image && image.alt ? image.alt : `Image showing ${name}`}
@@ -16,7 +16,7 @@ const CategoryCard = (props)=> {
     </Link>
 
     <div className="category-card__bezel">
-      <Link href="categories/[id]" as={`categories/${slug}_${id}`}>
+      <Link href="/categories/[id]" as={`/categories/${slug}_${id}`}>
         <a className="category-card__name">
           {name}
         </a>
@@ -26,9 +26,11 @@ const CategoryCard = (props)=> {
         {count} products listed
       </span>
 
-      <button className="category-card__action">
-        Browse
-      </button>
+      <Link href="/categories/[id]" as={`/categories/${slug}_${id}`}>
+        <a className="category-card__action">
+          Browse &#10132;
+        </a>
+      </Link>
     </div>
   </div>);
 };

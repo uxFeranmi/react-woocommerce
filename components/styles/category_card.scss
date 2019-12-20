@@ -31,7 +31,9 @@
     flex-flow: column nowrap;
     align-items: center;
 
-    > * {display: block;}
+    > * {
+      display: block;
+    }
   }
 
   &__name {
@@ -39,9 +41,18 @@
     padding: 5px 10px;
     color: black;
     font-weight: bold;
+    font-size: 1.1em;
+    line-height: 1em;
+  }
+
+  &__count {
+    margin-bottom: 7px;
   }
 
   &__action {
-    
+    border-radius: 1000px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2px 10px;
   }
 }
