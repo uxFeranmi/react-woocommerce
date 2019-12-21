@@ -5,12 +5,10 @@ import './styles/dropdown.scss';
 
 import ChildDropdown from './child_dropdown';
 
-
 const DropdownMenu = (props) => {
   let [ isExpanded, setExpanded ] = useState({
     root: false,
   });
-
 
   return (
     <div className={`${props.className} dropdown ${isExpanded.root ? 'is-expanded' : ''}`}
@@ -45,7 +43,6 @@ const DropdownMenu = (props) => {
         {props.items.map((item) => {
           if (item[2].length > 0) return (
             <li key={item[1]}>
-              {console.log(isExpanded)}
               <ChildDropdown
                 label={item[0]}
                 link={item[1]}

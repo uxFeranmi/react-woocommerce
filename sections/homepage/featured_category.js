@@ -2,9 +2,10 @@ import Link from 'next/link';
 import {useState} from 'react';
 
 import ProductCard from '../../components/product_card';
-import './styles/featured_category.scss';          
+import './styles/featured_category.scss';         
 
 const FeaturedCategory = (props)=> {
+  const {ftCategory} = props;
   let [navListExpanded, setNavListExpanded] = useState(false);
 
   const toggleNavList = ()=> {
@@ -15,7 +16,8 @@ const FeaturedCategory = (props)=> {
     <section className="featured-category">
       <div className="featured-category__header">
         <h2 className="featured-category__title">
-          Servers
+          {ftCategory.obj.name}
+
         </h2>
 
         <div className="featured-category__nav">
@@ -25,9 +27,15 @@ const FeaturedCategory = (props)=> {
             Types <i className={`fa ${navListExpanded ? 'fa-window-close' : 'fa-chevron-down'}`}></i>
           </button>
           <ul className={`${navListExpanded ? 'is-expanded' : ''}`}>
-            <li>Rack Servers</li>
-            <li>Tower Servers</li>
-            <li>Blade Servers</li>
+            {ftCategory.tree[2].map((subCat)=> {
+              return (
+                <li key={subCat[1]}><Link href="/categories/[id]" as={subCat[1]}>
+                  <a className="">
+                    {subCat[0]}
+                  </a>
+                </Link></li>
+              );
+            })}
           </ul>
           <Link href="servers">
             <a className="featured-category__nav__see-all">
@@ -37,12 +45,13 @@ const FeaturedCategory = (props)=> {
         </div>
       </div>
 
-      <img src="http://itsupplies.co/woo/wp-content/uploads/2019/08/album_2_flat.jpg"
-        alt="" className="featured-category__image"
+      <img src={ftCategory.obj.image.src}
+        alt={ftCategory.obj.image.alt || `Image showing ${ftCategory.tree[0]}`}
+        className="featured-category__image"
       />
 
       <ul className="featured-category__products">
-        {props.products.map((product, index)=> {              
+        {ftCategory.products.map((product, index)=> {              
           return (
             <li className="featured-category__list-item" key={product.id}>
               <ProductCard product={product} />

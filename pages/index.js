@@ -15,6 +15,8 @@ import FeaturedProducts from '../sections/homepage/featured_products';
 import './styles/index.scss';
 
 export default function Homepage(props) {
+  if (props.error) return ([<h1>Oops! There was an error</h1>, <p>{JSON.stringify(props.error)}</p>]);
+
   let [welcomeBanners, setWelcomeBanners] = useState(props.carousel);
 
   useEffect(()=> {
@@ -35,7 +37,7 @@ export default function Homepage(props) {
 
       <Bestsellers products={props.products} />
 
-      <FeaturedCategory products={props.products} />
+      <FeaturedCategory ftCategory={props.ftCategory} />
 
       <FeaturedProducts products={props.products} />
     </Layout>
@@ -51,11 +53,23 @@ Homepage.getInitialProps = async ()=> {
 
     products = products.map((product)=> {
       const {id, categories, name, permalink, price, sale_price, images} = product;
+      const newProductObj = {id, categories, name, permalink, price, sale_price, images};
 
-      return {id, categories, name, permalink, price, sale_price, images};
+      return newProductObj;
     });
 
     const categoryTree = await getCategoryTree();
+
+    //Retrieve featured category object stashed on the categoryTree.
+    /** Object representing the featured category.
+     * {obj: as gotten from wooApi, tree: subtree as parsed by getCategoryTree}
+     */
+    const ftCategory = categoryTree.FEATURED_CATEGORY;
+    let {data: ftCategoryProducts} = await wooApi.get("products", {
+      per_page: 11, // 10 products per page
+      category: ftCategory.obj.id,
+    });
+    ftCategory.products = ftCategoryProducts;
 
     const carousel = await wpApi('get', '/media', {categories: 32}) //Portrait mode by default.
 
@@ -63,6 +77,7 @@ Homepage.getInitialProps = async ()=> {
       products,
       categoryTree,
       carousel,
+      ftCategory,
     };
   }
 
@@ -77,11 +92,11 @@ Homepage.getInitialProps = async ()=> {
       //
     } else {
       // Something happened in setting up the request that triggered an Error
-      console.log('Error', error.message);
+      console.log('Error', error.message, '\n\t', error);
     }
 
     console.log('Config', error.config);
     
-    return {};
+    return {error};
   }
 };

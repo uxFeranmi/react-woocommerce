@@ -3,11 +3,17 @@ import wooApi from './woo_api';
 const getCategoryTree = async () => {
   //Fetch all categories from the Database.
   const {data: categories} = await wooApi.get(`products/categories`);
+  let ftCategory, ftCategoryTree;
 
-//id name slug parent description display image menu_order count
+  //id name slug parent description display image menu_order count
 
   //Create an array with relevant data for each category
   let categoryList = categories.map((category)=> {
+    //env replaced at build time. Do not extract with destructuring.
+    const firstMatch = process.env.FEATURED_CATEGORY_ID == category.id;
+    if (firstMatch)
+      ftCategory = category;
+
     return [
       category.name,
       `/categories/${category.slug}_${category.id}`,
@@ -41,15 +47,23 @@ const getCategoryTree = async () => {
         categoryList[i] = null;
       }
     });
+
+    //If this is the featured category, save it's subtree separately.
+    const secondMatch = id == process.env.FEATURED_CATEGORY_ID;
+    if (secondMatch)
+      ftCategoryTree = categoryList[index];
   };
-  
-  console.log(categoryList);
 
   //Filter category list to remove all null elements.
   //Only root categories and their nested subtrees will be left.
   const categoryTree = categoryList.filter((rootCategory)=> rootCategory ? true : false);
 
-  console.log(categoryTree);
+  //categoryTree.prototype.FEATURED_CATEGORY = {
+  //categoryTree.__proto__.FEATURED_CATEGORY = {
+  categoryTree.FEATURED_CATEGORY = {
+    obj: ftCategory,
+    tree: ftCategoryTree,
+  };
 
   return categoryTree;
 };
