@@ -29,7 +29,7 @@ const FeaturedCategory = (props)=> {
           <ul className={`${navListExpanded ? 'is-expanded' : ''}`}>
             {ftCategory.tree[2].map((subCat)=> {
               return (
-                <li><Link href="/categories/[id]" as={subCat[1]}>
+                <li key={subCat[1]}><Link href="/categories/[id]" as={subCat[1]}>
                   <a className="">
                     {subCat[0]}
                   </a>

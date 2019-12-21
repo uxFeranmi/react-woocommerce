@@ -13,12 +13,14 @@ const Header = (props) => (
     <HeaderThinStrip className="app-header__thin-strip" />
 
     <div className="app-header__main nav-bar">
-      <h1 className="nav-bar__title">
-        <img src={`${staticPath}/logo.png`} alt="Logo" />
-        <span>
-          IT Supplies<small>.co</small>
-        </span>
-      </h1>
+      <Link href='/'><a>
+        <h1 className="nav-bar__title">
+          <img src={`${staticPath}/logo.png`} alt="Logo" />
+          <span>
+            IT Supplies<small>.co</small>
+          </span>
+        </h1>
+      </a></Link>
 
       <nav className="nav-bar__nav main-nav">
         <div className="main-nav__quick-links">

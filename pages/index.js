@@ -47,16 +47,16 @@ export default function Homepage(props) {
 Homepage.getInitialProps = async ()=> {
   try {
     // Get List of products
-    /*let {data: products} = await wooApi.get("products", {
+    let {data: products} = await wooApi.get("products", {
       per_page: 10, // 10 products per page
-    });*/
+    });
 
-    /*products = products.map((product)=> {
+    products = products.map((product)=> {
       const {id, categories, name, permalink, price, sale_price, images} = product;
       const newProductObj = {id, categories, name, permalink, price, sale_price, images};
 
       return newProductObj;
-    });*/
+    });
 
     const categoryTree = await getCategoryTree();
 
