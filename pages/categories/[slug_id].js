@@ -13,7 +13,7 @@ import Products from '../../sections/category_page/products';
 
 import './styles/[slug_id].scss';
 
-export default function Category(props) {
+export default function CategoryPage(props) {
   if (props.error) return JSON.stringify(props.error);
   //const router = useRouter();
 
@@ -26,7 +26,7 @@ export default function Category(props) {
   );
 }
 
-Category.getInitialProps = async ({ query })=> {
+CategoryPage.getInitialProps = async ({ query })=> {
   try {
     const {slug_id} = query;
     const separatorIndex = slug_id.lastIndexOf('_');

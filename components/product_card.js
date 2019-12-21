@@ -20,7 +20,7 @@ const ProductCard = (props)=> {
     </small>
 
     {/*href="products/[id]" as={`products/${product.slug}_${product.id}`}*/}
-    <Link href="products/[id]" as={`products/${product.slug}_${product.id}`}>
+    <Link href="/products/[id]" as={`/products/${product.slug}_${product.id}`}>
       <a className="product-card__thumbnail">
         <img src={images[0].src}
           alt={images[0].alt || `Image showing ${product.name}`}
@@ -28,7 +28,7 @@ const ProductCard = (props)=> {
       </a>
     </Link>
 
-    <Link href="products/[id]" as={`products/${product.slug}_${product.id}`}>
+    <Link href="/products/[id]" as={`/products/${product.slug}_${product.id}`}>
       <a className="product-card__name">
         {product.name}
       </a>

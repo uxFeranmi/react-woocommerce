@@ -13,7 +13,7 @@ import ProductCard from '../../components/product_card';
 
 import './styles/[slug_id].scss';
 
-export default function Category(props) {
+export default function ProductPage(props) {
   if (props.error) return JSON.stringify(props.error);
   //const router = useRouter();
 
@@ -24,7 +24,7 @@ export default function Category(props) {
   );
 }
 
-Category.getInitialProps = async ({ query })=> {
+ProductPage.getInitialProps = async ({ query })=> {
   try {
     const {slug_id} = query;
     const separatorIndex = slug_id.lastIndexOf('_');
