@@ -29,6 +29,10 @@
 
     &__toggle-list {
       display: none;
+      background-color: transparent;
+      border: 1px solid var(--primary-color);
+      padding: 2px 5px;
+      margin-right: 7px;
       @media screen and (max-width: 580px) {
         display: block;
       }

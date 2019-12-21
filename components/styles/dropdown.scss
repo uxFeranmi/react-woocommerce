@@ -6,7 +6,9 @@
     position: relative;
     background-color: transparent;
     border: none;
+    padding: 2px 5px;
     z-index: 6;
+    
     &:focus {
       outline: none;
     }
