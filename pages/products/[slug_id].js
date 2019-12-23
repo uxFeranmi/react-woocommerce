@@ -17,14 +17,14 @@ export default function ProductPage(props) {
   if (props.error) return JSON.stringify(props.error);
 
   const {product} = props;
-  const {categories, images} = product;
-  //const router = useRouter();
+  const {categories, images, short_description} = product;
 
   return (
     <Layout categories={props.categoryTree}>
       <section className="main-details">
         <div className="main-details__text-content">
           <h1>{product.name}</h1>
+          <div>{()=> short_description}</div>
           <button className="main-details__action">Buy Now</button>
         </div>
 
@@ -46,11 +46,11 @@ ProductPage.getInitialProps = async ({ query })=> {
 
     let {data: product} = await wooApi.get(`products/${id}`);
 
-    product = ((product)=> { // Use IIFE to isolate temporary vars in destructuring assignment.
+    /*product = ((product)=> { // Use IIFE to isolate temporary vars in destructuring assignment.
       const {id, categories, name, permalink, price, sale_price, images} = product;
 
       return {id, categories, name, permalink, price, sale_price, images};
-    })(product);
+    })(product);*/
 
     const categoryTree = await getCategoryTree();
 
