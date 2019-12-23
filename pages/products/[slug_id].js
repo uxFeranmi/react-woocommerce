@@ -23,9 +23,9 @@ export default function ProductPage(props) {
   return (
     <Layout categories={props.categoryTree}>
       <section className="main-details">
-        <div>
+        <div className="main-details__text-content">
           <h1>{product.name}</h1>
-          <button>Buy Now</button>
+          <button className="main-details__action">Buy Now</button>
         </div>
 
         <img src={images[0].src}

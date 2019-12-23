@@ -3,6 +3,22 @@
   align-items: center;
   justify-content: space-between;
   padding: 10%;
+
+  &__text-content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+  }
+
+  &__action {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    border-radius: 1000px;
+    border: none;
+    color: white;
+    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.6);
+    margin-top: 20px;
+  }
   
   &__product-image {
     width: 50%;
