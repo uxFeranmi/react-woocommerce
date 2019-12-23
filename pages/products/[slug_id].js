@@ -15,11 +15,24 @@ import './styles/[slug_id].scss';
 
 export default function ProductPage(props) {
   if (props.error) return JSON.stringify(props.error);
+
+  const {product} = props;
+  const {categories, images} = product;
   //const router = useRouter();
 
   return (
     <Layout categories={props.categoryTree}>
-      <ProductCard product={props.product} />
+      <section className="main-details">
+        <div>
+          <h1>{product.name}</h1>
+          <button>Buy Now</button>
+        </div>
+
+        <img src={images[0].src}
+          className="main-details__product-image"
+          alt={images[0].alt || `Image showing ${product.name}`}
+        />
+      </section>
     </Layout>
   );
 }

@@ -1,0 +1,10 @@
+.main-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10%;
+  
+  &__product-image {
+    width: 50%;
+  }
+}
