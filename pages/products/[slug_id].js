@@ -1,7 +1,7 @@
 //import { useRouter } from 'next/router';
 // import Head from 'next/head';
 import Link from 'next/link';
-//import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import Layout from '../../components/my_layout';
 import wooApi from '../../services/woo_api';
@@ -17,22 +17,62 @@ export default function ProductPage(props) {
   if (props.error) return JSON.stringify(props.error);
 
   const {product} = props;
-  const {categories, images, short_description} = product;
+  const {
+    categories,
+    images,
+    short_description: shortDesc,
+    average_rating: avgRating,
+    rating_count: ratingCount,
+  } = product;
 
   return (
     <Layout categories={props.categoryTree}>
       <section className="main-details">
         <div className="main-details__text-content">
           <h1>{product.name}</h1>
-          <div>{()=> short_description}</div>
-          <button className="main-details__action">Buy Now</button>
+          
+          <div dangerouslySetInnerHTML={{ __html: shortDesc }}></div>
+
+          <div className="main-details__action">
+            <label>Quantity:
+              <input type="number"/>
+            </label>
+
+            <button>Buy Now</button>
+          </div>
         </div>
 
-        <img src={images[0].src}
-          className="main-details__product-image"
-          alt={images[0].alt || `Image showing ${product.name}`}
-        />
+        <div className="main-details__product-image-wrapper">
+          <div className="main-details__categories">
+            {categories.map((category, index)=> (
+              <Link href="/categories/[id]" as={`/categories/${category.slug}_${category.id}`}
+                key={category.id}
+              >
+                <a>
+                  {`${category.name}${index + 1 < categories.length ? ', ' : ''}`}
+                </a>
+              </Link>
+            ))}
+          </div>
+
+          <img src={images[0].src}
+            className="main-details__product-image"
+            alt={images[0].alt || `Image showing ${product.name}`}
+          />
+
+          <div className="main-details__secondary-actions">
+            <button>
+              Compare
+            </button>
+            <button>
+              Add To Wishlist
+            </button>
+          </div>
+          {/*<p>{avgRating} {ratingCount}</p>*/}
+        </div>
       </section>
+
+      <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
     </Layout>
   );
 }
