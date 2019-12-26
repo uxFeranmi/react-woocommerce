@@ -115,11 +115,11 @@ export default function ProductPage(props) {
             case 'reviews':
               return (
                 <div className="full-details__wrapper">
-                  adesewa omotayo
-                  total_sales,
-                  reviews_allowed,
-                  average_rating,
-                  rating_count,
+                  {total_sales} units sold<br />
+                  {/*reviews_allowed*/}
+                  Overall rating: <br />
+                  {average_rating} <br />
+                  Based on {rating_count} reviews.
                 </div>
               );
             default:
