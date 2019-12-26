@@ -16,26 +16,33 @@ import './styles/[slug_id].scss';
 export default function ProductPage(props) {
   if (props.error) return JSON.stringify(props.error);
 
-  const {product} = props;
   const {
-    categories,
-    images,
-    short_description: shortDesc,
-    average_rating: avgRating,
-    rating_count: ratingCount,
-  } = product;
+    categoryTree,
+    product: {
+      categories,
+      images,
+      name,
+      short_description: shortDesc,
+      description,
+      average_rating: avgRating,
+      rating_count: ratingCount,
+    },
+    relatedProducts,
+  } = props;
 
   return (
-    <Layout categories={props.categoryTree}>
+    <Layout categories={categoryTree}>
       <section className="main-details">
         <div className="main-details__text-content">
-          <h1>{product.name}</h1>
-          
-          <div dangerouslySetInnerHTML={{ __html: shortDesc }}></div>
+          <h1>{name}</h1>
+
+          <div className="main-details__short-description"
+            dangerouslySetInnerHTML={{ __html: shortDesc }}
+          ></div>
 
           <div className="main-details__action">
             <label>Quantity:
-              <input type="number"/>
+              <input type="number" defaultValue="1" />
             </label>
 
             <button>Buy Now</button>
@@ -57,22 +64,42 @@ export default function ProductPage(props) {
 
           <img src={images[0].src}
             className="main-details__product-image"
-            alt={images[0].alt || `Image showing ${product.name}`}
+            alt={images[0].alt || `Image showing ${name}`}
           />
 
           <div className="main-details__secondary-actions">
             <button>
-              Compare
+              Add To Wishlist
             </button>
             <button>
-              Add To Wishlist
+              Compare
             </button>
           </div>
           {/*<p>{avgRating} {ratingCount}</p>*/}
         </div>
       </section>
 
-      <div dangerouslySetInnerHTML={{ __html: product.description }}></div>
+      <section className="full-details">
+        <div className="full-details__wrapper"
+          dangerouslySetInnerHTML={{ __html: description }}
+        ></div>
+      </section>
+
+      <section className="related-products">
+        <h2 className="related-products__title">
+          Related Products
+        </h2>
+
+        <ul className="related-products__list">
+          {relatedProducts.map((relatedProduct)=> {
+            return (
+              <li key={relatedProduct.id}>
+                <ProductCard product={relatedProduct} />
+              </li>
+            );
+          })}
+        </ul>
+      </section>
     </Layout>
   );
 }
@@ -85,6 +112,9 @@ ProductPage.getInitialProps = async ({ query })=> {
     const slug = slug_id.slice(0, separatorIndex);
 
     let {data: product} = await wooApi.get(`products/${id}`);
+    let {data: relatedProducts} = await wooApi.get('products', {
+      include: product.related_ids,
+    });
 
     /*product = ((product)=> { // Use IIFE to isolate temporary vars in destructuring assignment.
       const {id, categories, name, permalink, price, sale_price, images} = product;
@@ -98,6 +128,7 @@ ProductPage.getInitialProps = async ({ query })=> {
       slug,
       id,
       product,
+      relatedProducts,
       categoryTree,
     };
   }
