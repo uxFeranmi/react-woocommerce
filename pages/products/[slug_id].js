@@ -1,7 +1,7 @@
 //import { useRouter } from 'next/router';
 // import Head from 'next/head';
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 import Layout from '../../components/my_layout';
 import wooApi from '../../services/woo_api';
@@ -15,6 +15,8 @@ import './styles/[slug_id].scss';
 
 export default function ProductPage(props) {
   if (props.error) return JSON.stringify(props.error);
+
+  let [tab, switchTab] = useState('description');
 
   const {
     categoryTree,
@@ -80,9 +82,46 @@ export default function ProductPage(props) {
       </section>
 
       <section className="full-details">
-        <div className="full-details__wrapper"
-          dangerouslySetInnerHTML={{ __html: description }}
-        ></div>
+        <div className="featured-products__header">
+          <h2 className="featured-products__title">
+            <button className={`featured-products__tab ${tab === 'description' ? 'is-current-tab' : ''}`}
+              onClick={()=> switchTab('description')}
+            >
+              Description
+            </button>
+            {/*<button className={`featured-products__tab ${tab === 2 ? 'is-current-tab' : ''}`}
+              onClick={()=> switchTab(2)}
+            >
+              Specifications
+            </button>*/}
+            <button className={`featured-products__tab ${tab === 'reviews' ? 'is-current-tab' : ''}`}
+              onClick={()=> switchTab('reviews')}
+            >
+              Reviews
+            </button>
+          </h2>
+        </div>
+
+        {(()=> { //IIFE to switch on selected tab.
+          switch (tab) {
+            case 'description':
+              return (
+                <div className="full-details__wrapper"
+                  dangerouslySetInnerHTML={{
+                    __html: description
+                  }}
+                ></div>
+              );
+            case 'reviews':
+              return (
+                <div className="full-details__wrapper">
+                  Reviews tab.
+                </div>
+              );
+            default:
+              return <p>Unknown description tab.</p>
+          }
+        })()}
       </section>
 
       <section className="related-products">
