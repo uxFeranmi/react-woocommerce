@@ -147,7 +147,8 @@ export default function ProductPage(props) {
                     </h3>
 
                     <form>
-                      <label>Your rating:
+                      <label>
+                        Your rating:
                         <div>
                           <button aria-label="1 star" type="button"
                             onClick={(e)=> { e.preventDefault(); setRatingFormData({

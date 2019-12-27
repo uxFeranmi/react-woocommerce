@@ -79,7 +79,8 @@
 
   &__overall-rating {
     text-align: center;
-    
+    float: left;
+
     .fa-star {
       color: orange;
     }
@@ -87,6 +88,10 @@
     .fa-star-o {
       color: grey;
     }
+  }
+
+  &__submit-rating {
+    float: right;
   }
 }
 
