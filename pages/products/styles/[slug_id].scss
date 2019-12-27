@@ -92,6 +92,10 @@
 
   &__submit-rating {
     float: right;
+
+    label {
+      display: block;
+    }
   }
 }
 

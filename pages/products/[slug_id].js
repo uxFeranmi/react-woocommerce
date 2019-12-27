@@ -143,6 +143,7 @@ export default function ProductPage(props) {
                   <div className="full-details__submit-rating">
                     <h3>
                       <small>Bought this product recently?</small>
+                      &nbsp;
                       Submit your review.
                     </h3>
 
@@ -191,6 +192,33 @@ export default function ProductPage(props) {
                             <i className={`fa fa-star${ratingFormData.stars >= 5 ? '' : '-o'}`}></i>
                           </button>
                         </div>
+                      </label>
+                      <label>
+                        Your Review:
+                        <textarea placeholder="A great product. I would recommend this."
+                          onChange={(e)=> setRatingFormData({
+                            ...ratingFormData,
+                            comment: e.target.value,
+                          })}
+                        ></textarea>
+                      </label>
+                      <label>
+                        Name:
+                        <input placeholder="John Doe"
+                          onChange={(e)=> setRatingFormData({
+                            ...ratingFormData,
+                            name: e.target.value,
+                          })}
+                        />
+                      </label>
+                      <label>
+                        eMail:
+                        <input placeholder="john@example.com"
+                          onChange={(e)=> setRatingFormData({
+                            ...ratingFormData,
+                            email: e.target.value,
+                          })}
+                        />
                       </label>
                     </form>
                   </div>
