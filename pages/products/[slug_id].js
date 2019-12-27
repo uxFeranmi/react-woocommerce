@@ -17,6 +17,12 @@ export default function ProductPage(props) {
   if (props.error) return JSON.stringify(props.error);
 
   let [tab, switchTab] = useState('description');
+  let [ratingFormData, setRatingFormData] = useState({
+    stars: 0,
+    comment: '',
+    name: '',
+    email: '',
+  });
 
   const {
     categoryTree,
@@ -28,6 +34,7 @@ export default function ProductPage(props) {
       description,
       average_rating: avgRating,
       rating_count: ratingCount,
+      total_sales: totalSales,
     },
     relatedProducts,
   } = props;
@@ -113,13 +120,79 @@ export default function ProductPage(props) {
                 ></div>
               );
             case 'reviews':
+              const roundRating = Math.round(avgRating);
               return (
                 <div className="full-details__wrapper">
-                  {total_sales} units sold<br />
-                  {/*reviews_allowed*/}
-                  Overall rating: <br />
-                  {average_rating} <br />
-                  Based on {rating_count} reviews.
+                  <div className="full-details__overall-rating">
+                    {totalSales > 2 ? 
+                      <span>{totalSales} units sold<br /></span>
+                      : ''
+                    }
+                    {JSON.stringify(ratingFormData)} <br />
+                    Overall rating: <br />
+                    <i class={`fa fa-star${roundRating >= 1 ? '' : '-o'}`}></i>
+                    <i class={`fa fa-star${roundRating >= 2 ? '' : '-o'}`}></i>
+                    <i class={`fa fa-star${roundRating >= 3 ? '' : '-o'}`}></i>
+                    <i class={`fa fa-star${roundRating >= 4 ? '' : '-o'}`}></i>
+                    <i class={`fa fa-star${roundRating >= 5 ? '' : '-o'}`}></i>
+                    <br />
+                    {avgRating} <br />
+                    Based on {ratingCount} reviews.
+                  </div>
+
+                  <div className="full-details__submit-rating">
+                    <h3>
+                      <small>Bought this product recently?</small>
+                      Submit your review.
+                    </h3>
+
+                    <form>
+                      <label>Your rating:
+                        <div>
+                          <button aria-label="1 star" type="button"
+                            onClick={(e)=> { e.preventDefault(); setRatingFormData({
+                              ...ratingFormData,
+                              stars: 1,
+                            })}}
+                          >
+                            <i className={`fa fa-star${ratingFormData.stars >= 1 ? '' : '-o'}`}></i>
+                          </button>
+                          <button aria-label="2 stars" type="button"
+                            onClick={()=> setRatingFormData({
+                              ...ratingFormData,
+                              stars: 2,
+                            })}
+                          >
+                            <i className={`fa fa-star${ratingFormData.stars >= 2 ? '' : '-o'}`}></i>
+                          </button>
+                          <button aria-label="3 stars" type="button"
+                            onClick={()=> setRatingFormData({
+                              ...ratingFormData,
+                              stars: 3,
+                            })}
+                          >
+                            <i className={`fa fa-star${ratingFormData.stars >= 3 ? '' : '-o'}`}></i>
+                          </button>
+                          <button aria-label="4 stars" type="button"
+                            onClick={()=> setRatingFormData({
+                              ...ratingFormData,
+                              stars: 4,
+                            })}
+                          >
+                            <i className={`fa fa-star${ratingFormData.stars >= 4 ? '' : '-o'}`}></i>
+                          </button>
+                          <button aria-label="5 stars" type="button"
+                            onClick={()=> setRatingFormData({
+                              ...ratingFormData,
+                              stars: 5,
+                            })}
+                          >
+                            <i className={`fa fa-star${ratingFormData.stars >= 5 ? '' : '-o'}`}></i>
+                          </button>
+                        </div>
+                      </label>
+                    </form>
+                  </div>
                 </div>
               );
             default:
