@@ -220,6 +220,17 @@ export default function ProductPage(props) {
                           })}
                         />
                       </label>
+
+                      <button type="submit"
+                        onClick={(e)=> {
+                          e.preventDefault;
+                          //e.stopPropagation;
+
+                          //submit.
+                        }}
+                      >
+                        Submit Review
+                      </button>
                     </form>
                   </div>
                 </div>
