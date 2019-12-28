@@ -7,6 +7,16 @@
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.6);
 }
 
+%rating-stars {
+  .fa-star {
+    color: orange;
+  }
+
+  .fa-star-o {
+    color: grey;
+  }
+}
+
 .main-details {
   display: flex;
   //align-items: center;
@@ -118,28 +128,34 @@
   &__overall-rating {
     text-align: center;
     width: 50%;
-
-    .fa-star {
-      color: orange;
-    }
-
-    .fa-star-o {
-      color: grey;
-    }
+    
+    @extend %rating-stars;
   }
 
   &__submit-rating {
     width: 50%;
+    
+    @extend %rating-stars;
   }
 
   &__customer-reviews {
     width: 100%;
     margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__no-reviews-notice {
+    border-left: 7px solid var(--primary-color-dark);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px;
+    width: 80%;
   }
 }
 
 .rating-form {
-  display: flex;
+  display: inline-flex;
   flex-flow: column nowrap;
 
   label {

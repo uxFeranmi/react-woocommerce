@@ -142,7 +142,7 @@ export default function ProductPage(props) {
                     <i className={`fa fa-star${roundRating >= 5 ? '' : '-o'}`}></i>
                     <br />
                     {avgRating} <br />
-                    Based on {ratingCount} reviews.
+                    Based on {ratingCount} review{`${ratingCount > 1 ? 's' : ''}`}.
                   </div>
 
                   <div className="full-details__submit-rating">
