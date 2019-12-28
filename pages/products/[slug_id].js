@@ -10,14 +10,19 @@ import getCategoryTree from '../../services/category_tree';
 
 //import Subcategories from '../../sections/category_page/subcategories';
 import ProductCard from '../../components/product_card';
+import UserReview from '../../components/user_review';
 
 import './styles/[slug_id].scss';
+
+const submitReviewForm = (formData)=> {
+  console.log(formData);
+};
 
 export default function ProductPage(props) {
   if (props.error) return JSON.stringify(props.error);
 
   let [tab, switchTab] = useState('description');
-  let [ratingFormData, setRatingFormData] = useState({
+  let [reviewFormData, setReviewFormData] = useState({
     stars: 0,
     comment: '',
     name: '',
@@ -37,6 +42,7 @@ export default function ProductPage(props) {
       total_sales: totalSales,
     },
     relatedProducts,
+    reviews = [],
   } = props;
 
   return (
@@ -89,24 +95,24 @@ export default function ProductPage(props) {
       </section>
 
       <section className="full-details">
-        <div className="featured-products__header">
-          <h2 className="featured-products__title">
-            <button className={`featured-products__tab ${tab === 'description' ? 'is-current-tab' : ''}`}
+        <div className="full-details__header">
+          <h3 className="full-details__title">
+            <button className={`full-details__tab ${tab === 'description' ? 'is-current-tab' : ''}`}
               onClick={()=> switchTab('description')}
             >
               Description
             </button>
-            {/*<button className={`featured-products__tab ${tab === 2 ? 'is-current-tab' : ''}`}
+            {/*<button className={`full-details__tab ${tab === 2 ? 'is-current-tab' : ''}`}
               onClick={()=> switchTab(2)}
             >
               Specifications
             </button>*/}
-            <button className={`featured-products__tab ${tab === 'reviews' ? 'is-current-tab' : ''}`}
+            <button className={`full-details__tab ${tab === 'reviews' ? 'is-current-tab' : ''}`}
               onClick={()=> switchTab('reviews')}
             >
               Reviews
             </button>
-          </h2>
+          </h3>
         </div>
 
         {(()=> { //IIFE to switch on selected tab.
@@ -128,13 +134,12 @@ export default function ProductPage(props) {
                       <span>{totalSales} units sold<br /></span>
                       : ''
                     }
-                    {JSON.stringify(ratingFormData)} <br />
                     Overall rating: <br />
-                    <i class={`fa fa-star${roundRating >= 1 ? '' : '-o'}`}></i>
-                    <i class={`fa fa-star${roundRating >= 2 ? '' : '-o'}`}></i>
-                    <i class={`fa fa-star${roundRating >= 3 ? '' : '-o'}`}></i>
-                    <i class={`fa fa-star${roundRating >= 4 ? '' : '-o'}`}></i>
-                    <i class={`fa fa-star${roundRating >= 5 ? '' : '-o'}`}></i>
+                    <i className={`fa fa-star${roundRating >= 1 ? '' : '-o'}`}></i>
+                    <i className={`fa fa-star${roundRating >= 2 ? '' : '-o'}`}></i>
+                    <i className={`fa fa-star${roundRating >= 3 ? '' : '-o'}`}></i>
+                    <i className={`fa fa-star${roundRating >= 4 ? '' : '-o'}`}></i>
+                    <i className={`fa fa-star${roundRating >= 5 ? '' : '-o'}`}></i>
                     <br />
                     {avgRating} <br />
                     Based on {ratingCount} reviews.
@@ -143,95 +148,112 @@ export default function ProductPage(props) {
                   <div className="full-details__submit-rating">
                     <h3>
                       <small>Bought this product recently?</small>
-                      &nbsp;
+                      <br />
                       Submit your review.
                     </h3>
 
-                    <form>
+                    <form className="rating-form">
                       <label>
-                        Your rating:
+                        Your rating: &nbsp;
                         <div>
                           <button aria-label="1 star" type="button"
-                            onClick={(e)=> { e.preventDefault(); setRatingFormData({
-                              ...ratingFormData,
+                            onClick={(e)=> { e.preventDefault(); setReviewFormData({
+                              ...reviewFormData,
                               stars: 1,
                             })}}
                           >
-                            <i className={`fa fa-star${ratingFormData.stars >= 1 ? '' : '-o'}`}></i>
+                            <i className={`fa fa-star${reviewFormData.stars >= 1 ? '' : '-o'}`}></i>
                           </button>
                           <button aria-label="2 stars" type="button"
-                            onClick={()=> setRatingFormData({
-                              ...ratingFormData,
+                            onClick={()=> setReviewFormData({
+                              ...reviewFormData,
                               stars: 2,
                             })}
                           >
-                            <i className={`fa fa-star${ratingFormData.stars >= 2 ? '' : '-o'}`}></i>
+                            <i className={`fa fa-star${reviewFormData.stars >= 2 ? '' : '-o'}`}></i>
                           </button>
                           <button aria-label="3 stars" type="button"
-                            onClick={()=> setRatingFormData({
-                              ...ratingFormData,
+                            onClick={()=> setReviewFormData({
+                              ...reviewFormData,
                               stars: 3,
                             })}
                           >
-                            <i className={`fa fa-star${ratingFormData.stars >= 3 ? '' : '-o'}`}></i>
+                            <i className={`fa fa-star${reviewFormData.stars >= 3 ? '' : '-o'}`}></i>
                           </button>
                           <button aria-label="4 stars" type="button"
-                            onClick={()=> setRatingFormData({
-                              ...ratingFormData,
+                            onClick={()=> setReviewFormData({
+                              ...reviewFormData,
                               stars: 4,
                             })}
                           >
-                            <i className={`fa fa-star${ratingFormData.stars >= 4 ? '' : '-o'}`}></i>
+                            <i className={`fa fa-star${reviewFormData.stars >= 4 ? '' : '-o'}`}></i>
                           </button>
                           <button aria-label="5 stars" type="button"
-                            onClick={()=> setRatingFormData({
-                              ...ratingFormData,
+                            onClick={()=> setReviewFormData({
+                              ...reviewFormData,
                               stars: 5,
                             })}
                           >
-                            <i className={`fa fa-star${ratingFormData.stars >= 5 ? '' : '-o'}`}></i>
+                            <i className={`fa fa-star${reviewFormData.stars >= 5 ? '' : '-o'}`}></i>
                           </button>
                         </div>
                       </label>
+                      
                       <label>
-                        Your Review:
-                        <textarea placeholder="A great product. I would recommend this."
-                          onChange={(e)=> setRatingFormData({
-                            ...ratingFormData,
+                        Your Review: &nbsp;
+                        <textarea className="rating-form__comment-input"
+                          placeholder="A great product. I would recommend this."
+                          onChange={(e)=> setReviewFormData({
+                            ...reviewFormData,
                             comment: e.target.value,
                           })}
                         ></textarea>
                       </label>
+
                       <label>
-                        Name:
+                        Name: &nbsp;
                         <input placeholder="John Doe"
-                          onChange={(e)=> setRatingFormData({
-                            ...ratingFormData,
+                          onChange={(e)=> setReviewFormData({
+                            ...reviewFormData,
                             name: e.target.value,
                           })}
                         />
                       </label>
+
                       <label>
-                        eMail:
+                        eMail: &nbsp;
                         <input placeholder="john@example.com"
-                          onChange={(e)=> setRatingFormData({
-                            ...ratingFormData,
+                          onChange={(e)=> setReviewFormData({
+                            ...reviewFormData,
                             email: e.target.value,
                           })}
                         />
                       </label>
 
                       <button type="submit"
+                        className="rating-form__submit"
                         onClick={(e)=> {
                           e.preventDefault;
                           //e.stopPropagation;
 
-                          //submit.
+                          submitReviewForm(reviewFormData);
                         }}
                       >
                         Submit Review
                       </button>
                     </form>
+                  </div> 
+
+                  <div className="full-details__customer-reviews">
+                    {reviews ? (
+                      <p className="full-details__no-reviews-notice">There are no reviews yet.</p>
+                    ) : (
+                      reviews.map((review)=> {
+                        return (
+                          <UserReview review={review} />
+                        )
+                      })
+                    )}
                   </div>
                 </div>
               );
