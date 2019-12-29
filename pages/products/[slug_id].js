@@ -148,17 +148,26 @@ export default function ProductPage(props) {
             case 'reviews':
               return (
                 <div className="full-details__wrapper product-reviews">
-                  <div className="product-reviews__overall-rating">
-                    {totalSales > 1 ? 
-                      <span>{totalSales} units sold<br /></span>
-                      : <span>{totalSales} units sold<br /></span>
+                  <div className="product-reviews__overall-rating product-rating">
+                    {
+                      true ? //totalSales > 1 ? 
+                        <span className="product-rating__units-sold">
+                          {totalSales} units sold
+                        </span>
+                      : ''
                     }
-                    Overall rating: <br />
-                    <RatingStars max={5} rating={avgRating}
-                  
-                    />
-                    {avgRating} <br />
-                    Based on {ratingCount} review{`${ratingCount > 1 ? 's' : ''}`}.
+
+                    <strong>
+                      Overall rating:
+                      <RatingStars max={5} rating={avgRating}
+                        className="product-rating__stars"
+                      />
+                      {avgRating}
+                    </strong>
+
+                    <small>
+                      Based on {ratingCount} review{`${ratingCount > 1 ? 's' : ''}`}.
+                    </small>
                   </div>
 
                   <div className="product-reviews__submit-rating">
