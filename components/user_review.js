@@ -10,8 +10,7 @@ const stripHtmlTags = (html)=> {
 }
 
 const UserReview = props => {
-  const { 
-    date_created,
+  const {
     date_created_gmt: dateString,
     status,
     reviewer,
@@ -21,8 +20,7 @@ const UserReview = props => {
     verified } = props.review;
   //
 
-  const date = Date.parse(dateString);
-  console.log(date, date.getTime());
+  const date = new Date(dateString);
 
   const reviewText = stripHtmlTags(reviewHtml);
 
@@ -38,11 +36,11 @@ const UserReview = props => {
           {reviewer}
         </address>
         <time className="user-review__date-created">
-          {getTimeDiff(date)} ago.
+          {getTimeDiff(date)} ago
         </time>
 
         {!verified ? (
-          <strong>
+          <strong className="user-review__unverified-notice">
             <em>
               This reviewer has not purchased this product
               from IT Supplies<small>.co</small>

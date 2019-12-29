@@ -11,6 +11,7 @@ import getCategoryTree from '../../services/category_tree';
 //import Subcategories from '../../sections/category_page/subcategories';
 import ProductCard from '../../components/product_card';
 import UserReview from '../../components/user_review';
+import RatingStars from '../../components/rating_stars';
 
 import './styles/[slug_id].scss';
 
@@ -61,7 +62,10 @@ export default function ProductPage(props) {
           setGotReviews(true);
         })
         .catch((error) => {
-          console.error(error.response.data);
+          if (error.response)
+            console.error(error.response.data);
+
+          console.error(error);
         });
       //
     }
@@ -157,11 +161,7 @@ export default function ProductPage(props) {
                       : ''
                     }
                     Overall rating: <br />
-                    <i className={`fa fa-star${roundRating >= 1 ? '' : '-o'}`}></i>
-                    <i className={`fa fa-star${roundRating >= 2 ? '' : '-o'}`}></i>
-                    <i className={`fa fa-star${roundRating >= 3 ? '' : '-o'}`}></i>
-                    <i className={`fa fa-star${roundRating >= 4 ? '' : '-o'}`}></i>
-                    <i className={`fa fa-star${roundRating >= 5 ? '' : '-o'}`}></i>
+                    <RatingStars />
                     <br />
                     {avgRating} <br />
                     Based on {ratingCount} review{`${ratingCount > 1 ? 's' : ''}`}.

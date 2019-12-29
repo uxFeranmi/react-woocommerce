@@ -1,9 +1,33 @@
 .user-review {
   display: flex;
+  align-items: flex-start;
+
+  &__avatar {
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+
+  &__author-name {
+    display: inline;
+    font-style: normal;
+    font-weight: 500;
+  }
 
   &__date-created {
+    color: var(--pale-text);
+
     &::before {
       content: "•";
+      margin: 0 5px;
     }
+  }
+
+  &__unverified-notice {
+    display: inline-block;
+    padding: 5px;
+    margin: 5px 0;
+    background-color: rgba(255, 0, 0, 0.3);
+    font-weight: normal;
+    font-size: .8em;
   }
 }

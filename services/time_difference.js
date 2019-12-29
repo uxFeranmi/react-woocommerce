@@ -1,5 +1,5 @@
 /** Calculate difference between a past time and the current time.
- * Returns time in user friendly format e.g "2 hrs", "3 years" etc.
+ * Returns time in user friendly format e.g "2 hours", "3 years" etc.
  * @param {Date} time The past time as a JS Date object, or as Unix Time (seconds since unix epoch).
  * @param {boolean} isUnixTime Opional. If 'time' is in Unix Time, this should be set to true.
  */
@@ -7,8 +7,9 @@ const getTimeDiff = (time, isUnixTime = false)=> {
   let currentTime = Date.now() / 1000; // Get the current Unix Time (in seconds, Date.now returns millis).
   if (!isUnixTime)
     time = time.getTime() / 1000; //Change time to Unix Time.
+    
   let rawAge =  currentTime - time; // Get the time difference between current time and upload time.
-  let s = 's';
+  let s = 's'; // Used to pluralize the time difference string if necessary.
 
   // Declare boundaries for all time units in seconds.
   const aMinute = 60, // 60 seconds.
@@ -17,6 +18,7 @@ const getTimeDiff = (time, isUnixTime = false)=> {
     aWeek = aDay * 7,
     aMonth = aWeek * 4,
     aYear = aMonth * 12;
+  //
 
   // Make sure to evaluate the longest time differences first.
   if (rawAge >= aYear) { // Up to 1 hour
