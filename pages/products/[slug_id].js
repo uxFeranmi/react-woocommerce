@@ -149,15 +149,7 @@ export default function ProductPage(props) {
               return (
                 <div className="full-details__wrapper product-reviews">
                   <div className="product-reviews__overall-rating product-rating">
-                    {
-                      true ? //totalSales > 1 ? 
-                        <span className="product-rating__units-sold">
-                          {totalSales} units sold
-                        </span>
-                      : ''
-                    }
-
-                    <strong>
+                    <strong className="product-rating__main">
                       Overall rating:
                       <RatingStars max={5} rating={avgRating}
                         className="product-rating__stars"
@@ -165,9 +157,17 @@ export default function ProductPage(props) {
                       {avgRating}
                     </strong>
 
-                    <small>
-                      Based on {ratingCount} review{`${ratingCount > 1 ? 's' : ''}`}.
-                    </small>
+                    <span className="product-rating__review-count">
+                      Based on {ratingCount} review{`${ratingCount > 1 ? 's' : ''}`}
+                    </span>
+
+                    {
+                      true ? //totalSales > 1 ? 
+                        <small className="product-rating__units-sold">
+                          {totalSales} units sold
+                        </small>
+                      : ''
+                    }
                   </div>
 
                   <div className="product-reviews__submit-rating">
@@ -179,7 +179,7 @@ export default function ProductPage(props) {
 
                     <form className="rating-form">
                       <label>
-                        Your rating: &nbsp;
+                        Rate this product:
                         
                         <RatingStars className="rating-form__star-input"
                           rating={reviewFormData.stars}
@@ -194,7 +194,7 @@ export default function ProductPage(props) {
                       </label>
                       
                       <label>
-                        Your Review: &nbsp;
+                        Leave a comment:
                         <textarea className="rating-form__comment-input"
                           placeholder="A great product. I would recommend this."
                           onChange={(e)=> setReviewFormData({
