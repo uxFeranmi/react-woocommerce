@@ -152,7 +152,6 @@ export default function ProductPage(props) {
                 ></article>
               );
             case 'reviews':
-              const roundRating = Math.round(avgRating);
               return (
                 <div className="full-details__wrapper product-reviews">
                   <div className="product-reviews__overall-rating">
@@ -161,7 +160,7 @@ export default function ProductPage(props) {
                       : ''
                     }
                     Overall rating: <br />
-                    <RatingStars />
+                    <RatingStars max={5} rating={avgRating} />
                     <br />
                     {avgRating} <br />
                     Based on {ratingCount} review{`${ratingCount > 1 ? 's' : ''}`}.
@@ -178,55 +177,16 @@ export default function ProductPage(props) {
                       <label>
                         Your rating: &nbsp;
                         <div>
-                          <button aria-label="1 star" type="button"
-                            className="rating-form__star-input-btn"
-                            onClick={(e)=> { e.preventDefault(); setReviewFormData({
+                          <RatingStars className="rating-form__star-input-btn"
+                            rating={reviewFormData.stars}
+                            max={5} context="input"
+                            onClick={(event, index)=> { 
+                              event.preventDefault();
+                              setReviewFormData({
                               ...reviewFormData,
-                              stars: 1,
+                              stars: index,
                             })}}
-                          >
-                            <i className={`fa fa-star${reviewFormData.stars >= 1 ? '' : '-o'}`}></i>
-                          </button>
-
-                          <button aria-label="2 stars" type="button"
-                            className="rating-form__star-input-btn"
-                            onClick={()=> setReviewFormData({
-                              ...reviewFormData,
-                              stars: 2,
-                            })}
-                          >
-                            <i className={`fa fa-star${reviewFormData.stars >= 2 ? '' : '-o'}`}></i>
-                          </button>
-
-                          <button aria-label="3 stars" type="button"
-                            className="rating-form__star-input-btn"
-                            onClick={()=> setReviewFormData({
-                              ...reviewFormData,
-                              stars: 3,
-                            })}
-                          >
-                            <i className={`fa fa-star${reviewFormData.stars >= 3 ? '' : '-o'}`}></i>
-                          </button>
-
-                          <button aria-label="4 stars" type="button"
-                            className="rating-form__star-input-btn"
-                            onClick={()=> setReviewFormData({
-                              ...reviewFormData,
-                              stars: 4,
-                            })}
-                          >
-                            <i className={`fa fa-star${reviewFormData.stars >= 4 ? '' : '-o'}`}></i>
-                          </button>
-
-                          <button aria-label="5 stars" type="button"
-                            className="rating-form__star-input-btn"
-                            onClick={()=> setReviewFormData({
-                              ...reviewFormData,
-                              stars: 5,
-                            })}
-                          >
-                            <i className={`fa fa-star${reviewFormData.stars >= 5 ? '' : '-o'}`}></i>
-                          </button>
+                          />
                         </div>
                       </label>
                       

@@ -1,5 +1,6 @@
 import './styles/user_review.scss';
 import getTimeDiff from '../services/time_difference';
+import RatingStars from '../components/rating_stars';
 
 const stripHtmlTags = (html)=> {
   const element = document.createElement('div');
@@ -38,6 +39,9 @@ const UserReview = props => {
         <time className="user-review__date-created">
           {getTimeDiff(date)} ago
         </time>
+        <span className="user-review__stars">
+          <RatingStars max={5} rating={rating} />
+        </span>
 
         {!verified ? (
           <strong className="user-review__unverified-notice">
@@ -48,7 +52,9 @@ const UserReview = props => {
           </strong>
         ) : ''}
 
-        <p>{reviewText}</p>
+        <p className="user-review__comment">
+          {reviewText}
+        </p>
       </div>
     </article>
   );

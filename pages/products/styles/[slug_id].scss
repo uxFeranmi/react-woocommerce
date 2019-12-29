@@ -7,16 +7,6 @@
   box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.6);
 }
 
-%rating-stars {
-  .fa-star {
-    color: orange;
-  }
-
-  .fa-star-o {
-    color: grey;
-  }
-}
-
 .main-details {
   display: flex;
   //align-items: center;
@@ -135,13 +125,13 @@
       text-align: center;
       width: 50%;
       
-      @extend %rating-stars;
+      //@extend %rating-stars;
     }
   
     &__submit-rating {
       width: 50%;
       
-      @extend %rating-stars;
+      //@extend %rating-stars;
     }
 
     &__divider {
