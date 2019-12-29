@@ -1,3 +1,9 @@
 .user-review {
   display: flex;
+
+  &__date-created {
+    &::before {
+      content: "•";
+    }
+  }
 }
