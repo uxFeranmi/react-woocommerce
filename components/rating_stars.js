@@ -17,7 +17,7 @@ const RatingStars = (props)=> {
 
   for (let index = 1; index <= max; index++) {
     const star = (
-      <i className={`fa fa-star${rating >= index ? '' : '-o'} ${props.className}`}
+      <i className={`fa fa-star${rating >= index ? '' : '-o'}`}
         key={index}
       ></i>
     );
@@ -29,7 +29,7 @@ const RatingStars = (props)=> {
       case 'input':
         stars.push(
           <button onClick={(event)=> props.onClick(event, index)}
-            className={props.className} key={index}
+            key={index}
             aria-label={`${index} star`} type="button"
           >
             {star}
@@ -39,7 +39,7 @@ const RatingStars = (props)=> {
     }
   }
 
-  return <div>{stars}</div>;
+  return <div className={props.className}>{stars}</div>;
 }
 
 export default RatingStars;

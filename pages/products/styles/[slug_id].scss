@@ -182,8 +182,11 @@
     padding: 5px 15px;
   }
 
-  &__star-input-btn {
-    padding: 5px;
+  &__star-input {
+
+    button {
+      padding: 5px;
+    }
   }
 
   &__comment-input {

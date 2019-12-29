@@ -39,9 +39,9 @@ const UserReview = props => {
         <time className="user-review__date-created">
           {getTimeDiff(date)} ago
         </time>
-        <span className="user-review__stars">
-          <RatingStars max={5} rating={rating} />
-        </span>
+        <RatingStars max={5} rating={rating}
+          className="user-review__stars"
+        />
 
         {!verified ? (
           <strong className="user-review__unverified-notice">

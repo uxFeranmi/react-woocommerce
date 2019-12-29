@@ -48,15 +48,10 @@ export default function ProductPage(props) {
     },
     relatedProducts,
   } = props;
-
-  const reviewParams = {
-    product: [props.id],
-    //status: 'approved', //'approved' is the default value.
-  };
   
   useEffect(()=> {
     if (!gotReviews) {
-      wooApi.get("products/reviews", reviewParams)
+      wooApi.get("products/reviews", { product: [props.id] })
         .then((response) => {
           setReviews(response.data);
           setGotReviews(true);
@@ -67,7 +62,6 @@ export default function ProductPage(props) {
 
           console.error(error);
         });
-      //
     }
   });
 
@@ -155,13 +149,14 @@ export default function ProductPage(props) {
               return (
                 <div className="full-details__wrapper product-reviews">
                   <div className="product-reviews__overall-rating">
-                    {totalSales > 2 ? 
+                    {totalSales > 1 ? 
                       <span>{totalSales} units sold<br /></span>
-                      : ''
+                      : <span>{totalSales} units sold<br /></span>
                     }
                     Overall rating: <br />
-                    <RatingStars max={5} rating={avgRating} />
-                    <br />
+                    <RatingStars max={5} rating={avgRating}
+                  
+                    />
                     {avgRating} <br />
                     Based on {ratingCount} review{`${ratingCount > 1 ? 's' : ''}`}.
                   </div>
@@ -176,18 +171,17 @@ export default function ProductPage(props) {
                     <form className="rating-form">
                       <label>
                         Your rating: &nbsp;
-                        <div>
-                          <RatingStars className="rating-form__star-input-btn"
-                            rating={reviewFormData.stars}
-                            max={5} context="input"
-                            onClick={(event, index)=> { 
-                              event.preventDefault();
-                              setReviewFormData({
-                              ...reviewFormData,
-                              stars: index,
-                            })}}
-                          />
-                        </div>
+                        
+                        <RatingStars className="rating-form__star-input"
+                          rating={reviewFormData.stars}
+                          max={5} context="input"
+                          onClick={(event, index)=> { 
+                            event.preventDefault();
+                            setReviewFormData({
+                            ...reviewFormData,
+                            stars: index,
+                          })}}
+                        />
                       </label>
                       
                       <label>
