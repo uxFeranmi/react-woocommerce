@@ -1,3 +1,6 @@
+// These must be the first lines in src/index.js
+import 'react-app-polyfill/ie9';
+import 'react-app-polyfill/stable';
 //import Link from 'next/link';
 // import Head from 'next/head';
 import { useEffect, useState } from 'react';

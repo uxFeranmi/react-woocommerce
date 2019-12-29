@@ -162,7 +162,7 @@ export default function ProductPage(props) {
                     </span>
 
                     {
-                      true ? //totalSales > 1 ? 
+                      totalSales > 1 ? 
                         <small className="product-rating__units-sold">
                           {totalSales} units sold
                         </small>
@@ -170,14 +170,14 @@ export default function ProductPage(props) {
                     }
                   </div>
 
-                  <div className="product-reviews__submit-rating">
-                    <h3>
+                  <div className="product-reviews__submit-rating rating-form">
+                    <h3 className="rating-form__heading">
                       <small>Bought this product recently?</small>
                       <br />
                       Submit your review.
                     </h3>
 
-                    <form className="rating-form">
+                    <form className="rating-form__form">
                       <label>
                         Rate this product:
                         
