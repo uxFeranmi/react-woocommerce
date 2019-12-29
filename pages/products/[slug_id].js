@@ -1,7 +1,7 @@
 //import { useRouter } from 'next/router';
 // import Head from 'next/head';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Layout from '../../components/my_layout';
 import wooApi from '../../services/woo_api';
@@ -22,6 +22,10 @@ export default function ProductPage(props) {
   if (props.error) return JSON.stringify(props.error);
 
   let [tab, switchTab] = useState('description');
+
+  let [reviews, setReviews] = useState([]);
+  let [gotReviews, setGotReviews] = useState(false);
+
   let [reviewFormData, setReviewFormData] = useState({
     stars: 0,
     comment: '',
@@ -42,8 +46,26 @@ export default function ProductPage(props) {
       total_sales: totalSales,
     },
     relatedProducts,
-    reviews = [],
   } = props;
+
+  const reviewParams = {
+    product: [props.id],
+    //status: 'approved', //'approved' is the default value.
+  };
+  
+  useEffect(()=> {
+    if (!gotReviews) {
+      wooApi.get("products/reviews", reviewParams)
+        .then((response) => {
+          setReviews(response.data);
+          setGotReviews(true);
+        })
+        .catch((error) => {
+          console.error(error.response.data);
+        });
+      //
+    }
+  });
 
   return (
     <Layout categories={categoryTree}>
@@ -119,17 +141,17 @@ export default function ProductPage(props) {
           switch (tab) {
             case 'description':
               return (
-                <div className="full-details__wrapper"
+                <article className="full-details__wrapper product-description"
                   dangerouslySetInnerHTML={{
                     __html: description
                   }}
-                ></div>
+                ></article>
               );
             case 'reviews':
               const roundRating = Math.round(avgRating);
               return (
-                <div className="full-details__wrapper">
-                  <div className="full-details__overall-rating">
+                <div className="full-details__wrapper product-reviews">
+                  <div className="product-reviews__overall-rating">
                     {totalSales > 2 ? 
                       <span>{totalSales} units sold<br /></span>
                       : ''
@@ -145,7 +167,7 @@ export default function ProductPage(props) {
                     Based on {ratingCount} review{`${ratingCount > 1 ? 's' : ''}`}.
                   </div>
 
-                  <div className="full-details__submit-rating">
+                  <div className="product-reviews__submit-rating">
                     <h3>
                       <small>Bought this product recently?</small>
                       <br />
@@ -157,6 +179,7 @@ export default function ProductPage(props) {
                         Your rating: &nbsp;
                         <div>
                           <button aria-label="1 star" type="button"
+                            className="rating-form__star-input-btn"
                             onClick={(e)=> { e.preventDefault(); setReviewFormData({
                               ...reviewFormData,
                               stars: 1,
@@ -164,7 +187,9 @@ export default function ProductPage(props) {
                           >
                             <i className={`fa fa-star${reviewFormData.stars >= 1 ? '' : '-o'}`}></i>
                           </button>
+
                           <button aria-label="2 stars" type="button"
+                            className="rating-form__star-input-btn"
                             onClick={()=> setReviewFormData({
                               ...reviewFormData,
                               stars: 2,
@@ -172,7 +197,9 @@ export default function ProductPage(props) {
                           >
                             <i className={`fa fa-star${reviewFormData.stars >= 2 ? '' : '-o'}`}></i>
                           </button>
+
                           <button aria-label="3 stars" type="button"
+                            className="rating-form__star-input-btn"
                             onClick={()=> setReviewFormData({
                               ...reviewFormData,
                               stars: 3,
@@ -180,7 +207,9 @@ export default function ProductPage(props) {
                           >
                             <i className={`fa fa-star${reviewFormData.stars >= 3 ? '' : '-o'}`}></i>
                           </button>
+
                           <button aria-label="4 stars" type="button"
+                            className="rating-form__star-input-btn"
                             onClick={()=> setReviewFormData({
                               ...reviewFormData,
                               stars: 4,
@@ -188,7 +217,9 @@ export default function ProductPage(props) {
                           >
                             <i className={`fa fa-star${reviewFormData.stars >= 4 ? '' : '-o'}`}></i>
                           </button>
+
                           <button aria-label="5 stars" type="button"
+                            className="rating-form__star-input-btn"
                             onClick={()=> setReviewFormData({
                               ...reviewFormData,
                               stars: 5,
@@ -244,15 +275,28 @@ export default function ProductPage(props) {
                     </form>
                   </div> 
 
-                  <div className="full-details__customer-reviews">
-                    {reviews ? (
-                      <p className="full-details__no-reviews-notice">There are no reviews yet.</p>
+                  <hr className="product-reviews__divider" />
+
+                  <div className="product-reviews__customer-reviews">
+                    {reviews.length > 0 ? (
+                      <ul aria-label="Customer Reviews"
+                        title="Customer Reviews"
+                      >{
+                        reviews.map((review)=> {
+                          return (
+                            <li key={review.id}>
+                              <UserReview review={review} />
+                            </li>
+                          )
+                        })
+                      }</ul>
                     ) : (
-                      reviews.map((review)=> {
-                        return (
-                          <UserReview review={review} />
-                        )
-                      })
+                      <p className="product-reviews__no-reviews-notice">
+                        {!gotReviews ? 
+                          'Failed to fetch product reviews.'
+                          : 'There are no reviews yet.'
+                        }
+                      </p>
                     )}
                   </div>
                 </div>

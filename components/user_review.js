@@ -1,27 +1,42 @@
-import './styles/search.scss';
+import './styles/user_review.scss';
+
+const stripHtmlTags = (html)=> {
+  const element = document.createElement('div');
+
+  element.innerHTML = html;
+
+  return element.innerText; //Value is same as textContent because element is detached from DOM.
+}
 
 const UserReview = props => {
+  const { 
+    date_created,
+    date_created_gmt: dateString,
+    status,
+    reviewer,
+    reviewer_avatar_urls: avatarUrls,
+    review: reviewHtml,
+    rating,
+    verified } = props.review;
+  //
+
+  const date = Date.parse(dateString);
+
+  const reviewText = stripHtmlTags(reviewHtml);
+
   return (
-    <form className={`${props.className} product-search`}>
-      <input
-        type="text"
-        placeholder="Search products..."
+    <article className="user-review">
+      <img src={avatarUrls['48']}
+        className="user-review__avatar"
+        alt={`${reviewer}'s avatar`}
       />
 
-      <select className="product-search__by-category">
-        <option value="all">
-          All Categories
-        </option>
-        
-        <option>
-          {/**One option for each category. */}
-        </option>
-      </select>
-
-      <button type="submit">
-        <i className="fa fa-search" aria-label="Submit search" />
-      </button>
-    </form>
+      <div>
+        <strong>{reviewer}</strong>
+        <small> • {date}</small>
+        <p>{reviewText}</p>
+      </div>
+    </article>
   );
 };
 
