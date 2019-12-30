@@ -1,4 +1,4 @@
-/* These must be the first lines in src/index.js
+/* //These must be the first lines in src/index.js
 import 'react-app-polyfill/ie9';
 import 'react-app-polyfill/stable';*/
 
@@ -19,7 +19,11 @@ import FeaturedProducts from '../sections/homepage/featured_products';
 import './styles/index.scss';
 
 export default function Homepage(props) {
-  if (props.error) return ([<h1>Oops! There was an error</h1>, <p>{JSON.stringify(props.error)}</p>]);
+  if (props.error)
+    return ([
+      <h1>Oops! There was an error</h1>,
+      <p>{JSON.stringify(props.error)}</p>
+    ]);
 
   let [welcomeBanners, setWelcomeBanners] = useState(props.carousel);
 
