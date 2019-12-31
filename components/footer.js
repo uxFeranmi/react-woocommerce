@@ -14,7 +14,7 @@ const Footer = ()=> {
   };
 
   return (
-    <footer className="app-footer">{/*custom order*/}
+    <footer className="app-footer" id="app-footer">{/*custom order*/}
       <ul className="app-footer__main">
         <li className="app-footer__contact">
           <h3>
