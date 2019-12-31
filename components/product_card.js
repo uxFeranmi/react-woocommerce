@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ProductPrice from './product_price';
 
 import './styles/product_card.scss';
 
@@ -33,12 +34,14 @@ const ProductCard = (props)=> {
         {product.name}
       </a>
     </Link>
-
-    <span className="product-card__price">
-      &#8358;{product.price /*product.sale_price*/}
-      {/*<small>&#8358;{console.log('price', product.regular_price)}</small>
-        <small>&#8358;{product.sale_price}</small>*/}
-    </span>
+    
+    {/*product.price product.sale_price*/
+     /*<small>&#8358;{console.log('price', product.regular_price)}</small>
+      <small>&#8358;{product.sale_price}</small>*/}
+    <ProductPrice className="product-card__price"
+      price={product.price}
+      oldPrice={''}
+    />
 
     <div className="product-card__actions">
       <button className="product-card__actions__order button is-with-icon">

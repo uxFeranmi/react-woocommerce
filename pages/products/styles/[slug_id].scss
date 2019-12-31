@@ -2,8 +2,10 @@
 
 .main-details {
   display: flex;
-  //align-items: center;
+  flex-direction: row-reverse;
+  align-items: flex-start;
   justify-content: space-evenly;
+  flex-wrap: wrap;
   padding: 30px;
 
   &__text-content {
@@ -13,9 +15,14 @@
     width: 50%;
   }
 
+  &__price {
+    display: block;
+    padding: 5px 10px;
+    font-size: 1.5em;
+  }
+
   &__short-description {
-    flex-grow: 100;
-    margin-top: 15px;
+    margin: 25px 0;
   }
 
   &__action {
@@ -40,14 +47,35 @@
   
   &__product-image-wrapper {
     width: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      margin-bottom: 30px;
+    }
   }
   
   &__product-image {
     width: 100%;
-    //height: 70vh;
+    @media screen and (max-width: 768px) {
+      width: initial;
+      max-width: 70%;
+      max-height: 50vh;
+    }
+    @media screen and (max-width: 480px) {
+      max-width: 85%;
+      max-height: 50vh;
+    }
+    @media screen and (max-width: 380px) {
+      max-width: 95%;
+      max-height: 50vh;
+    }
   }
 
   &__secondary-actions {
+    align-self: center;
+    margin-top: 5px;
 
     button {
       @include buttons;

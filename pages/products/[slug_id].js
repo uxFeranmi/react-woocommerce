@@ -8,6 +8,7 @@ import getCategoryTree from '../../services/category_tree';
 
 import ProductCard from '../../components/product_card';
 import ProductReviews from '../../sections/product_page/reviews';
+import ProductPrice from '../../components/product_price';
 
 import './styles/[slug_id].scss';
 
@@ -26,6 +27,7 @@ export default function ProductPage(props) {
       images,
       name,
       short_description: shortDesc,
+      price,
       description,
     },
     relatedProducts,
@@ -50,22 +52,6 @@ export default function ProductPage(props) {
   return (
     <Layout categories={categoryTree}>
       <section className="main-details">
-        <div className="main-details__text-content">
-          <h1>{name}</h1>
-
-          <div className="main-details__short-description"
-            dangerouslySetInnerHTML={{ __html: shortDesc }}
-          ></div>
-
-          <div className="main-details__action">
-            <label>Quantity:
-              <input type="number" defaultValue="1" />
-            </label>
-
-            <button>Buy Now</button>
-          </div>
-        </div>
-
         <div className="main-details__product-image-wrapper">
           <div className="main-details__categories">
             {categories.map((category, index)=> (
@@ -86,13 +72,36 @@ export default function ProductPage(props) {
 
           <div className="main-details__secondary-actions">
             <button>
+              <i className="fa fa-heart-o" aria-hidden={true}>&nbsp;</i>
               Add To Wishlist
             </button>
             <button>
+              <i className="fa fa-check-square-o" aria-hidden={true}>&nbsp;</i>
               Compare
             </button>
           </div>
           {/*<p>{avgRating} {ratingCount}</p>*/}
+        </div>
+      
+        <div className="main-details__text-content">
+          <h1>{name}</h1>
+
+          <div className="main-details__short-description"
+            dangerouslySetInnerHTML={{ __html: shortDesc }}
+          ></div>
+
+          <ProductPrice className="main-details__price"
+            price={price}
+            oldPrice={''}
+          />
+
+          <div className="main-details__action">
+            <label>Quantity:
+              <input type="number" defaultValue="1" />
+            </label>
+
+            <button>Buy Now</button>
+          </div>
         </div>
       </section>
 
