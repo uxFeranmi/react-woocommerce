@@ -57,6 +57,8 @@ const ProductReviews = (props)=> {
         }
       </div>
 
+      <hr className="product-reviews__divider is-first" />
+
       <div className="product-reviews__submit-rating rating-form">
         <h3 className="rating-form__heading">
           <small>Bought this product recently?</small>
@@ -118,7 +120,7 @@ const ProductReviews = (props)=> {
         </form>
       </div> 
 
-      <hr className="product-reviews__divider" />
+      <hr className="product-reviews__divider is-second" />
 
       <div className="product-reviews__customer-reviews">
         {reviews.length > 0 ? (
