@@ -34,7 +34,7 @@
     }
 
     button {
-      @extend %button;
+      @include buttons;
     }
   }
   
@@ -50,7 +50,7 @@
   &__secondary-actions {
 
     button {
-      @extend %button;
+      @include buttons;
       transform: scale(0.85);
       background-color: transparent;
       border: 1px solid var(--primary-color);
