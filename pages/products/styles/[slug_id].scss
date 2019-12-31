@@ -34,7 +34,7 @@
     }
 
     button {
-      @extend %button;
+      @extend comps.%button;
     }
   }
   

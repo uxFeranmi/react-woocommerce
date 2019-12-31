@@ -1,4 +1,4 @@
-@use '../../../components';
+@use '../../../components' as comps;
 
 .product-reviews {
   display: flex;
@@ -125,7 +125,7 @@
   }
 
   &__submit {
-    @extend %button;
+    @extend comps.%button;
     //margin: 0 auto;
     align-self: center;
     transform: scale(0.85);
