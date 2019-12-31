@@ -128,7 +128,7 @@ export default function ProductPage(props) {
             case 'reviews':
               return (
                 <ProductReviews className="full-details__wrapper"
-                  reviews={reviews}
+                  reviews={reviews} gotReviews={gotReviews}
                   product={props.product}
                 />
               );

@@ -10,7 +10,7 @@ const submitReviewForm = (formData)=> {
 };
 
 const ProductReviews = (props)=> {
-  const {reviews} = props;
+  const {reviews, gotReviews} = props;
 
   const {
     average_rating: avgRating,
