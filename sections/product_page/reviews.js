@@ -161,7 +161,7 @@ const ProductReviews = (props)=> {
 
           <label>
             Name: &nbsp;
-            <input type="text" required
+            <input type="text" //required
               minLength={2} maxLength={70}
               placeholder="John Doe"
               onChange={(e)=> setReviewFormData({
