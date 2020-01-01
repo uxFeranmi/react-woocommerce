@@ -81,7 +81,7 @@ const ProductReviews = (props)=> {
       rating: formData.stars,
     };
     
-    wooApi.post("products/reviews-badUrl", data)
+    wooApi.post("products/reviews", data)
       .then((response) => {
         renderNewReview(response.data);
       })
