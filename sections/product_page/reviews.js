@@ -4,51 +4,22 @@ import wooApi from '../../services/woo_api';
 
 import UserReview from '../../components/user_review';
 import RatingStars from '../../components/rating_stars';
+import Notice from '../../components/notify';
 
 import './styles/reviews.scss';
 
-const submitReviewForm = (event, formData)=> {
-  event.preventDefault ?
-    event.preventDefault()
-  : event.returnValue = false;
-
-  console.log(formData);
-  //checkValidity()
-  if (!formData.stars) {
-    console.error('Provide a star rating please.');
-    return;
-  };
-
-  const data = {
-    product_id: formData.productId,
-    review: formData.comment,
-    reviewer: formData.name,
-    reviewer_email: formData.email,
-    rating: formData.stars,
-  };
-  
-  wooApi.post("products/reviews", data)
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch((error) => {
-      error.response ?
-        console.log(error.response.data)
-      : console.log(error);
-    });
-
-  return false;
-};
-
 const ProductReviews = (props)=> {
-  const {reviews, gotReviews} = props;
-
   const {
-    id: productId,
-    average_rating: avgRating,
-    rating_count: ratingCount,
-    total_sales: totalSales,
-  } = props.product;
+    reviews,
+    renderNewReview,
+    gotReviews,
+    product: {
+      id: productId,
+      average_rating: avgRating,
+      rating_count: ratingCount,
+      total_sales: totalSales,
+    },
+  } = props;
 
   let [reviewFormData, setReviewFormData] = useState({
     productId,
@@ -58,6 +29,11 @@ const ProductReviews = (props)=> {
     email: '',
   });
 
+  let [formError, setFormError] = useState({
+    global: [],
+    ratingStars: [],
+  });
+
   const onRatingStarClick = (event, index)=> { 
     event.preventDefault();
     setReviewFormData({
@@ -65,6 +41,61 @@ const ProductReviews = (props)=> {
       stars: index,
     });
   }
+  
+  const notify = (scope, type, content, action = null)=> {
+    let newFormError = {...formError};
+    let newErrorIndex = formError[scope].length;
+
+    newFormError[scope].push({
+      type,
+      content,
+      action,
+      dismiss: ()=> {
+        let newFormError = {...formError};
+        delete newFormError[scope][newErrorIndex];
+        setFormError(newFormError);
+      },
+    });
+
+    setFormError(newFormError);
+  }
+
+  const submitReviewForm = (event, formData)=> {
+    event.preventDefault ?
+      event.preventDefault()
+    : event.returnValue = false;
+
+    //checkValidity()
+    if (!formData.stars) {
+      let errorMessage = 'Please provide a star rating. 5 stars would be nice 😊.';
+      notify('ratingStars', 'error', errorMessage);
+      
+      return false;
+    };
+  
+    const data = {
+      product_id: formData.productId,
+      review: formData.comment,
+      reviewer: formData.name,
+      reviewer_email: formData.email,
+      rating: formData.stars,
+    };
+    
+    wooApi.post("products/reviews", data)
+      .then((response) => {
+        renderNewReview(response.data);
+      })
+      .catch((error) => {
+        let errorMessage = error.response ?
+          JSON.stringify(error.response) //error.response.data.message
+        : error.message;
+
+        notify('global', 'error', errorMessage);
+      });
+    //
+    
+    return false;
+  };
 
   return (
     <div className={`${props.className} product-reviews`}>
@@ -101,11 +132,14 @@ const ProductReviews = (props)=> {
 
         <form className="rating-form__form"
           title="Submit your review"
+          aria-live="polite"
           onSubmit={(e)=> submitReviewForm(e, reviewFormData)}
         >
+          <Notice messages={formError.global} />
+
           <label>
             Rate this product:
-            
+            <Notice messages={formError.ratingStars} />
             <RatingStars className="rating-form__star-input"
               rating={reviewFormData.stars}
               max={5} context="input"

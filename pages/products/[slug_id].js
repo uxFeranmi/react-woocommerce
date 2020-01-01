@@ -20,6 +20,12 @@ export default function ProductPage(props) {
   let [reviews, setReviews] = useState([]);
   let [gotReviews, setGotReviews] = useState(false);
 
+  const renderNewReview = (review)=> {
+    updatedReviews = [...reviews];
+    updatedReviews.push(review);
+    setReviews(updatedReviews);
+  }
+
   const {
     categoryTree,
     product: {
@@ -137,8 +143,9 @@ export default function ProductPage(props) {
             case 'reviews':
               return (
                 <ProductReviews className="full-details__wrapper"
-                  reviews={reviews} gotReviews={gotReviews}
-                  product={props.product}
+                  {...{reviews, gotReviews, renderNewReview}}
+                  //reviews={reviews} gotReviews={gotReviews}
+                  product={props.product} //renderNewReview={renderNewReview}
                 />
               );
             default:

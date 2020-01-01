@@ -1,4 +1,4 @@
-@import '../../../components';
+@import '../../../mixins';
 
 .main-details {
   display: flex;
@@ -63,11 +63,16 @@
   }
 
   &__categories {
-    //align-self: flex-start;
+    display: block;
+    /*align-self: flex-start;
+    @media screen and (max-width: 768px) {
+      align-self: initial;
+    }*/
   }
   
   &__product-image {
-    width: 100%;
+    max-width: 100%;
+    max-height: 65vh;
     @media screen and (max-width: 768px) {
       width: initial;
       max-width: 70%;
