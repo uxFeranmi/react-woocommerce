@@ -21,7 +21,7 @@ export default function ProductPage(props) {
   let [gotReviews, setGotReviews] = useState(false);
 
   const renderNewReview = (review)=> {
-    updatedReviews = [...reviews];
+    let updatedReviews = [...reviews];
     updatedReviews.push(review);
     setReviews(updatedReviews);
   }
