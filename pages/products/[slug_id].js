@@ -53,7 +53,7 @@ export default function ProductPage(props) {
     <Layout categories={categoryTree}>
       <section className="main-details">
         <div className="main-details__product-image-wrapper">
-          <div className="main-details__categories">
+          <small className="main-details__categories">
             {categories.map((category, index)=> (
               <Link href="/categories/[id]" as={`/categories/${category.slug}_${category.id}`}
                 key={category.id}
@@ -63,7 +63,7 @@ export default function ProductPage(props) {
                 </a>
               </Link>
             ))}
-          </div>
+          </small>
 
           <img src={images[0].src}
             className="main-details__product-image"

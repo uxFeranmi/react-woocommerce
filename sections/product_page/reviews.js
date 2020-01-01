@@ -1,24 +1,57 @@
 import { useState } from 'react';
 
+import wooApi from '../../services/woo_api';
+
 import UserReview from '../../components/user_review';
 import RatingStars from '../../components/rating_stars';
 
 import './styles/reviews.scss';
 
-const submitReviewForm = (formData)=> {
+const submitReviewForm = (event, formData)=> {
+  event.preventDefault ?
+    event.preventDefault()
+  : event.returnValue = false;
+
   console.log(formData);
+  //checkValidity()
+  if (!formData.stars) {
+    console.error('Provide a star rating please.');
+    return;
+  };
+
+  const data = {
+    product_id: formData.productId,
+    review: formData.comment,
+    reviewer: formData.name,
+    reviewer_email: formData.email,
+    rating: formData.stars,
+  };
+  
+  wooApi.post("products/reviews", data)
+    .then((response) => {
+      console.log(response.data);
+    })
+    .catch((error) => {
+      error.response ?
+        console.log(error.response.data)
+      : console.log(error);
+    });
+
+  return false;
 };
 
 const ProductReviews = (props)=> {
   const {reviews, gotReviews} = props;
 
   const {
+    id: productId,
     average_rating: avgRating,
     rating_count: ratingCount,
     total_sales: totalSales,
   } = props.product;
 
   let [reviewFormData, setReviewFormData] = useState({
+    productId,
     stars: 0,
     comment: '',
     name: '',
@@ -66,7 +99,10 @@ const ProductReviews = (props)=> {
           Submit your review.
         </h3>
 
-        <form className="rating-form__form">
+        <form className="rating-form__form"
+          title="Submit your review"
+          onSubmit={(e)=> submitReviewForm(e, reviewFormData)}
+        >
           <label>
             Rate this product:
             
@@ -81,6 +117,7 @@ const ProductReviews = (props)=> {
             Leave a comment:
             <textarea className="rating-form__comment-input"
               placeholder="A great product. I would recommend this."
+              required minLength={2} maxLength={500}
               onChange={(e)=> setReviewFormData({
                 ...reviewFormData,
                 comment: e.target.value,
@@ -90,7 +127,9 @@ const ProductReviews = (props)=> {
 
           <label>
             Name: &nbsp;
-            <input placeholder="John Doe"
+            <input type="text" required
+              minLength={2} maxLength={70}
+              placeholder="John Doe"
               onChange={(e)=> setReviewFormData({
                 ...reviewFormData,
                 name: e.target.value,
@@ -100,7 +139,8 @@ const ProductReviews = (props)=> {
 
           <label>
             eMail: &nbsp;
-            <input placeholder="john@example.com"
+            <input type="email" required
+              placeholder="john@example.com"
               onChange={(e)=> setReviewFormData({
                 ...reviewFormData,
                 email: e.target.value,
@@ -108,13 +148,7 @@ const ProductReviews = (props)=> {
             />
           </label>
 
-          <button type="submit"
-            className="rating-form__submit"
-            onClick={(e)=> {
-              e.preventDefault;
-              submitReviewForm(reviewFormData);
-            }}
-          >
+          <button type="submit" className="rating-form__submit">
             Submit Review
           </button>
         </form>

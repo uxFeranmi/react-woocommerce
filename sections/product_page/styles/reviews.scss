@@ -29,7 +29,7 @@
     width: 60%;
 
     &.is-first {
-      @media screen and (min-width: 780) {
+      @media screen and (min-width: 768px) {
         display: none;
       }
     }
@@ -102,6 +102,9 @@
       display: block;
       //opacity: 0;
       visibility: hidden;
+      @media screen and (max-width: 600px) {
+        height: 10px;
+      }
     }
   }
 
