@@ -22,7 +22,7 @@ export default function ProductPage(props) {
 
   const renderNewReview = (review)=> {
     let updatedReviews = [...reviews];
-    updatedReviews.push(review);
+    updatedReviews.splice(0, 0, review);
     setReviews(updatedReviews);
   }
 

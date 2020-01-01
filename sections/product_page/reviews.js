@@ -81,7 +81,7 @@ const ProductReviews = (props)=> {
       rating: formData.stars,
     };
     
-    wooApi.post("products/reviews", data)
+    wooApi.post("products/reviews-badUrl", data)
       .then((response) => {
         renderNewReview(response.data);
       })
@@ -161,7 +161,7 @@ const ProductReviews = (props)=> {
 
           <label>
             Name: &nbsp;
-            <input type="text" //required
+            <input type="text" required
               minLength={2} maxLength={70}
               placeholder="John Doe"
               onChange={(e)=> setReviewFormData({
