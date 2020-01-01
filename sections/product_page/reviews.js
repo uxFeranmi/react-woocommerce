@@ -86,8 +86,10 @@ const ProductReviews = (props)=> {
         renderNewReview(response.data);
       })
       .catch((error) => {
-        let errorMessage = error.response ?
-          JSON.stringify(error.response) //error.response.data.message
+        const {response} = error;
+
+        let errorMessage = response ?
+          `${response.statusText}: ${response.data.message}`
         : error.message;
 
         notify('global', 'error', errorMessage);
