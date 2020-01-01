@@ -7,12 +7,13 @@ const Notice = (props)=> {
   let noticeElement;
 
   useEffect(()=> {
-    if (noticeElement)
+    if (noticeElement) {
       noticeElement.scrollIntoView({
         behavior: "smooth",
         block: "center",
-        inline: "center"
+        inline: "center",
       });
+    }
   })
 
   return (

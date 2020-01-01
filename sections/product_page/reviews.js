@@ -29,10 +29,14 @@ const ProductReviews = (props)=> {
     email: '',
   });
 
+  let [formLoading, setFormLoading] = useState(false);
+
   let [formError, setFormError] = useState({
     global: [],
     ratingStars: [],
   });
+
+  let userReviewsElem, reviewFormElem;
 
   const onRatingStarClick = (event, index)=> { 
     event.preventDefault();
@@ -84,10 +88,21 @@ const ProductReviews = (props)=> {
       reviewer_email: formData.email,
       rating: formData.stars,
     };
+
+    setFormLoading(true);
     
     wooApi.post("products/reviews", data)
       .then((response) => {
+        setFormLoading(false);
         renderNewReview(response.data);
+        if (userReviewsElem)
+          userReviewsElem.scrollIntoView({
+            behavior: "smooth",
+            block: "center",
+            inline: "center",
+          });
+        if (reviewFormElem)
+          reviewFormElem.reset();
       })
       .catch((error) => {
         const {response} = error;
@@ -137,8 +152,8 @@ const ProductReviews = (props)=> {
         </h3>
 
         <form className="rating-form__form"
-          title="Submit your review"
-          aria-live="polite"
+          title="Submit your review" aria-live="polite"
+          ref={(elem)=> reviewFormElem = elem}
           onSubmit={(e)=> submitReviewForm(e, reviewFormData)}
         >
           <Notice messages={formError.global} />
@@ -200,6 +215,7 @@ const ProductReviews = (props)=> {
         {reviews.length > 0 ? (
           <ul aria-label="Customer Reviews"
             title="Customer Reviews"
+            ref={(elem)=> userReviewsElem = elem}
           >
             {reviews.map((review)=> (
               <li key={review.id}>
