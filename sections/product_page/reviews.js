@@ -90,7 +90,7 @@ const ProductReviews = (props)=> {
 
         let errorMessage = response ?
           `${response.statusText}: ${response.data.message}`
-        : error.message;
+        : `${error.message}: Couldn't get a response from the server. This is likely a network error.`;
 
         notify('global', 'error', errorMessage);
       });
