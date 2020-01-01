@@ -1,5 +1,17 @@
+import {useEffect} from 'react';
+
 const Notice = (props)=> {
   //type: 'error', 'warning', 'success'
+  let noticeElement;
+
+  useEffect(()=> {
+    if (noticeElement)
+      noticeElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center"
+      });
+  })
 
   return (
     <React.Fragment>
@@ -7,7 +19,8 @@ const Notice = (props)=> {
         let {type, content, action, dismiss} = message;
         
         return (
-          <div className={`notice is-${type}`} key={index}>
+          <div className={`notice is-${type}`} key={index}
+            ref={(elem)=> noticeElement = elem}>
             <button onClick={dismiss} type="button"
               title="Click to dismiss this notice"
               aria-label="Click to dismiss this notice"

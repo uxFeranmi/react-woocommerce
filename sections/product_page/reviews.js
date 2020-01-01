@@ -65,11 +65,15 @@ const ProductReviews = (props)=> {
       event.preventDefault()
     : event.returnValue = false;
 
+    formError = {
+      global: [],
+      ratingStars: [],
+    };
+
     //checkValidity()
     if (!formData.stars) {
       let errorMessage = 'Please provide a star rating. 5 stars would be nice 😊.';
       notify('ratingStars', 'error', errorMessage);
-      
       return false;
     };
   
