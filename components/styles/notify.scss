@@ -1,0 +1,33 @@
+.notice {
+  display: flex;
+  align-items: flex-start;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 2px;
+
+  &.is-error {
+    background-color: rgba(255, 0, 0, 0.3);
+  }
+
+  &.is-success {
+    background-color: rgba(0, 128, 0, 0.3);
+  }
+
+  &.is-warning {
+    background-color: rgba(255, 166, 0, 0.3);
+  }
+
+  &.is-info {
+    background-color: rgba(0, 0, 255, 0.3);
+  }
+
+  &__dismiss {
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 100%;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.15);
+    font-size: 1.2em;
+    margin-right: 10px;
+  }
+}

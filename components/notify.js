@@ -1,7 +1,9 @@
 import {useEffect} from 'react';
 
+import './styles/notify.scss';
+
 const Notice = (props)=> {
-  //type: 'error', 'warning', 'success'
+  //type: 'error', 'warning', 'success', 'info'
   let noticeElement;
 
   useEffect(()=> {
@@ -22,19 +24,24 @@ const Notice = (props)=> {
           <div className={`notice is-${type}`} key={index}
             ref={(elem)=> noticeElement = elem}>
             <button onClick={dismiss} type="button"
+              className="notice__dismiss"
               title="Click to dismiss this notice"
               aria-label="Click to dismiss this notice"
             >
               &times;
             </button>
 
-            <i>
+            <i
+              className="notice__content"
+            >
               {content}
             </i>
 
             {
               action ?
-                <button onClick={action.onClick}>
+                <button onClick={action.onClick}
+                  className="notice__action"
+                >
                   {action.label}
                 </button>
               : ''
