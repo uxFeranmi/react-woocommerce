@@ -61,7 +61,7 @@ export default function ProductPage(props) {
         <div className="main-details__product-image-wrapper">
           <small className="main-details__categories">
             {categories.map((category, index)=> (
-              <Link href="/categories/[id]" as={`/categories/${category.slug}_${category.id}`}
+              <Link href="/categories/[slug_id]" as={`/categories/${category.slug}_${category.id}`}
                 key={category.id}
               >
                 <a>

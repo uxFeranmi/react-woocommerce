@@ -10,7 +10,7 @@ const ProductCard = (props)=> {
   return (<div className="product-card">
     <small className="product-card__categories">
       {categories.map((category, index)=> (
-        <Link href="/categories/[id]" as={`/categories/${category.slug}_${category.id}`}
+        <Link href="/categories/[slug_id]" as={`/categories/${category.slug}_${category.id}`}
           key={category.id}
         >
           <a>
@@ -20,8 +20,8 @@ const ProductCard = (props)=> {
       ))}
     </small>
 
-    {/*href="products/[id]" as={`products/${product.slug}_${product.id}`}*/}
-    <Link href="/products/[id]" as={`/products/${product.slug}_${product.id}`}>
+    {/*href="products/[slug_id]" as={`products/${product.slug}_${product.id}`}*/}
+    <Link href="/products/[slug_id]" as={`/products/${product.slug}_${product.id}`}>
       <a className="product-card__thumbnail">
         <img src={images[0].src}
           alt={images[0].alt || `Image showing ${product.name}`}
@@ -29,7 +29,7 @@ const ProductCard = (props)=> {
       </a>
     </Link>
 
-    <Link href="/products/[id]" as={`/products/${product.slug}_${product.id}`}>
+    <Link href="/products/[slug_id]" as={`/products/${product.slug}_${product.id}`}>
       <a className="product-card__name">
         {product.name}
       </a>
