@@ -46,7 +46,7 @@ const ProductReviews = (props)=> {
     if (userReviewsElem) {
       userReviewsElem.scrollIntoView({
         behavior: "smooth",
-        block: "center",
+        block: "start",
         inline: "center",
       });
     }
@@ -222,8 +222,14 @@ const ProductReviews = (props)=> {
             />
           </label>
 
-          <button type="submit" className="rating-form__submit">
-            Submit Review
+          <button type="submit" 
+            className="rating-form__submit"
+            disabled={formLoading}
+          >
+            {formLoading ?
+              'Loading...' :
+              'Submit Review'
+            }
           </button>
         </form>
       </div> 
