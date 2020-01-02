@@ -172,16 +172,24 @@
 }
 
 .related-products {
-  padding: 20px;
+  width: 100%;
+  padding: 10px 0;
+  @media screen and (max-width: 1130px){
+    padding: 10px;
+  }
   @media screen and (max-width: 480px) {
     padding: 20px 10px;
+  }
+
+  &__title {
+    padding: 0 10px;
   }
 
   &__list {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    overflow-x: auto;
+    width: 100%;
 
     li {
       @include product-card-list-item;
