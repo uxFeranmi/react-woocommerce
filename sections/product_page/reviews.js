@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import wooApi from '../../services/woo_api';
 
@@ -36,7 +36,31 @@ const ProductReviews = (props)=> {
     ratingStars: [],
   });
 
+  let [showNewReview, setShowNewReview] = useState(false);
   let userReviewsElem, reviewFormElem;
+
+  useEffect(()=> {
+    if (!showNewReview) return;
+
+    console.log(userReviewsElem, reviewFormElem);
+    if (userReviewsElem) {
+      userReviewsElem.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
+    }
+    if (reviewFormElem) {
+      reviewFormElem.reset();
+      setReviewFormData({
+        ...reviewFormData,
+        stars: 0,
+      });
+    }
+
+    setShowNewReview(false);
+    return;
+  })
 
   const onRatingStarClick = (event, index)=> { 
     event.preventDefault();
@@ -93,25 +117,20 @@ const ProductReviews = (props)=> {
     
     wooApi.post("products/reviews", data)
       .then((response) => {
-        setFormLoading(false);
         renderNewReview(response.data);
-        if (userReviewsElem)
-          userReviewsElem.scrollIntoView({
-            behavior: "smooth",
-            block: "center",
-            inline: "center",
-          });
-        if (reviewFormElem)
-          reviewFormElem.reset();
+        setShowNewReview(true);
       })
       .catch((error) => {
         const {response} = error;
 
         let errorMessage = response ?
           `${response.statusText}: ${response.data.message}`
-        : `${error.message}: Couldn't get a response from the server. This is likely a network error.`;
+        : `${error.message}: Couldn't get a response from the server. This is likely a network issue.`;
 
         notify('global', 'error', errorMessage);
+      })
+      .finally(()=> {
+        setFormLoading(false);
       });
     //
     
