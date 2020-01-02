@@ -44,9 +44,10 @@ const ProductReviews = (props)=> {
 
     console.log(userReviewsElem, reviewFormElem);
     if (userReviewsElem) {
-      userReviewsElem.scrollIntoView({
+      //userReviewsElem.children[0]
+      userReviewsElem.firstElementChild.scrollIntoView({
         behavior: "smooth",
-        block: "start",
+        block: "center",
         inline: "center",
       });
     }
