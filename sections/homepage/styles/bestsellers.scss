@@ -1,3 +1,5 @@
+@import '../../../mixins';
+
 .bestsellers {
   width: 100%;
   padding: 10px 10%;
@@ -8,7 +10,6 @@
 
   &__header {
     padding: 10px;
-
   }
   
   &__title {
@@ -24,43 +25,6 @@
   }
 
   &__list-item {
-    display: block;
-    width: 20%;
-    margin: 20px 10px;
-
-    .product-card {
-      width: 100%;
-      height: 100%;
-    }
-  }
-
-  @media screen and (max-width: 850px) {
-    &__list-item {
-      width: 25%;
-    }
-  }
-
-  @media screen and (max-width: 620px) {
-    &__list-item {
-      width: 35%;
-    }
-  }
-
-  @media screen and (max-width: 480px) {
-    &__list-item {
-      width: 45%;
-    }
-  }
-
-  @media screen and (max-width: 420px) {
-   &__list-item {
-      margin: 20px 5px;
-    }
-  }
-
-  @media screen and (max-width: 300px) {
-    &__list-item {
-      width: 80%;
-    }
+    @include product-card-list-item;
   }
 }
