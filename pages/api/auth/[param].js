@@ -3,6 +3,7 @@ let pendingClients = {};
 const pendingClientMethods = {
   get: (authKey)=> pendingClients[authKey],
   delete: (authKey)=> delete pendingClients[authKey],
+  add: ({authKey, email, res})=> pendingClients[authKey] = {email, res},
 };
 
 export default (req, res)=> {
