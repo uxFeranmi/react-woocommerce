@@ -1,8 +1,12 @@
+import renderEjs from '../../../services/render_ejs';
+import path from 'path';
+
 export const handleMagicLink = (req, res, Clients, authKey)=> {
   const client = Clients.get(authKey);
 
   if (!client) {
-    res.status(498).sendFile('invalid_magic_link.html');
+    const templatePath = path.join(__dirname, './ejs_templates/invalid_magic_link.ejs')
+    res.status(498).send(renderEjs(templatePath, {}));
     return;
   }
   //path.extname('/Users/invalid_magic_link.html');
@@ -21,6 +25,9 @@ export const handleMagicLink = (req, res, Clients, authKey)=> {
 
   if (!user) {
     res.status(500).sendFile('server_error.html');
+    const templatePath = path.join(__dirname, './ejs_templates/server_error.ejs')
+    res.status(500).send(renderEjs(templatePath, {}));
+    return;
     return;
   }
 
