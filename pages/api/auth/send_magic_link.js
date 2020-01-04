@@ -1,21 +1,25 @@
+import uuid from 'uuid/v4';
+import renderEjs from '../../../services/render_ejs';
+
 export const sendMagicLink = async (req, res, Clients)=> {
-  const {email} = req.body;
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Connection': 'keep-alive',
+    'Cache-Control': 'no-cache'
+  });
+
+  const {email} = req.query;
   const authKey = uuid();
   const magicUrl = `http://itsupplies.co/api/auth/magic-${authKey}`;
 
-  const emailContent = ejs.render('magic_link_email.ejs', {magicUrl});
+  const templatePath = path.join(__dirname, 'templates/magic_link.ejs');
+  const emailContent = renderEjs(templatePath, {magicUrl});
 
-  res.header = {
-    contentType: 'text/text-stream',
-    keepAlive: true,
-  };
-
-  Clients.add({authKey, email, res});
-
-  await sendMail(emailContent);
+  await sendMail(emailContent, email);
   
   res.write({event: 'mailsent'});
+  Clients.add({authKey, email, res});
 };
 
-const noRouteMessage = JSON.stringify({message: 'Nothing to see here.'});
-export default (req, res)=> res.status(404).send(noRouteMessage);
+//Direct API calls to this file are not allowed.
+export default (req, res)=> res.status(404).json({message: 'Nothing to see here.'});

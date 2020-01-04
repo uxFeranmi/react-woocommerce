@@ -14,7 +14,14 @@ const pendingClientMethods = {
   add: ({authKey, email, res})=> pendingClients[authKey] = {
     email,
     res,
-    timer: setTimeout(()=> delete pendingClients[authKey], 600000), //600,000ms i.e 10 minutes.
+    timer: setTimeout(()=> {
+      pendingClients[authKey].res.write(
+        `event: timeout\n
+        data: This authentication request has timed out.\n\n
+        id: timeout:${authKey}\n`
+      );
+      delete pendingClients[authKey]
+    }, 600000), //600,000ms i.e 10 minutes.
   },
 };
 

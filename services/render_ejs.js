@@ -1,8 +1,11 @@
 import ejs from 'ejs';
 import fs from 'fs';
 
-const renderEjs = (path, data)=> {
-  const template = fs.readFileSync(path).toString();
+const renderEjs = (filePath, data)=> {
+  /*if (/htm(l)?$/.test(path.extname(filePath)))
+    return fs.readFileSync(filePath).toString();*/
+
+  const template = fs.readFileSync(filePath).toString();
   const html = ejs.render(template, data);
   return html;
 }
