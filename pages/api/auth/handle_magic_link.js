@@ -5,6 +5,7 @@ export const handleMagicLink = (req, res, Clients, authKey)=> {
     res.status(498).sendFile('invalid_magic_link.html');
     return;
   }
+  //path.extname('/Users/invalid_magic_link.html');
 
   const user = await wooApi.get('users', {email: client.email})
     .catch((error)=> {
