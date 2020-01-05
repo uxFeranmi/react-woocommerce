@@ -1,28 +1,27 @@
-import { SENDER_EMAIL, EMAIL_PASSWORD, SENDER_ADDR } from '../config/constants';
-
 import mailjet from 'node-mailjet';
+import {
+  MJ_APIKEY_PUBLIC,
+  MJ_APIKEY_PRIVATE 
+} from '../config/constants';
 
-mailjet.connect(
-  process.env.MJ_APIKEY_PUBLIC,
-  process.env.MJ_APIKEY_PRIVATE
-);
+mailjet.connect(MJ_APIKEY_PUBLIC, MJ_APIKEY_PRIVATE);
 
-const sendMail = async (recipientEmail, title, messageBody)=> {
+export const sendMail = async (from, to, title, body)=> {
   const result = await mailjet.post('send', { version: 'v3.1' }).request({
     Messages: [{
       From: {
-        Email: SENDER_EMAIL,
-        Name: 'IT Supplies',
+        Email: from,
+        Name: 'IT Supplies Shop',
       },
       To: [
         {
-          Email: recipientEmail,
+          Email: to,
           Name: 'You',
         },
       ],
       Subject: title,
       TextPart: '',
-      HTMLPart: messageBody,
+      HTMLPart: body,
     }],
   }).catch(err => {
     console.log(err.statusCode)
@@ -33,4 +32,5 @@ const sendMail = async (recipientEmail, title, messageBody)=> {
   return true;
 };
 
-  
+//Direct API calls to this file are not allowed.
+export default (req, res)=> res.status(404).json({message: 'Nothing to see here.'});
