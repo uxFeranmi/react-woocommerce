@@ -2,7 +2,7 @@ import path from 'path';
 import uuid from 'uuid/v4';
 import renderEjs from '../services/render_ejs';
 // @ts-ignore
-import { EMAIL_SENDER_NO_REPLY as senderEmail, HOSTNAME } from '../constants';
+import { EMAIL_SENDER_NO_REPLY as senderEmail, DOMAIN_NAME } from '../constants';
 import { sendMail } from '../services/send_email';
 const cd = 'pages/api/auth';
 
@@ -15,7 +15,7 @@ export const sendMagicLink = async (req, res, Clients)=> {
 
   const {email: userEmail} = req.query;
   const authKey = uuid();
-  const magicUrl = `http://${HOSTNAME}/api/auth/magic-${authKey}`;
+  const magicUrl = `${DOMAIN_NAME}/api/auth/magic-${authKey}`;
 
   const templatePath = path.join(process.cwd(), cd, 'templates/magic_link_email.ejs');
   console.log(templatePath);

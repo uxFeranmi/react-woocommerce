@@ -7,8 +7,10 @@ const pendingClientMethods = {
   get: (authKey)=> pendingClients[authKey],
 
   delete: (authKey)=> {
+    console.log('delete method called')
     clearTimeout(pendingClients[authKey].timer);
     delete pendingClients[authKey];
+    console.log('delete method finished');
   },
 
   add: ({authKey, email, res})=> pendingClients[authKey] = {

@@ -1,3 +1,5 @@
+import { DOMAIN_NAME } from '../constants';
+
 export default (req, res)=> {
   const token =  req.header['Authorization'];
   token = token.replace ?
@@ -15,10 +17,12 @@ export default (req, res)=> {
     'language=javascript',
   ]);*/
 
+  const secure = DOMAIN_NAME.startsWith('https:') ? 'Secure;' : '';
+
   res.writeHead(201, {
     'Content-Type': 'text/plain',
-    'Set-Cookie': `token=${token}; HttpOnly; Max-Age=31540000`,
-  })
+    'Set-Cookie': `token=${token}; ${secure} HttpOnly; Max-Age=31540000`,
+  });
   
   res.end("Here's your cookie. Want some milk? 😊");
 };
