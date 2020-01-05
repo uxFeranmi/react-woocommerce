@@ -1,6 +1,8 @@
 //import renderEjs from '../../../services/render_ejs';
 import path from 'path';
 import fs from 'fs';
+import nanoid from 'nanoid';
+import wooApi from '../../../services/woo_api';
 
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../constants');
