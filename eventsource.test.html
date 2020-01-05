@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <button id="request-events">Request Event Stream</button>
+
+<script>
+  document.querySelector('#request-events').onclick = ()=> {
+    //const sse = new EventSource('http://localhost:3000/api/auth/sign-in?email=uxferanmi@gmail.com');
+    //const sse = new EventSource('http://localhost:3000/api/auth/sign-in?email=feranmiakinlade@gmail.com');
+    const sse = new EventSource('http://localhost:3000/api/auth/sign-in?email=feranmiakinlade@outlook.com');
+
+    sse.addEventListener("notice", function(e) { 
+      console.log(e.data)
+    })
+
+    sse.addEventListener("update", function(e) {
+      console.log(e.data)
+    })
+
+    sse.addEventListener("message", function(e) {
+      console.log(e.data)
+    });
+  }
+</script>
+</body>
+</html>

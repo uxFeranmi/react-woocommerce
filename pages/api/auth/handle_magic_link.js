@@ -9,6 +9,7 @@ const { JWT_SECRET } = require('../constants');
 const cd = 'pages/api/auth';
 
 export const handleMagicLink = async (req, res, Clients, authKey)=> {
+  res.setHeader('Content-Type', 'text/html');
   const p = n => console.log(n);
 
   p(1);
@@ -19,28 +20,27 @@ export const handleMagicLink = async (req, res, Clients, authKey)=> {
     const templatePath = path.join(process.cwd(), cd, 'templates/invalid_magic_link.html');
     const message = fs.readFileSync(templatePath).toString();
     //res.status(498).send(renderEjs(templatePath, {}));
-    res.setHeader(content-type: html)
     res.status(498).send(message);
     p(3)
     return;
   }
 
   p(4)
-  const [user] = await wooApi.get("customers", {email: client.email})
-    .catch((error)=> {
-      p(5)
-      const {response} = error;
-      if (response && response.status == 404) {
-        p(6)
-        const newUser = wooApi.post('users', {
-          email: client.email,
-          username: client.email
-            .slice(0, client.email.indexOf('@')) + nanoid(5),
-        });
-        p(7)
-        return newUser;
-      }
-    });
+  let {data: [user]} = await wooApi.get("customers", {email: client.email});
+  p(user);
+  if (!user) {
+    p(5);
+    ({data: user} = await wooApi.post('customers', {
+      email: client.email,
+      username: client.email
+        .slice(0, client.email.indexOf('@')) + nanoid(5),
+      password: nanoid(8),
+    }).catch(err => p(err.response)));
+    p(client.email
+      .slice(0, client.email.indexOf('@')) + nanoid(5));
+  }
+
+  p(user);
 
   if (!user) {
     p(8)
