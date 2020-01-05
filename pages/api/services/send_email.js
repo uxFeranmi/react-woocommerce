@@ -2,10 +2,10 @@ import mailjet from 'node-mailjet';
 // @ts-ignore
 import { MJ_APIKEY_PUBLIC, MJ_APIKEY_PRIVATE } from '../constants';
 
- mailjet.connect(MJ_APIKEY_PUBLIC, MJ_APIKEY_PRIVATE);
+const emailClient = mailjet.connect(MJ_APIKEY_PUBLIC, MJ_APIKEY_PRIVATE);
 
 export const sendMail = async (from, to, title, body)=> {
-  const result = await mailjet.post('send', { version: 'v3.1' }).request({
+  const result = await emailClient.post('send', { version: 'v3.1' }).request({
     Messages: [{
       From: {
         Email: from,
