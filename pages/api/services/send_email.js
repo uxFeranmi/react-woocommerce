@@ -1,10 +1,8 @@
 import mailjet from 'node-mailjet';
-import {
-  MJ_APIKEY_PUBLIC,
-  MJ_APIKEY_PRIVATE 
-} from '../config/constants';
+// @ts-ignore
+import { MJ_APIKEY_PUBLIC, MJ_APIKEY_PRIVATE } from '../constants';
 
-mailjet.connect(MJ_APIKEY_PUBLIC, MJ_APIKEY_PRIVATE);
+ mailjet.connect(MJ_APIKEY_PUBLIC, MJ_APIKEY_PRIVATE);
 
 export const sendMail = async (from, to, title, body)=> {
   const result = await mailjet.post('send', { version: 'v3.1' }).request({

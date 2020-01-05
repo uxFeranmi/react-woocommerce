@@ -25,17 +25,17 @@ const pendingClientMethods = {
   },
 };
 
-export default (req, res)=> {
+export default async (req, res)=> {
   let {param: urlParam} = req.query;
 
   if (urlParam == 'sign-in') {
-    sendMagicLink(req, res, pendingClientMethods);
+    await sendMagicLink(req, res, pendingClientMethods);
     return;
   }
 
   if (urlParam.startsWith('magic-')) {
     let authKey = urlParam.replace('magic-', '');
-    handleMagicLink(req, res, pendingClientMethods, authKey);
+    await handleMagicLink(req, res, pendingClientMethods, authKey);
     return;
   }
 

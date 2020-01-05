@@ -11,6 +11,18 @@ const {
 console.log(nodeEnv);
 
 module.exports = withSass({
+  /*webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    config = {
+      ...config,
+      target: 'node',
+      node: {
+        __dirname: false,
+        __filename: false,
+      }
+    };
+    return config;
+  },*/
+
   // Get assets from itsupplies.co if in production environment.
   assetPrefix: nodeEnv === 'production' ? 'http://itsupplies.co/' : '',
 

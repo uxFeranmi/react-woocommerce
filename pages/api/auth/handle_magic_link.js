@@ -7,7 +7,7 @@ import wooApi from '../../../services/woo_api';
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../constants');
 
-export const handleMagicLink = (req, res, Clients, authKey)=> {
+export const handleMagicLink = async (req, res, Clients, authKey)=> {
   const client = Clients.get(authKey);
 
   if (!client) {

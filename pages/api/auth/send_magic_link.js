@@ -1,7 +1,10 @@
+import path from 'path';
 import uuid from 'uuid/v4';
-import renderEjs from '../../../services/render_ejs';
-import { EMAIL_SENDER_NO_REPLY as senderEmail } from '../config/constants';
-import sendMail from '../../../services/send_email';
+import renderEjs from '../services/render_ejs';
+// @ts-ignore
+import { EMAIL_SENDER_NO_REPLY as senderEmail } from '../constants';
+import { sendMail } from '../services/send_email';
+const cd = 'pages/api/auth';
 
 export const sendMagicLink = async (req, res, Clients)=> {
   res.writeHead(200, {
@@ -14,7 +17,8 @@ export const sendMagicLink = async (req, res, Clients)=> {
   const authKey = uuid();
   const magicUrl = `http://itsupplies.co/api/auth/magic-${authKey}`;
 
-  const templatePath = path.join(__dirname, 'templates/magic_link.ejs');
+  const templatePath = path.join(process.cwd(), cd, 'templates/magic_link_email.ejs');
+  console.log(templatePath);
   const emailContent = renderEjs(templatePath, {magicUrl});
   const emailTitle = 'Complete Your Sign In'
 
