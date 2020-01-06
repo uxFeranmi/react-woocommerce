@@ -81,13 +81,9 @@ app.use((req, res, next)=> {
   next();
 })
 
-  
-
-  if (pathname === '/shop') {
-    nextJs.render(req, res, '/', query)
-  } else if (pathname === '/b') {
-    nextJs.render(req, res, '/a', query)
-  }
+app.use('/shop', (req, res)=> {
+  nextJs.render(req, res, '/', req.parsedUrl.query)
+});
 
 // Define endpoints
 app.use('/eventpage', express.static('eventsource'));
@@ -102,12 +98,6 @@ let clients = [];
 let nests = ['Message 1'];
 
 nextJs.prepare().then(() => {
-  createServer(
-  }).listen(3000, err => {
-    if (err) throw err
-    console.log('> Ready on http://localhost:3000')
-  })
-})
-
-// Start server on 3000 port
-app.listen(PORT, () => console.log(`Swamp Events service listening on port ${PORT}`));
+  // Start server on 3000 port
+  app.listen(PORT, () => console.log(`> Ready on http://localhost:${PORT}`));
+});
