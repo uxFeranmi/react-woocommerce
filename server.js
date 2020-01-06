@@ -1,17 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
-const app = express();
-// This file doesn't go through babel or webpack transformation.
-// Make sure the syntax and sources this file requires are compatible with the current node version you are running
-// See https://github.com/zeit/next.js/issues/1245 for discussions on Universal Webpack or universal Babel
-const next = require('next');
 const { parse } = require('url');
 
 const dev = process.env.NODE_ENV !== 'production';
-const nextJs = next({ dev });
+const nextJs = require('next')({ dev });
+
+const app = express();
 const nextJsHandler = nextJs.getRequestHandler();
+
+const mountEndpoints = require('./api/endpoints');
 
 let count = 2;
 // Middleware for GET /events endpoint
@@ -80,6 +78,8 @@ app.use((req, res, next)=> {
   req.parsedUrl = parse(req.url, true);
   next();
 })
+
+mountEndpoints(app);
 
 app.use('/shop', (req, res)=> {
   nextJs.render(req, res, '/', req.parsedUrl.query)
