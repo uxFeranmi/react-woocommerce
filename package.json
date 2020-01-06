@@ -4,12 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
+    "dev": "nodemon server.js",
     "build": "next build",
-    "start": "next start -p $PORT",
-    "index-404": "run-script-os",
-    "index-404:win32": "copy pages\\index.js pages\\_error.js",
-    "index-404:darwin:linux": "cp pages/index.js pages/_error.js"
+    "start": "NODE_ENV=production node server.js"
   },
   "keywords": [],
   "author": "",
@@ -18,8 +15,11 @@
     "@woocommerce/woocommerce-rest-api": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ejs": "^3.0.1",
+    "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "nanoid": "^2.1.8",
     "next": "^9.1.4",
@@ -30,6 +30,6 @@
     "uuid": "^3.3.3"
   },
   "devDependencies": {
-    "run-script-os": "^1.0.7"
+    "nodemon": "^2.0.2"
   }
 }
