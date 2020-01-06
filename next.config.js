@@ -22,6 +22,7 @@ module.exports = withSass({
     };
     return config;
   },*/
+  compress: false,
 
   // Get assets from itsupplies.co if in production environment.
   assetPrefix: nodeEnv === 'production' ? 'http://itsupplies.co/' : '',
