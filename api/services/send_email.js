@@ -22,7 +22,7 @@ const sendMail = async (_from, _to, title, body)=> {
       HTMLPart: body,
     }],
   }).catch(err => {
-    console.log(err.statusCode)
+    console.log(err)
     return false;
   });
   

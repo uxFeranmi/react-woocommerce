@@ -1,5 +1,6 @@
 // @ts-nocheck
 // import Link from 'next/link';
+import { useState } from 'react';
 
 import getCategoryTree from '../utils/category_tree';
 import Layout from '../components/my_layout';
@@ -12,7 +13,7 @@ export default function signIn(props) {
       <p>{JSON.stringify(props.error)}</p>
     ]);
 
-  // let [email, setEmail] = useState('');
+  let [email, setEmail] = useState('');
   let [authProgress, setAuthProgress] = useState('');
 
   const initiateAuthFlow = (event)=> {
@@ -22,7 +23,16 @@ export default function signIn(props) {
   
     setAuthProgress('submitting');
   
-    const sse = new EventSource(`/api/auth/sign-in?email=${event.target.value}`);
+    const sse = new EventSource(`/api/auth/sign-in?email=${email}`);
+
+    sse.addEventListener("message", function(e) {
+      console.log('Default message event\n', e);
+    });
+
+    sse.addEventListener("received", function(e) {
+      setAuthProgress('received');
+      console.log(`${e.type}: ${e.data}`);
+    });
 
     sse.addEventListener("mailsent", function(e) {
       setAuthProgress('mailsent');
@@ -32,21 +42,21 @@ export default function signIn(props) {
     sse.addEventListener("authenticated", function(e) {
       setAuthProgress('authenticated');
       console.log(`${e.type}: ${e.data}`);
+      sse.close();
     });
 
     sse.addEventListener("timeout", function(e) {
       setAuthProgress('timeout');
       console.log(`${e.type}: ${e.data}`);
+      sse.close();
     });
 
-    sse.addEventListener("received", function(e) {
-      setAuthProgress('received');
+    sse.addEventListener("error", function(e) {
+      setAuthProgress('error');
       console.log(`${e.type}: ${e.data}`);
+      sse.close();
     });
-
-    sse.addEventListener("message", function(e) {
-      console.log('Default message event\n', e);
-    })
+    
     return false;
   };
 
@@ -59,7 +69,9 @@ export default function signIn(props) {
         >
           <label className="sign-in__email-input">
             Email:
-            <input type="email" />
+            <input type="email"
+              onChange={(e)=> setEmail(e.target.value)}
+            />
           </label>
 
           <button type="submit">Sign in</button>
