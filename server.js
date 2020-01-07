@@ -32,7 +32,8 @@ app.use('/shop', (req, res)=> {
 // @ts-ignore
 app.use((req, res) => nextJsHandler(req, res, req.parsedUrl));
 
-const PORT = 3000;
+console.log(process.env.PORT);
+const PORT = process.env.PORT || 3000;
 
 nextJs.prepare().then(() => {
   // Start server on 3000 port
