@@ -1,4 +1,4 @@
-const DOMAIN_NAME = require('../constants');
+const DOMAIN_NAME = require('../../constants');
 
 const setAuthCookie = (req, res)=> {
   let token =  req.header('Authorization'); // Same as req.get('Authorization');

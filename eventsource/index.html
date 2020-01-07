@@ -8,7 +8,7 @@
 <script>
   document.querySelector('#request-event-stream').onclick = ()=> {
     //const sse = new EventSource('https://3000-e2a286d0-6f69-46c5-ac8d-c46d385ef5df.ws-eu01.gitpod.io/api/auth/sign-in?email=feranmiakinlade@gmail.com');
-    const sse = new EventSource('/events');
+    const sse = new EventSource('/api/auth/sign-in?email=feranmiakinlade@outlook.com');
 
     sse.addEventListener("mailsent", function(e) {
     console.log(e)

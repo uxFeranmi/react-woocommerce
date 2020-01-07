@@ -2,11 +2,10 @@
 const path = require('path');
 const fs = require('fs');
 const nanoid = require('nanoid');
-const wooApi = require('../services/woo_api');
+const wooApi = require('../../services/woo_api');
 
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('../constants');
-const cd = 'pages/api/auth';
+const { JWT_SECRET } = require('../../constants');
 
 const verifyMagicLink = async (req, res, Clients)=> {
   const {authKey} = req.params;
@@ -18,7 +17,7 @@ const verifyMagicLink = async (req, res, Clients)=> {
 
   if (!client) {
     p(2)
-    const templatePath = path.join(process.cwd(), cd, 'templates/invalid_magic_link.html');
+    const templatePath = path.join(__dirname, 'templates/invalid_magic_link.html');
     const message = fs.readFileSync(templatePath).toString();
     //res.status(498).send(renderEjs(templatePath, {}));
     res.status(498).send(message);
@@ -28,27 +27,35 @@ const verifyMagicLink = async (req, res, Clients)=> {
 
   p(4)
   let {data: [user]} = await wooApi.get("customers", {email: client.email});
-  p(user);
+
   if (!user) {
     p(5);
-    ({data: user} = await wooApi.post('customers', {
-      email: client.email,
-      username: client.email
-        .slice(0, client.email.indexOf('@')) + nanoid(5),
-      password: nanoid(8),
-    }).catch(err => p(err.response)));
+    (
+      {data: user} = await wooApi.post('customers', {
+        email: client.email,
+        username: client.email
+          .slice(0, client.email.indexOf('@')) + nanoid(5),
+        password: nanoid(8),
+      })
+      .catch(err => {
+        p(err.response.data.message);
+        return {data: null};
+      })
+    );
+
     p(client.email
       .slice(0, client.email.indexOf('@')) + nanoid(5));
   }
 
-  p(user);
+  p(user.role + ' ' + user.username);
 
   if (!user) {
     p(8)
-    const templatePath = path.join(process.cwd(), cd, 'templates/server_error.html');
+    const templatePath = path.join(__dirname, 'templates/server_error.html');
     const message = fs.readFileSync(templatePath).toString();
     //res.status(498).send(renderEjs(templatePath, {}));
     res.status(500).send(message);
+    client.sendEvent('error', 'Could not get or create user.');
     return;
   }
 
@@ -60,15 +67,12 @@ const verifyMagicLink = async (req, res, Clients)=> {
   const token = jwt.sign(tokenPayload, JWT_SECRET, { expiresIn: '366d' });
 
   p(9)
-  client.res.write(
-    `event: authenticated\n
-    data: ${token}\n\n
-    id: authenticated:${authKey}\n`
-  );
+  
+  client.sendEvent('authenticated', token);
   Clients.delete(authKey);
   p(10)
 
-  const templatePath = path.join(process.cwd(), cd, 'templates/authenticated.html');
+  const templatePath = path.join(__dirname, 'templates/authenticated.html');
   const message = fs.readFileSync(templatePath).toString();
   //res.status(498).send(renderEjs(templatePath, {}));
   res.status(201).send(message);

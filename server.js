@@ -22,8 +22,10 @@ app.use((req, res, next)=> {
   next();
 })
 
+// Mount api endpoints.
 mountEndpoints(app);
 
+app.use('/eventpage', express.static('eventsource'));
 app.use('/shop', (req, res)=> {
   // @ts-ignore
   nextJs.render(req, res, '/', req.parsedUrl.query)

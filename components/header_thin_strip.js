@@ -7,7 +7,7 @@ const HeaderThinStrip = props => {
     <div className={`${props.className} header-thin-strip`}>
       <small>One Year Warranty On All Products. Shop Now!</small>
       <nav>
-        <Link href="#">
+        <Link href="/sign-in">
           <a>
             <i className="fa fa-user"></i>
             &nbsp;
