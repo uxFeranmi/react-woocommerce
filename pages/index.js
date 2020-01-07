@@ -7,9 +7,9 @@ import { useEffect, useState } from 'react';
 // import Head from 'next/head';
 
 import Layout from '../components/my_layout';
-import wooApi from '../services/woo_api';
-import wpApi from '../services/wp_api';
-import getCategoryTree from '../services/category_tree';
+import wooApi from '../api/services/woo_api';
+import wpApi from '../api/services/wp_api';
+import getCategoryTree from '../utils/category_tree';
 
 import Carousel from '../components/carousel';
 

@@ -1,8 +1,9 @@
-import axios from 'axios';
+const axios = require('axios');
 
 const baseUrl = 'http://itsupplies.co/woo/wp-json/wp/v2';
 
 const wpApi = async (method, endpoint, params = {}, body = {})=> {
+  // @ts-ignore
   const res = await axios({
     method,
     baseURL: baseUrl,
@@ -14,4 +15,4 @@ const wpApi = async (method, endpoint, params = {}, body = {})=> {
   return res.data;
 }
 
-export default wpApi;
+module.exports = wpApi;

@@ -1,5 +1,5 @@
-import ejs from 'ejs';
-import fs from 'fs';
+const ejs = require('ejs');
+const fs = require('fs');
 
 const renderEjs = (filePath, data)=> {
   /*if (/htm(l)?$/.test(path.extname(filePath)))
@@ -10,4 +10,4 @@ const renderEjs = (filePath, data)=> {
   return html;
 }
 
-export default renderEjs;
+module.exports = renderEjs;

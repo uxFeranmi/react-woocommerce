@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 import Layout from '../../components/my_layout';
-import wooApi from '../../services/woo_api';
-import getCategoryTree from '../../services/category_tree';
-//import wpApi from '../../services/wp_api';
+import wooApi from '../../api/services/woo_api';
+import getCategoryTree from '../../utils/category_tree';
+//import wpApi from '../../api/services/wp_api';
 
 import ProductCard from '../../components/product_card';
 import ProductReviews from '../../sections/product_page/reviews';

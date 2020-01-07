@@ -1,14 +1,15 @@
-//import renderEjs from '../../../services/render_ejs';
-import path from 'path';
-import fs from 'fs';
-import nanoid from 'nanoid';
-import wooApi from '../../../services/woo_api';
+//const renderEjs = require('../services/render_ejs');
+const path = require('path');
+const fs = require('fs');
+const nanoid = require('nanoid');
+const wooApi = require('../services/woo_api');
 
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../constants');
 const cd = 'pages/api/auth';
 
-export const handleMagicLink = async (req, res, Clients, authKey)=> {
+const verifyMagicLink = async (req, res, Clients)=> {
+  const {authKey} = req.params;
   res.setHeader('Content-Type', 'text/html');
   const p = n => console.log(n);
 
@@ -73,5 +74,4 @@ export const handleMagicLink = async (req, res, Clients, authKey)=> {
   res.status(201).send(message);
 };
 
-//Direct API calls to this file are not allowed.
-export default (req, res)=> res.status(404).json({message: 'Nothing to see here.'});
+module.exports = verifyMagicLink;

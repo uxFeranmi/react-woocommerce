@@ -1,5 +1,5 @@
 import './styles/user_review.scss';
-import getTimeDiff from '../services/time_difference';
+import getTimeDiff from '../utils/time_difference';
 import RatingStars from '../components/rating_stars';
 
 const stripHtmlTags = (html)=> {

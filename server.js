@@ -4,6 +4,7 @@ const cors = require('cors');
 const { parse } = require('url');
 
 const dev = process.env.NODE_ENV !== 'production';
+// @ts-ignore
 const nextJs = require('next')({ dev });
 
 const app = express();
@@ -11,6 +12,34 @@ const nextJsHandler = nextJs.getRequestHandler();
 
 const mountEndpoints = require('./api/endpoints');
 
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
+app.use((req, res, next)=> {
+  // req.parsedUrl.pathname, req.parsedUrl.query
+  // @ts-ignore
+  req.parsedUrl = parse(req.url, true);
+  next();
+})
+
+mountEndpoints(app);
+
+app.use('/shop', (req, res)=> {
+  // @ts-ignore
+  nextJs.render(req, res, '/', req.parsedUrl.query)
+});
+
+// @ts-ignore
+app.use((req, res) => nextJsHandler(req, res, req.parsedUrl));
+
+const PORT = 3000;
+
+nextJs.prepare().then(() => {
+  // Start server on 3000 port
+  app.listen(PORT, () => console.log(`> Ready on http://localhost:${PORT}`));
+});
+
+/*
 let count = 2;
 // Middleware for GET /events endpoint
 function eventsHandler(req, res, next) {
@@ -66,38 +95,14 @@ function addNest(count) {
   origin: '*',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
-app.use(cors(corsOptions));*/
+app.use(cors(corsOptions));
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use((req, res, next)=> {
-  // Be sure to pass `true` as the second argument to `url.parse`.
-  // This tells it to parse the query portion of the URL.
-  //parsedUrl.pathname, parsedUrl.query }
-  req.parsedUrl = parse(req.url, true);
-  next();
-})
-
-mountEndpoints(app);
-
-app.use('/shop', (req, res)=> {
-  nextJs.render(req, res, '/', req.parsedUrl.query)
-});
 
 // Define endpoints
 app.use('/eventpage', express.static('eventsource'));
 app.get('/events', eventsHandler);
 app.get('/status', (req, res) => res.json({clients: clients.length}));
 
-app.use((req, res) => nextJsHandler(req, res, req.parsedUrl));
-
-const PORT = 3000;
-
 let clients = [];
 let nests = ['Message 1'];
-
-nextJs.prepare().then(() => {
-  // Start server on 3000 port
-  app.listen(PORT, () => console.log(`> Ready on http://localhost:${PORT}`));
-});
+*/

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import wooApi from '../../services/woo_api';
+import wooApi from '../../api/services/woo_api';
 
 import UserReview from '../../components/user_review';
 import RatingStars from '../../components/rating_stars';

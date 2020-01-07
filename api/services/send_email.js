@@ -1,19 +1,19 @@
-import mailjet from 'node-mailjet';
+const mailjet = require('node-mailjet');
 // @ts-ignore
-import { MJ_APIKEY_PUBLIC, MJ_APIKEY_PRIVATE } from '../constants';
+const { MJ_APIKEY_PUBLIC, MJ_APIKEY_PRIVATE } = require('../constants');
 
 const emailClient = mailjet.connect(MJ_APIKEY_PUBLIC, MJ_APIKEY_PRIVATE);
 
-export const sendMail = async (from, to, title, body)=> {
+const sendMail = async (_from, _to, title, body)=> {
   const result = await emailClient.post('send', { version: 'v3.1' }).request({
     Messages: [{
       From: {
-        Email: from,
+        Email: _from,
         Name: 'IT Supplies Shop',
       },
       To: [
         {
-          Email: to,
+          Email: _to,
           Name: 'You',
         },
       ],
@@ -26,9 +26,9 @@ export const sendMail = async (from, to, title, body)=> {
     return false;
   });
   
+  // @ts-ignore
   console.log(result.body);
   return true;
 };
 
-//Direct API calls to this file are not allowed.
-export default (req, res)=> res.status(404).json({message: 'Nothing to see here.'});
+module.exports = sendMail;

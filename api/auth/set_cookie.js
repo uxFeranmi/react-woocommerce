@@ -1,7 +1,7 @@
-import { DOMAIN_NAME } from '../constants';
+const DOMAIN_NAME = require('../constants');
 
-export default (req, res)=> {
-  const token =  req.header['Authorization'];
+const setAuthCookie = (req, res)=> {
+  let token =  req.header('Authorization'); // Same as req.get('Authorization');
   token = token.replace ?
     token.replace('Bearer ', '')
     : null;
@@ -17,6 +17,7 @@ export default (req, res)=> {
     'language=javascript',
   ]);*/
 
+  // @ts-ignore
   const secure = DOMAIN_NAME.startsWith('https:') ? 'Secure;' : '';
 
   res.writeHead(201, {
@@ -26,3 +27,5 @@ export default (req, res)=> {
   
   res.end("Here's your cookie. Want some milk? 😊");
 };
+
+module.exports = setAuthCookie;
