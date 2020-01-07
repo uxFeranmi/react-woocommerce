@@ -13,35 +13,34 @@ const pendingClientMethods = {
     delete pendingClients[authKey]
   },
 
-  add: ({authKey, email, res})=> pendingClients[authKey] = {
-    email,
-    res,
+  add: ({authKey, email, res})=> {
+    pendingClients[authKey] = {
+      email,
+      res,
+      sendEvent: (event, data = null)=> {
+        if (!data) {
+          data = event;
+          event = 'message';
+        }
+
+        const {res} = pendingClients[authKey];
+        const id = nanoid();
+
+        res.write(`event: ${event}\n`);
+        res.write(`id: ${id}\n`);
+        res.write(`data: ${data}\n\n`);
+
+        pendingClients[authKey].lastReqId = id;
+      },
+    };
     
-    sendEvent: (event, data = null)=> {
-      if (!data) {
-        data = event;
-        event = 'message';
-      }
-
-      const {res} = pendingClients[authKey];
-      const id = nanoid();
-
-      res.write(`event: ${event}\n`);
-      res.write(`id: ${id}\n`);
-      res.write(`data: ${data}\n\n`);
-
-      pendingClients[authKey].lastReqId = id;
-    },
-
-    timer: setTimeout(()=> {
-      const {res} = pendingClients[authKey];
-
-      res.write('event: timeout\n');
-      res.write(`id: timeout:${authKey}\n`);
-      res.write('data: This authentication request has timed out.\n\n');
-
-      delete pendingClients[authKey]
-    }, 900000), // 900,000ms i.e 15 minutes.
+    //900,000ms i.e 15 minutes.
+    res.setTimeout(900000, () => {
+      pendingClients[authKey]
+        .sendEvent('timeout', 'This authentication request has timed out.');
+        
+      delete pendingClients[authKey];
+    });
   },
 };
 
