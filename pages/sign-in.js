@@ -12,13 +12,60 @@ export default function signIn(props) {
       <p>{JSON.stringify(props.error)}</p>
     ]);
 
+  // let [email, setEmail] = useState('');
+  let [authProgress, setAuthProgress] = useState('');
+
+  const initiateAuthFlow = (event)=> {
+    event.preventDefault ?
+      event.preventDefault()
+    : event.returnValue = false;
+  
+    setAuthProgress('submitting');
+  
+    const sse = new EventSource(`/api/auth/sign-in?email=${event.target.value}`);
+
+    sse.addEventListener("mailsent", function(e) {
+      setAuthProgress('mailsent');
+      console.log(`${e.type}: ${e.data}`);
+    });
+
+    sse.addEventListener("authenticated", function(e) {
+      setAuthProgress('authenticated');
+      console.log(`${e.type}: ${e.data}`);
+    });
+
+    sse.addEventListener("timeout", function(e) {
+      setAuthProgress('timeout');
+      console.log(`${e.type}: ${e.data}`);
+    });
+
+    sse.addEventListener("received", function(e) {
+      setAuthProgress('received');
+      console.log(`${e.type}: ${e.data}`);
+    });
+
+    sse.addEventListener("message", function(e) {
+      console.log('Default message event\n', e);
+    })
+    return false;
+  };
+
   return (
     <Layout categories={props.categoryTree}>
       <section className="sign-in">
-        <label className="sign-in__email-input">
-          Email:
-          <input type="email" />
-        </label>
+
+        <form className="sign-in__form"
+          onSubmit={initiateAuthFlow}
+        >
+          <label className="sign-in__email-input">
+            Email:
+            <input type="email" />
+          </label>
+
+          <button type="submit">Sign in</button>
+        </form>
+
+        <p>{authProgress}</p>
       </section>
     </Layout>
   );
@@ -26,10 +73,10 @@ export default function signIn(props) {
 
 signIn.getInitialProps = async ()=> {
   try {
-    const categoryTree = await getCategoryTree();
+    //const categoryTree = await getCategoryTree();
 
     return {
-      categoryTree,
+      categoryTree: [],
     };
   }
 

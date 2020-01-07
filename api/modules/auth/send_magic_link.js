@@ -16,7 +16,7 @@ const sendMagicLink = async (req, res, Clients)=> {
   });
 
   const client = Clients.add({authKey, email: userEmail, res});
-  client.sendEvent('Processing...\n\n');
+  client.sendEvent('received', 'Processing...\n\n');
 
   const magicUrl = `${DOMAIN_NAME}/api/auth/magic-${authKey}`;
 
