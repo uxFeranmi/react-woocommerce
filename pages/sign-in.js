@@ -27,6 +27,7 @@ export default function signIn(props) {
   }, [authProgress]);
 
   const initiateAuthFlow = (event)=> {
+    console.log('event.preventDefault');
     event.preventDefault ?
       event.preventDefault()
     : event.returnValue = false;
@@ -49,17 +50,17 @@ export default function signIn(props) {
                 onSubmit={initiateAuthFlow}
                 aria-live="polite"
               >
-                <h1 className="sign-in__title">
+                <h1 className="sign-in__form__title">
                   Sign in to IT Supplies
                 </h1>
-                <p className="sign-in__pitch">
+                <p className="sign-in__form__pitch">
                   Enjoy the best shopping experience when you sign in.
                   Add products to your wishlist, sync your cart across multiple devices,
                   and speed up checkout with saved billing information.
                 </p>
 
-                <div className="sign-in__form-controls">
-                  <label className="sign-in__email-input">
+                <div className="sign-in__form__controls">
+                  <label className="sign-in__form__email-input">
                     <span>
                       It's easy, just enter your <b>eMail address.</b>
                     </span>
@@ -70,7 +71,7 @@ export default function signIn(props) {
                   </label>
 
                   <button type="submit"
-                    className="sign-in__submit"
+                    className="sign-in__form__submit"
                   >
                     Sign in
                   </button>
