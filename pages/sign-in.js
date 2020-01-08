@@ -37,28 +37,30 @@ export default function signIn(props) {
           onSubmit={initiateAuthFlow}
         >
           <h1 className="sign-in__title">
-            Sign In To IT Supplies
+            Sign in to IT Supplies
           </h1>
           <p className="sign-in__pitch">
             Enjoy the best shopping experience when you sign in.
             Add products to your wishlist, sync your cart across multiple devices,
             and speed up checkout with saved billing information.
           </p>
-          <p className="sign-in__how">
-            It's easy, just enter your eMail address.
-          </p>
-          <label className="sign-in__email-input">
-            Email:
-            <input type="email"
-              onChange={(e)=> setEmail(e.target.value)}
-            />
-          </label>
 
-          <button type="submit"
-             className="sign-in__submit"
-          >
-            Sign in
-          </button>
+          <div className="sign-in__form-controls">
+            <label className="sign-in__email-input">
+              <span>
+                It's easy, just enter your <b>eMail address.</b></span>
+              <input type="email"
+                onChange={(e)=> setEmail(e.target.value)}
+                placeholder="jonsnow@westeros.wall"
+              />
+            </label>
+
+            <button type="submit"
+              className="sign-in__submit"
+            >
+              Sign in
+            </button>
+          </div>
         </form>
 
         <p>{authProgress}</p>

@@ -14,14 +14,32 @@
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
-    padding: 15px;
-    margin: 10px;
-    background-color: white;
+    padding: 5vw;
+    margin: 0 10vw;
+    background-color: rgb(255, 255, 255);
     box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
   }
 
   &__pitch {
     margin: 15px 0;
+  }
+
+  &__form-controls {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  &__email-input {
+    display: flex;
+    flex-flow: column nowrap;
+    //align-items: flex-start;
+
+    input {
+      padding: 10px;
+      border-radius: 4px;
+      margin: 10px 0;
+    }
   }
 
   &__submit {

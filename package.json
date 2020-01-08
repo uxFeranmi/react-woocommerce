@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev": "nodemon --watch server.js --watch api server.js",
     "build": "next build",
     "start": "node -r dotenv/config server.js dotenv_config_path=./prod.env"
   },
