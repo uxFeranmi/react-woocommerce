@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "build": "next build",
-    "start": "node -r dotenv/config server.js dotenv_config_path=./.env.prod"
+    "start": "node -r dotenv/config server.js dotenv_config_path=./prod.env"
   },
   "keywords": [],
   "author": "",

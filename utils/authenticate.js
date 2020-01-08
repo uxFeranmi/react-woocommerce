@@ -11,7 +11,7 @@ const authenticate = (email, callback)=> {
   });
 
   sse.addEventListener("mailsent", function(e) {
-    callback('mailsent');
+    callback('mailsent: Check your email for your one-time secure sign-in link.');
     console.log(`${e.type}: ${e.data}`);
   });
 
