@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 import getCategoryTree from '../utils/category_tree';
 import Layout from '../components/my_layout';
-import './styles/sign-in.scss';
 import authenticate from '../utils/authenticate';
+import './styles/sign-in.scss';
 
 export default function signIn(props) {
   if (props.error)
@@ -36,13 +36,17 @@ export default function signIn(props) {
         <form className="sign-in__form"
           onSubmit={initiateAuthFlow}
         >
-          <h1>Sign In To IT Supplies</h1>
-          <p>
+          <h1 className="sign-in__title">
+            Sign In To IT Supplies
+          </h1>
+          <p className="sign-in__pitch">
             Enjoy the best shopping experience when you sign in.
             Add products to your wishlist, sync your cart across multiple devices,
             and speed up checkout with saved billing information.
           </p>
-          <p>It's easy, just enter your eMail address.</p>
+          <p className="sign-in__how">
+            It's easy, just enter your eMail address.
+          </p>
           <label className="sign-in__email-input">
             Email:
             <input type="email"
@@ -50,7 +54,11 @@ export default function signIn(props) {
             />
           </label>
 
-          <button type="submit">Sign in</button>
+          <button type="submit"
+             className="sign-in__submit"
+          >
+            Sign in
+          </button>
         </form>
 
         <p>{authProgress}</p>
