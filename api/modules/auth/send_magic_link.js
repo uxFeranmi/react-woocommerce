@@ -26,8 +26,11 @@ const sendMagicLink = async (req, res, Clients)=> {
 
   const mailSent = await sendMail(senderEmail, userEmail, emailTitle, emailContent);
   
-  if (!mailSent)
-    return client.sendEvent('error', 'failed to send email.\n\n');
+  if (!mailSent) {
+    client.sendEvent('error', 'failed to send email.\n\n');
+    Clients.delete(authKey);
+    return;
+  }
   
   client.sendEvent('mailsent', 'Magic link sent to email.\n\n');
 };
