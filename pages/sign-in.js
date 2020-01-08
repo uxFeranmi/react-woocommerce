@@ -43,23 +43,6 @@ export default function signIn(props) {
       <section className="sign-in">
       {(()=> {
         switch (authProgress.event) {
-          case 'mailsent':
-            return (
-              <p className="sign-in__check-mail-notice">
-                <strong>Just one more step</strong><br />
-                <span>
-                  We need to make sure it's really you.<br />
-                  We've sent a one-time secure sign-in link to your eMail address.
-                  Kindly check your inbox and click the link, then return here to continue shopping.<br />
-                  Be sure to check spam and promotions if you don't find it in your inbox.
-                  Note that the link expires in 15 minutes.
-                </span>
-                <strong>
-                  <abbr title="Important Notice">PS:</abbr>
-                  Do not close this tab.
-                </strong>
-              </p>
-            );
           case '':
             return (
               <form className="sign-in__form"
@@ -96,6 +79,30 @@ export default function signIn(props) {
                 <p>{authProgress.event}</p>
               </form>
             );
+          case 'mailsent':
+            return (
+              <p className="sign-in__check-mail-notice">
+                <strong>Just one more step</strong><br />
+                <span>
+                  We need to make sure it's really you.<br />
+                  We've sent a one-time secure sign-in link to your eMail address.
+                  Kindly check your inbox and click the link, then return here to continue shopping.<br />
+                  Be sure to check spam and promotions if you don't find it in your inbox.
+                  Note that the link expires in 15 minutes.
+                </span>
+                <strong>
+                  <abbr title="Important Notice">PS:</abbr>
+                  Do not close this tab.
+                </strong>
+              </p>
+            );
+          case 'authenticated':
+            return (
+              <p>
+                <strong>All done!</strong>
+                <span>You've successfully signed in.</span>
+              </p>
+            )
           //
         }
       })()}
