@@ -6,6 +6,7 @@ import NProgress from "nprogress";
 import Header from './header';
 import Footer from './footer';
 import "../styles.scss";
+import "../nprogress.scss";
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
