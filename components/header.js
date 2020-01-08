@@ -13,18 +13,20 @@ const Header = (props) => (
     <HeaderThinStrip className="app-header__thin-strip" />
 
     <div className="app-header__main nav-bar">
-      <Link href='/'><a>
+      <Link href='/'>
+        <a>
         <h1 className="nav-bar__title">
           <img src="/logo.png" alt="Logo" />
           <span>
             IT Supplies<small>.co</small>
           </span>
         </h1>
-      </a></Link>
+        </a>
+      </Link>
 
       <nav className="nav-bar__nav main-nav">
         <div className="main-nav__quick-links">
-          <Link href="#">
+          <Link href="/sign-in">
             <a>
               <i className="fa fa-user"
                 aria-label="Login/Register">
