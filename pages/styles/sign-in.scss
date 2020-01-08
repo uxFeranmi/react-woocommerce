@@ -4,4 +4,13 @@
   align-items: center;
   justify-content: center;
   min-height: 60vh;
+
+  &__form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    margin: 10px;
+  }
 }

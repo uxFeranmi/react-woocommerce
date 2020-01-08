@@ -26,6 +26,7 @@ const pendingClientMethods = {
     pendingClients[authKey] = {
       email,
       res,
+      timestamp: Date.now(),
       sendEvent: (event, data = null)=> {
         if (!data) {
           data = event;
@@ -39,39 +40,45 @@ const pendingClientMethods = {
         res.write(`id: ${id}\n`);
         res.write(`data: ${data}\n\n`);
 
-        pendingClients[authKey].lastReqId = id;
+        pendingClients[authKey].lastEventId = id;
       },
     };
+
+    return pendingClients[authKey];
   },
 };
 
-const handleExistingClient = (res, email, lastReqId)=> {
+const handleExistingClient = (res, email, lastEventId)=> {
   for (let client in pendingClients) {
-    if (client.email === email && client.lastReqId === lastReqId) {
-      //900,000ms i.e 15 minutes.
-      res.setTimeout(900000, () => {
-        pendingClients[authKey]
-          .sendEvent('timeout', 'This authentication request has timed out.');
-          
-        delete pendingClients[authKey];
+    if (client.email === email && client.lastEventId === lastEventId) {
+      const timespent = Date.now() - client.timestamp;
+      const timeleft = 900000 - timespent;
+      res.setTimeout(timeleft, () => {
+        client.sendEvent('timeout', 'This authentication request has timed out.');
+        delete res;
+        delete client;
       });
+
       client.res = res;
       client.sendEvent('reconnected', 'EventStream connection re-established.');
-      return true;
+      return;
     }
   }
 
-  return false;
-}
+  res.setHeader('Connection', "close");
+  res.status(408)
+    .send('No existing stream was found matching the given Last-Event-ID. It has probably timed-out.');
+};
 
 const auth = {
   initiate: (req, res)=> {
-    const lastReqId = req.header('Last-Event-ID');
+    const lastEventId = req.header('Last-Event-ID');
     const {email} = req.query;
 
-    const clientExists = handleExistingClient(res, email, lastReqId);
+    if (lastEventId)
+      handleExistingClient(res, email, lastEventId)
 
-    if (!clientExists)
+    else
       sendMagicLink(req, res, pendingClientMethods);
   },
 

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import getCategoryTree from '../utils/category_tree';
 import Layout from '../components/my_layout';
 import './styles/sign-in.scss';
+import authenticate from '../utils/authenticate';
 
 export default function signIn(props) {
   if (props.error)
@@ -23,39 +24,7 @@ export default function signIn(props) {
   
     setAuthProgress('submitting');
   
-    const sse = new EventSource(`/api/auth/sign-in?email=${email}`);
-
-    sse.addEventListener("message", function(e) {
-      console.log('Default message event\n', e);
-    });
-
-    sse.addEventListener("received", function(e) {
-      setAuthProgress('received');
-      console.log(`${e.type}: ${e.data}`);
-    });
-
-    sse.addEventListener("mailsent", function(e) {
-      setAuthProgress('mailsent');
-      console.log(`${e.type}: ${e.data}`);
-    });
-
-    sse.addEventListener("authenticated", function(e) {
-      setAuthProgress('authenticated');
-      console.log(`${e.type}: ${e.data}`);
-      sse.close();
-    });
-
-    sse.addEventListener("timeout", function(e) {
-      setAuthProgress('timeout');
-      console.log(`${e.type}: ${e.data}`);
-      sse.close();
-    });
-
-    sse.addEventListener("error", function(e) {
-      setAuthProgress('error');
-      console.log(`${e.type}: ${e.data}`);
-      sse.close();
-    });
+    authenticate(email, setAuthProgress);
     
     return false;
   };

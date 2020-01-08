@@ -19,14 +19,17 @@ const verifyMagicLink = async (req, res, Clients)=> {
     p(2)
     const templatePath = path.join(__dirname, 'templates/invalid_magic_link.html');
     const message = fs.readFileSync(templatePath).toString();
-    //res.status(498).send(renderEjs(templatePath, {}));
     res.status(498).send(message);
     p(3)
     return;
   }
 
   p(4)
-  let {data: [user]} = await wooApi.get("customers", {email: client.email});
+  let {data: [user]} = await wooApi.get("customers", {email: client.email})
+    .catch(err => {
+      p(err.response ? err.response.data.message : err.message);
+      return {data: [null]};
+    });
 
   if (!user) {
     p(5);
@@ -38,7 +41,7 @@ const verifyMagicLink = async (req, res, Clients)=> {
         password: nanoid(8),
       })
       .catch(err => {
-        p(err.response.data.message);
+        p(err.response ? err.response.data.message : err.message);        
         return {data: null};
       })
     );
@@ -47,17 +50,16 @@ const verifyMagicLink = async (req, res, Clients)=> {
       .slice(0, client.email.indexOf('@')) + nanoid(5));
   }
 
-  p(user.role + ' ' + user.username);
-
   if (!user) {
     p(8)
     const templatePath = path.join(__dirname, 'templates/server_error.html');
     const message = fs.readFileSync(templatePath).toString();
-    //res.status(498).send(renderEjs(templatePath, {}));
-    res.status(500).send(message);
+    res.status(504).send(message);
     client.sendEvent('error', 'Could not get or create user.');
     return;
   }
+
+  p(user.role + ' ' + user.username);
 
   const tokenPayload = {
     id: user.id,
