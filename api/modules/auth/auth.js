@@ -14,6 +14,15 @@ const pendingClientMethods = {
   },
 
   add: ({authKey, email, res})=> {
+    //900,000ms i.e 15 minutes.
+    res.setTimeout(900000, () => {
+      pendingClients[authKey]
+        .sendEvent('timeout', 'This authentication request has timed out.');
+        
+      delete pendingClients[authKey];
+      delete res;
+    });
+
     pendingClients[authKey] = {
       email,
       res,
@@ -33,20 +42,19 @@ const pendingClientMethods = {
         pendingClients[authKey].lastReqId = id;
       },
     };
-    
-    //900,000ms i.e 15 minutes.
-    res.setTimeout(900000, () => {
-      pendingClients[authKey]
-        .sendEvent('timeout', 'This authentication request has timed out.');
-        
-      delete pendingClients[authKey];
-    });
   },
 };
 
 const handleExistingClient = (res, email, lastReqId)=> {
   for (let client in pendingClients) {
     if (client.email === email && client.lastReqId === lastReqId) {
+      //900,000ms i.e 15 minutes.
+      res.setTimeout(900000, () => {
+        pendingClients[authKey]
+          .sendEvent('timeout', 'This authentication request has timed out.');
+          
+        delete pendingClients[authKey];
+      });
       client.res = res;
       client.sendEvent('reconnected', 'EventStream connection re-established.');
       return true;

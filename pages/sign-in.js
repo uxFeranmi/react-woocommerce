@@ -67,6 +67,13 @@ export default function signIn(props) {
         <form className="sign-in__form"
           onSubmit={initiateAuthFlow}
         >
+          <h1>Sign In To IT Supplies</h1>
+          <p>
+            Enjoy the best shopping experience when you sign in.
+            Add products to your wishlist, sync your cart across multiple devices,
+            and speed up checkout with saved billing information.
+          </p>
+          <p>It's easy, just enter your eMail address.</p>
           <label className="sign-in__email-input">
             Email:
             <input type="email"
