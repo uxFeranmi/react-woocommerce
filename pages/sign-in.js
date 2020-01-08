@@ -1,6 +1,6 @@
 // @ts-nocheck
 // import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import getCategoryTree from '../utils/category_tree';
 import AppShell from '../app_shell';
@@ -15,7 +15,16 @@ export default function signIn(props) {
     ]);
 
   let [email, setEmail] = useState('');
-  let [authProgress, setAuthProgress] = useState('');
+  let [authProgress, setAuthProgress] = useState({
+    event: '',
+    data: '',
+  });
+
+  useEffect(()=> {
+    const {event, data} = authProgress;
+
+    
+  }, [authProgress]);
 
   const initiateAuthFlow = (event)=> {
     event.preventDefault ?
@@ -32,9 +41,25 @@ export default function signIn(props) {
   return (
     <AppShell categories={props.categoryTree}>
       <section className="sign-in">
-
+      {((
+        <p className="sign-in__check-mail-notice">
+          <strong>Just one more step</strong><br />
+          <span>
+            We need to make sure it's really you.<br />
+            We've sent a one-time secure sign-in link to your eMail address.
+            Kindly check your inbox and click the link, then return here to continue shopping.<br />
+            Be sure to check spam and promotions if you don't find it in your inbox.
+            Note that the link expires in 15 minutes.
+          </span>
+          <strong>
+            <abbr title="Important Notice">PS:</abbr>
+            Do not close this tab.
+          </strong>
+        </p>
+      ) : (
         <form className="sign-in__form"
           onSubmit={initiateAuthFlow}
+          aria-live="polite"
         >
           <h1 className="sign-in__title">
             Sign in to IT Supplies
@@ -62,9 +87,10 @@ export default function signIn(props) {
               Sign in
             </button>
           </div>
-        </form>
 
-        <p>{authProgress}</p>
+          <p>{authProgress.event}</p>
+        </form>
+      )}
       </section>
     </AppShell>
   );

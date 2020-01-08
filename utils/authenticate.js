@@ -6,30 +6,35 @@ const authenticate = (email, callback)=> {
   });
 
   sse.addEventListener("received", function(e) {
-    callback('received');
-    console.log(`${e.type}: ${e.data}`);
+    const {type: event, data} = e;
+    callback({event, data});
+    console.log(`${event}: ${data}`);
   });
 
   sse.addEventListener("mailsent", function(e) {
-    callback('mailsent: Check your email for your one-time secure sign-in link.');
-    console.log(`${e.type}: ${e.data}`);
+    const {type: event, data} = e;
+    callback({event, data});
+    console.log(`${event}: ${data}`);
   });
 
   sse.addEventListener("authenticated", function(e) {
-    callback('authenticated');
-    console.log(`${e.type}: ${e.data}`);
+    const {type: event, data} = e;
+    callback({event, data});
+    console.log(`${event}: ${data}`);
     sse.close();
   });
 
   sse.addEventListener("timeout", function(e) {
-    callback('timeout');
-    console.log(`${e.type}: ${e.data}`);
+    const {type: event, data} = e;
+    callback({event, data});
+    console.log(`${event}: ${data}`);
     sse.close();
   });
 
   sse.addEventListener("error", function(e) {
-    callback('error');
-    console.log(`${e.type}: ${e.data}`);
+    const {type: event, data} = e;
+    callback({event, data});
+    console.log(`${event}: ${data}`);
     sse.close();
   });
 };
