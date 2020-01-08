@@ -29,7 +29,7 @@ const sendMail = async (_from, _to, title, body)=> {
   });
   
   // @ts-ignore
-  console.log('Result body: ', result.body);
+  console.log('Result body: ', result ? result.body : '_');
   return success;
 };
 
