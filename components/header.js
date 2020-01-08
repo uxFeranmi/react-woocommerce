@@ -6,7 +6,7 @@ import Search from './search';
 
 import './styles/header.scss';
 
-const staticPath = process.env.staticPath || '';
+//const staticPath = process.env.staticPath || '';
 
 const Header = (props) => (
   <header className="app-header">
@@ -15,7 +15,7 @@ const Header = (props) => (
     <div className="app-header__main nav-bar">
       <Link href='/'><a>
         <h1 className="nav-bar__title">
-          <img src={`${staticPath}/logo.png`} alt="Logo" />
+          <img src="/logo.png" alt="Logo" />
           <span>
             IT Supplies<small>.co</small>
           </span>

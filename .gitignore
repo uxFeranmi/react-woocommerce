@@ -1,6 +1,5 @@
 node_modules
 .next/
-public/
 .env
 .env.prod
 .vscode

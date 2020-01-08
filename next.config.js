@@ -31,7 +31,8 @@ module.exports = withSass({
   env: {
     WOO_CONSUMER_SECRET,
     WOO_CONSUMER_KEY,
-    staticPath: nodeEnv === 'production' ? 'http://itsupplies.co/static' : '',
+    // Deprecated: Serve static assets from within the next app.
+    //staticPath: nodeEnv === 'production' ? 'http://itsupplies.co/static' : '',
     FEATURED_CATEGORY_ID,
     nodeEnv,
   },
