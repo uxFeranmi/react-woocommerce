@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import getCategoryTree from '../utils/category_tree';
-import Layout from '../components/my_layout';
+import AppShell from '../app_shell';
 import authenticate from '../utils/authenticate';
 import './styles/sign-in.scss';
 
@@ -30,7 +30,7 @@ export default function signIn(props) {
   };
 
   return (
-    <Layout categories={props.categoryTree}>
+    <AppShell categories={props.categoryTree}>
       <section className="sign-in">
 
         <form className="sign-in__form"
@@ -63,7 +63,7 @@ export default function signIn(props) {
 
         <p>{authProgress}</p>
       </section>
-    </Layout>
+    </AppShell>
   );
 };
 

@@ -3,10 +3,10 @@ import Head from 'next/head';
 import Router from "next/router";
 import NProgress from "nprogress";
 
-import Header from './header';
-import Footer from './footer';
-import "../styles.scss";
-import "../nprogress.scss";
+import Header from './components/header';
+import Footer from './components/footer';
+import "./styles.scss";
+import "./nprogress.scss";
 
 Router.onRouteChangeStart = () => {
   NProgress.start();
@@ -25,7 +25,7 @@ NProgress.inc();
 NProgress.inc(0.2);
 */
 
-export default function Layout(props) {
+export default function AppShell(props) {
   //const routerHook = useRouter();
 
   return [ //Return an array of elements to keep header out of the <main> tag.
@@ -33,7 +33,6 @@ export default function Layout(props) {
       <title>IT Supplies</title>
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossOrigin="anonymous"></link>
       <link rel="icon" href="/favicon.png" />
-      <link rel="stylesheet" type="text/css" href="/nprogress.css" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>),
 

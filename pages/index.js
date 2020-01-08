@@ -6,7 +6,7 @@ import 'react-app-polyfill/stable';*/
 import { useEffect, useState } from 'react';
 // import Link from 'next/link';
 
-import Layout from '../components/my_layout';
+import AppShell from '../app_shell';
 import wooApi from '../api/services/woo_api';
 import wpApi from '../api/services/wp_api';
 import getCategoryTree from '../utils/category_tree';
@@ -38,7 +38,7 @@ export default function Homepage(props) {
   }, []);
 
   return (
-    <Layout categories={props.categoryTree}>
+    <AppShell categories={props.categoryTree}>
       <section className="landing-section">
         <Carousel mediaItems={welcomeBanners} />
       </section>
@@ -48,7 +48,7 @@ export default function Homepage(props) {
       <FeaturedCategory ftCategory={props.ftCategory} />
 
       <FeaturedProducts products={props.products} />
-    </Layout>
+    </AppShell>
   );
 }
 

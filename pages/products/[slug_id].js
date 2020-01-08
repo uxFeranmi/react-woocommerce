@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
-import Layout from '../../components/my_layout';
+import AppShell from '../../app_shell';
 import wooApi from '../../api/services/woo_api';
 import getCategoryTree from '../../utils/category_tree';
 //import wpApi from '../../api/services/wp_api';
@@ -56,7 +56,7 @@ export default function ProductPage(props) {
   });
 
   return (
-    <Layout categories={categoryTree}>
+    <AppShell categories={categoryTree}>
       <section className="main-details">
         <div className="main-details__product-image-wrapper">
           <small className="main-details__categories">
@@ -169,7 +169,7 @@ export default function ProductPage(props) {
           })}
         </ul>
       </section>
-    </Layout>
+    </AppShell>
   );
 }
 

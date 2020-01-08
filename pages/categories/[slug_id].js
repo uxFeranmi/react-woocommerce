@@ -3,7 +3,7 @@
 import Link from 'next/link';
 //import { useEffect, useState } from 'react';
 
-import Layout from '../../components/my_layout';
+import AppShell from '../../app_shell';
 import wooApi from '../../api/services/woo_api';
 import getCategoryTree from '../../utils/category_tree';
 //import wpApi from '../../api/services/wp_api';
@@ -18,11 +18,11 @@ export default function CategoryPage(props) {
   //const router = useRouter();
 
   return (
-    <Layout categories={props.categoryTree}>
+    <AppShell categories={props.categoryTree}>
       <Subcategories subcategories={props.subcategories} />
 
       <Products products={props.products} category={props.category} />
-    </Layout>
+    </AppShell>
   );
 }
 
