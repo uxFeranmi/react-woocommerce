@@ -48,7 +48,8 @@ export default function signIn(props) {
           <div className="sign-in__form-controls">
             <label className="sign-in__email-input">
               <span>
-                It's easy, just enter your <b>eMail address.</b></span>
+                It's easy, just enter your <b>eMail address.</b>
+              </span>
               <input type="email"
                 onChange={(e)=> setEmail(e.target.value)}
                 placeholder="jonsnow@westeros.wall"
