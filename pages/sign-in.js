@@ -27,10 +27,16 @@ export default function signIn(props) {
     switch (event) {
       case 'mailsent':
         setMainContent('mailsent');
+        break;
       case 'authenticated':
         setMainContent('authenticated');
+        break;
+      case 'timeout':
+        setMainContent('timeout');
+        break;
       case 'error':
         setMainContent('error');
+        break;
     }
     
   }, [authProgress]);
@@ -91,7 +97,7 @@ export default function signIn(props) {
             );
           case 'mailsent':
             return (
-              <p className="sign-in__check-mail-notice">
+              <p className="sign-in__mailsent">
                 <strong>Just one more step</strong><br />
                 <span>
                   We need to make sure it's really you.<br />
@@ -108,14 +114,27 @@ export default function signIn(props) {
             );
           case 'authenticated':
             return (
-              <p>
+              <p className="sign-in__success">
                 <strong>All done!</strong>
                 <span>You've successfully signed in.</span>
               </p>
             );
+          case 'timeout':
+            return (
+              <div className="sign-in__timeout">
+                <h1>Timeout</h1>
+                <p>
+                  You sign-in link has expired.
+                  You didn't click didn't link within the specified time.
+                  You must generate a new link to sign-in.
+                </p>
+              </div>
+            );
           case 'error':
             return (
-              <p>{authProgress.data}</p>
+              <p className="sign-in__error">
+                Error: {authProgress.data}
+              </p>
             );
           //
         }

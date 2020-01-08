@@ -9,17 +9,20 @@
   background-color: rgba(0, 0, 0, 0.02);
   margin-bottom: 0;
 
-  &__form {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
+  > * {
     padding: 5vw;
     margin: 30px 10vw;
     background-color: rgb(255, 255, 255);
     box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, 0.4);
     border-radius: 4px;
     max-width: 650px;
+  }
+
+  &__form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
 
     &__pitch {
       margin: 15px 0;
@@ -45,5 +48,22 @@
     &__submit {
       @include buttons;
     }
+  }
+
+  &__mailsent {
+    display: flex;
+    flex-flow: column nowrap;
+  }
+
+  &__success {
+
+  }
+
+  &__timeout {
+
+  }
+
+  &__error {
+
   }
 }
