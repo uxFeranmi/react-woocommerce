@@ -53,10 +53,25 @@
   &__mailsent {
     display: flex;
     flex-flow: column nowrap;
+
+    &__heading {
+      margin-bottom: 15px;
+      line-height: 1em;
+    }
+
+    &__body {
+
+      > * {
+        display: block;
+        //margin-bottom: 10px;
+      }
+    }
   }
 
   &__success {
-
+    display: flex;
+    flex-flow: column nowrap;
+    
   }
 
   &__timeout {

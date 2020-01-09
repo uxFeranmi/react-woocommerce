@@ -97,20 +97,29 @@ export default function signIn(props) {
             );
           case 'mailsent':
             return (
-              <p className="sign-in__mailsent">
-                <strong>Just one more step</strong><br />
-                <span>
-                  We need to make sure it's really you.<br />
-                  We've sent a one-time secure sign-in link to your eMail address. 
-                  Kindly check your inbox and click the link, then return here to continue shopping.<br />
-                  Be sure to check spam and promotions if you don't find it in your inbox. 
-                  Note that the link expires in 15 minutes.<br />
-                </span>
-                <strong>
-                  <abbr title="Important Notice">PS: </abbr>
-                  Do not close this tab.
-                </strong>
-              </p>
+              <div className="sign-in__mailsent">
+                <h2 className="sign-in__mailsent__heading">
+                  Just one more step...
+                </h2>
+                <p className="sign-in__mailsent__body">
+                  <span>
+                    We need to make sure it's really you.
+                    <br />
+                    We've sent a one-time secure sign-in link to your eMail address. 
+                    Kindly check your inbox and click the link, then return here to continue shopping.
+                  </span>
+                  <br />
+                  <small>
+                    Be sure to check spam and promotions if you don't find it in your inbox. 
+                    Note that the link expires in 15 minutes.
+                  </small>
+                  <br />
+                  <strong>
+                    <abbr title="Important Notice">PS: </abbr>
+                    Do not close this tab.
+                  </strong>
+                </p>
+              </div>
             );
           case 'authenticated':
             return (
