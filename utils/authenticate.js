@@ -58,7 +58,6 @@ const authenticate = (email, callback)=> {
     console.log(`${event}: ${data}`);
   }, 6000);
 
-  return;
   setTimeout(()=> {
     const {type: event, data} = {type: "authenticated"};
     callback({event, data});
@@ -70,7 +69,7 @@ const authenticate = (email, callback)=> {
     callback({event, data});
     console.log(`${event}: ${data}`);
   }, 12000);
-
+  
   setTimeout(()=> {
     const {type: event, data} = {type: 'error'};
     callback({event, data});

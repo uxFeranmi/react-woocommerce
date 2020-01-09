@@ -56,7 +56,7 @@
 
     &__heading {
       margin-bottom: 15px;
-      line-height: 1em;
+      //line-height: 1em;
     }
 
     &__body {
@@ -71,14 +71,25 @@
   &__success {
     display: flex;
     flex-flow: column nowrap;
-    
   }
 
   &__timeout {
 
+    &__heading {
+      margin-bottom: 15px;
+    }
   }
 
   &__error {
+    display: flex;
+    flex-flow: column nowrap;
+    
+    > * {margin-bottom: 10px;}
 
+    &__action {
+      @include buttons;
+      align-self: center;
+      transform: scale(0.8);
+    }
   }
 }

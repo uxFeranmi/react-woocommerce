@@ -6,6 +6,7 @@ import getCategoryTree from '../utils/category_tree';
 import AppShell from '../app_shell';
 import authenticate from '../utils/authenticate';
 import './styles/sign-in.scss';
+import Link from 'next/link';
 
 export default function signIn(props) {
   if (props.error)
@@ -46,8 +47,11 @@ export default function signIn(props) {
     event.preventDefault ?
       event.preventDefault()
     : event.returnValue = false;
-  
-    setAuthProgress('submitting');
+    
+    setAuthProgress({
+      event: 'submitting',
+      data: 'Sending eMail address to server...',
+    });
   
     authenticate(email, setAuthProgress);
     
@@ -59,7 +63,7 @@ export default function signIn(props) {
       <section className="sign-in">
       {(()=> {
         switch (mainContent) {
-          case 'form':
+          case 'form': {
             return (
               <form className="sign-in__form"
                 onSubmit={initiateAuthFlow}
@@ -88,13 +92,19 @@ export default function signIn(props) {
                   <button type="submit"
                     className="sign-in__form__submit"
                   >
-                    Sign in
+                    {authProgress.event === '' ?
+                      'Sign in'
+                    : authProgress.event === 'submitting' ?
+                      'Loading...'
+                    : authProgress.event === 'received' ?
+                      'Sending your link...'
+                    : '...'
+                    }
                   </button>
                 </div>
-
-                <p>{authProgress.event}</p>
               </form>
             );
+          }
           case 'mailsent':
             return (
               <div className="sign-in__mailsent">
@@ -131,10 +141,11 @@ export default function signIn(props) {
           case 'timeout':
             return (
               <div className="sign-in__timeout">
-                <h1>Timeout</h1>
-                <p>
+                <h1 className="sign-in__timeout__heading">
+                  Timeout
+                </h1>
+                <p className="sign-in__timeout__body">
                   You sign-in link has expired.
-                  You didn't click didn't link within the specified time.
                   You must generate a new link to sign-in.
                 </p>
               </div>
@@ -142,7 +153,14 @@ export default function signIn(props) {
           case 'error':
             return (
               <p className="sign-in__error">
-                Error: {authProgress.data}
+                <strong>Error!</strong>
+                <span>Sincere apologies. Something went wrong.</span>
+                <span>Message: {'' + authProgress.data}</span>
+                <button className="sign-in__error__action"
+                  onClick={window && window.location.reload()}
+                >
+                  Please try again
+                </button>
               </p>
             );
           //
