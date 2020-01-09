@@ -1,51 +1,50 @@
-/*const authenticate = (email, callback)=> {
+const authenticate = (email, callback)=> {
   const sse = new EventSource(`/api/auth/sign-in?email=${email}`);
 
-  sse.addEventListener("message", ()=> {
+  sse.addEventListener("message", (e)=> {
     console.log('Default message event\n', e);
   });
 
-  sse.addEventListener("received", ()=> {
+  sse.addEventListener("received", (e)=> {
     const {type: event, data} = e;
     callback({event, data});
     console.log(`${event}: ${data}`);
   });
 
-  sse.addEventListener("mailsent", ()=> {
+  sse.addEventListener("mailsent", (e)=> {
     const {type: event, data} = e;
     callback({event, data});
     console.log(`${event}: ${data}`);
   });
 
-  sse.addEventListener("authenticated", ()=> {
-    const {type: event, data} = e;
-    callback({event, data});
-    console.log(`${event}: ${data}`);
-    sse.close();
-  });
-
-  sse.addEventListener("timeout", ()=> {
+  sse.addEventListener("authenticated", (e)=> {
     const {type: event, data} = e;
     callback({event, data});
     console.log(`${event}: ${data}`);
     sse.close();
   });
 
-  sse.addEventListener("error", ()=> {
+  sse.addEventListener("timeout", (e)=> {
     const {type: event, data} = e;
-    data = JSON.parse(data);
-
-    // If it's a known error, close sse and inform user. Else attempt reconnection.
-    if (data.reason) {
-      sse.close();
-
-      callback({event, data});
-      console.log(`${event}: ${data}`);
-    }
+    callback({event, data});
+    console.log(`${event}: ${data}`);
+    sse.close();
   });
-};*/
 
-const authenticate = (email, callback)=> {
+  sse.addEventListener("error", (e)=> {
+    const {type: event, data} = e;
+    // If it's an unknown error, attempt reconnection.
+    if (!data) return;
+
+    sse.close();
+    callback({event, data});
+    console.log(`${event}: ${data}`);
+  });
+};
+
+export default authenticate;
+
+/*const authenticate = (email, callback)=> {
   setTimeout(()=> {
     const {type: event, data} = {type: "received"};
     callback({event, data});
@@ -69,12 +68,11 @@ const authenticate = (email, callback)=> {
     callback({event, data});
     console.log(`${event}: ${data}`);
   }, 12000);
-  
+
   setTimeout(()=> {
     const {type: event, data} = {type: 'error'};
     callback({event, data});
     console.log(`${event}: ${data}`);
   }, 15000);
 };
-
-export default authenticate;
+*/
