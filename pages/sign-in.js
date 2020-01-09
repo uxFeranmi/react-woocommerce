@@ -148,6 +148,11 @@ export default function signIn(props) {
                   You sign-in link has expired.
                   You must generate a new link to sign-in.
                 </p>
+                <button className="sign-in__timeout__action"
+                  onClick={window && window.location.reload}
+                >
+                  Get new link
+                </button>
               </div>
             );
           case 'error':
@@ -157,7 +162,7 @@ export default function signIn(props) {
                 <span>Sincere apologies. Something went wrong.</span>
                 <span>Message: {'' + authProgress.data}</span>
                 <button className="sign-in__error__action"
-                  onClick={window && window.location.reload()}
+                  onClick={window && window.location.reload}
                 >
                   Please try again
                 </button>

@@ -74,16 +74,24 @@
   }
 
   &__timeout {
+    
+    > * {margin-bottom: 10px;}
 
     &__heading {
       margin-bottom: 15px;
+    }
+
+    &__action {
+      @include buttons;
+      align-self: center;
+      transform: scale(0.8);
     }
   }
 
   &__error {
     display: flex;
     flex-flow: column nowrap;
-    
+
     > * {margin-bottom: 10px;}
 
     &__action {
