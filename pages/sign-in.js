@@ -83,7 +83,7 @@ export default function signIn(props) {
                     <span>
                       It's easy, just enter your <b>eMail address.</b>
                     </span>
-                    <input type="email"
+                    <input type="email" required
                       onChange={(e)=> setEmail(e.target.value)}
                       placeholder="jonsnow@westeros.wall"
                     />
