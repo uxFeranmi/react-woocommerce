@@ -24,7 +24,7 @@ const sendMagicLink = async (req, res, Clients)=> {
   const emailContent = renderEjs(templatePath, {magicUrl});
   const emailTitle = 'Complete Your Sign In'
 
-  const mailSent = true; //await sendMail(senderEmail, userEmail, emailTitle, emailContent);
+  const mailSent = await sendMail(senderEmail, userEmail, emailTitle, emailContent);
   
   if (!mailSent) {
     client.sendEvent('error', 'Failed to send email.\n\n');
