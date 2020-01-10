@@ -2,6 +2,7 @@
 const nanoid = require('nanoid');
 const sendMagicLink = require('./send_magic_link');
 const verifyMagicLink = require('./verify_magic_link');
+const setAuthCookie = require('./set_cookie');
 
 let pendingClients = {};
 
@@ -89,6 +90,7 @@ const auth = {
   },
 
   finalize: (req, res)=> verifyMagicLink(req, res, pendingClientMethods),
+  setCookie: setAuthCookie,
 }
 
 module.exports = auth;

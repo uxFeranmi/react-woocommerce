@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 import getCategoryTree from '../utils/category_tree';
+import setAuthCookie from '../utils/set_auth_cookie';
 import AppShell from '../app_shell';
 import authenticate from '../utils/authenticate';
 import './styles/sign-in.scss';
@@ -16,21 +17,30 @@ export default function signIn(props) {
     ]);
 
   let [email, setEmail] = useState('');
-  let [mainContent, setMainContent] = useState('authenticated');
+  let [mainContent, setMainContent] = useState('');
   let [authProgress, setAuthProgress] = useState({
     event: '',
     data: '',
   });
 
   useEffect(()=> {
-    const {event} = authProgress;
+    const {event, data} = authProgress;
 
     switch (event) {
       case 'mailsent':
         setMainContent('mailsent');
         break;
       case 'authenticated':
-        setMainContent('authenticated');
+        setAuthCookie(data)
+          .then(()=> console.log('auth cookie set', setMainContent('authenticated')))
+          .catch((err)=> {
+            let res = err.response;
+            console.log('auth cookie not set');
+            setAuthProgress({
+              event: 'error',
+              data: `Failed to set cookie - (${res.statusText}) ${err.message}`,
+            });
+          });
         break;
       case 'timeout':
         setMainContent('timeout');
@@ -87,7 +97,7 @@ export default function signIn(props) {
                     />
                   </label>
 
-                  <button type="submit"
+                  <button type="submit" onClick={(e)=> setAuthProgress('authenticated')}
                     className="sign-in__form__submit"
                   >
                     {authProgress.event === '' ?

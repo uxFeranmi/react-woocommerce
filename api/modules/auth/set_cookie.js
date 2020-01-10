@@ -1,11 +1,12 @@
-const DOMAIN_NAME = require('../../constants');
+const {DOMAIN_NAME = ''} = require('../../constants');
 
 const setAuthCookie = (req, res)=> {
   let token =  req.header('Authorization'); // Same as req.get('Authorization');
-  token = token.replace ?
-    token.replace('Bearer ', '')
-    : null;
 
+  console.log(token);
+  token = token.replace('Bearer', '').trim();
+
+  console.log(token, '<');
   if (!token) {
     res.status(400).send('No data found. Nothing to put in the cookie.');
     return;
