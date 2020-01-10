@@ -71,6 +71,13 @@
   &__success {
     display: flex;
     flex-flow: column nowrap;
+
+    > * {margin-bottom: 10px;}
+
+    &__actions {
+      @include buttons;
+      transform: scale(0.9);
+    }
   }
 
   &__timeout {

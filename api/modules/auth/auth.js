@@ -66,8 +66,14 @@ const handleExistingClient = (res, email, lastEventId)=> {
   }
 
   res.setHeader('Connection', "close");
-  res.status(408)
-    .send('No existing stream was found matching the given Last-Event-ID. It has probably timed-out.');
+
+  res.writeHead(404, {
+    'Content-Type': 'text/event-stream',
+    'Connection': 'close',
+    'Cache-Control': 'no-cache',
+  });
+  console.log('Sent 404 to client attempting SSE reconnect.');
+  res.end();
 };
 
 const auth = {

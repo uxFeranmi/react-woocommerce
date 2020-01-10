@@ -33,12 +33,22 @@ const authenticate = (email, callback)=> {
 
   sse.addEventListener("error", (e)=> {
     const {type: event, data} = e;
-    // If it's an unknown error, attempt reconnection.
-    if (!data) return;
-
+    let customData = '';
+    
+    // If connection is closed.
+    // 0 — connecting, 1 — open, 2 — closed
+    if (sse.readyState === 2) {
+      console.log('SSE closed');
+      customData = "Connection to server was lost and couldn't be re-established."
+    }
+    
+    // If still connected & it's an unknown error, attempt reconnection.
+    else if (!data) return console.log('Reconnecting SSE...');
+    
     sse.close();
-    callback({event, data});
-    console.log(`${event}: ${data}`);
+    console.log('Closed SSE...');
+    console.log(`${event}: ${customData || data}`);
+    callback({event, data: customData || data});
   });
 };
 

@@ -56,6 +56,7 @@ const verifyMagicLink = async (req, res, Clients)=> {
     const message = fs.readFileSync(templatePath).toString();
     res.status(504).send(message);
     client.sendEvent('error', 'Could not get or create user.');
+    Clients.delete(authKey);
     return;
   }
 

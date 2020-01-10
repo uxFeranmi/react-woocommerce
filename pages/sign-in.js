@@ -1,12 +1,12 @@
 // @ts-nocheck
 // import Link from 'next/link';
+// import Router from 'next/router';
 import { useState, useEffect } from 'react';
 
 import getCategoryTree from '../utils/category_tree';
 import AppShell from '../app_shell';
 import authenticate from '../utils/authenticate';
 import './styles/sign-in.scss';
-import Link from 'next/link';
 
 export default function signIn(props) {
   if (props.error)
@@ -16,7 +16,7 @@ export default function signIn(props) {
     ]);
 
   let [email, setEmail] = useState('');
-  let [mainContent, setMainContent] = useState('form');
+  let [mainContent, setMainContent] = useState('authenticated');
   let [authProgress, setAuthProgress] = useState({
     event: '',
     data: '',
@@ -39,7 +39,6 @@ export default function signIn(props) {
         setMainContent('error');
         break;
     }
-    
   }, [authProgress]);
 
   const initiateAuthFlow = (event)=> {
@@ -60,14 +59,13 @@ export default function signIn(props) {
 
   return (
     <AppShell categories={props.categoryTree}>
-      <section className="sign-in">
+      <section className="sign-in" aria-live="polite">
       {(()=> {
         switch (mainContent) {
           case 'form': {
             return (
               <form className="sign-in__form"
                 onSubmit={initiateAuthFlow}
-                aria-live="polite"
               >
                 <h1 className="sign-in__form__title">
                   Sign in to IT Supplies
@@ -136,6 +134,12 @@ export default function signIn(props) {
               <p className="sign-in__success">
                 <strong>All done!</strong>
                 <span>You've successfully signed in.</span>
+                <span>You may return to your previous activity.</span>
+                <button className="sign-in__success__actions"
+                  onClick={(e)=> window && window.history.back()}
+                >
+                  Return
+                </button>
               </p>
             );
           case 'timeout':
@@ -149,7 +153,7 @@ export default function signIn(props) {
                   You must generate a new link to sign-in.
                 </p>
                 <button className="sign-in__timeout__action"
-                  onClick={window && window.location.reload}
+                  onClick={(e)=> window && window.location.reload()}
                 >
                   Get new link
                 </button>
@@ -162,7 +166,7 @@ export default function signIn(props) {
                 <span>Sincere apologies. Something went wrong.</span>
                 <span>Message: {'' + authProgress.data}</span>
                 <button className="sign-in__error__action"
-                  onClick={window && window.location.reload}
+                  onClick={(e)=> window && window.location.reload()}
                 >
                   Please try again
                 </button>
