@@ -1,6 +1,6 @@
 // @ts-nocheck
-// import Link from 'next/link';
 // import Router from 'next/router';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
 import getCategoryTree from '../utils/category_tree';
@@ -16,14 +16,14 @@ export default function signIn(props) {
     ]);
 
   let [email, setEmail] = useState('');
-  let [mainContent, setMainContent] = useState('');
+  let [mainContent, setMainContent] = useState('authenticated');
   let [authProgress, setAuthProgress] = useState({
     event: '',
     data: '',
   });
 
   useEffect(()=> {
-    const {event, data} = authProgress;
+    const {event} = authProgress;
 
     switch (event) {
       case 'mailsent':
@@ -135,11 +135,16 @@ export default function signIn(props) {
                 <strong>All done!</strong>
                 <span>You've successfully signed in.</span>
                 <span>You may return to your previous activity.</span>
-                <button className="sign-in__success__actions"
+                <button className="sign-in__success__action"
                   onClick={(e)=> window && window.history.back()}
                 >
                   Return
                 </button>
+                <Link href="/">
+                  <a className="sign-in__success__action-2">
+                    <small>Go Home</small>
+                  </a>
+                </Link>
               </p>
             );
           case 'timeout':

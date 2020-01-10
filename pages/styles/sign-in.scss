@@ -74,9 +74,16 @@
 
     > * {margin-bottom: 10px;}
 
-    &__actions {
+    &__action {
       @include buttons;
       transform: scale(0.9);
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    &__action-2 {
+      align-self: center;
+      font-weight: 500;
     }
   }
 
