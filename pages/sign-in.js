@@ -16,7 +16,7 @@ export default function signIn(props) {
     ]);
 
   let [email, setEmail] = useState('');
-  let [mainContent, setMainContent] = useState('authenticated');
+  let [mainContent, setMainContent] = useState('');
   let [authProgress, setAuthProgress] = useState({
     event: '',
     data: '',
