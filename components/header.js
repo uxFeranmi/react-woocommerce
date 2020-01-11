@@ -60,7 +60,7 @@ const Header = (props) => (
         <Link href="#">
           <a><i className="fa fa-heart-o" aria-label="Your wishlist"></i></a>
         </Link>
-        <Link href="#">
+        <Link href="/cart">
           <a>
             <i className="fa fa-shopping-cart"
               aria-label="Your shopping cart">

@@ -38,8 +38,8 @@ const authenticate = (email, callback)=> {
     // If connection is closed.
     // 0 — connecting, 1 — open, 2 — closed
     if (sse.readyState === 2) {
-      console.log('SSE closed');
-      customData = "Connection to server was lost and couldn't be re-established."
+      console.log('SSE closed', e);
+      customData = "Connection to server was lost and couldn't be re-established.";
     }
     
     // If still connected & it's an unknown error, attempt reconnection.

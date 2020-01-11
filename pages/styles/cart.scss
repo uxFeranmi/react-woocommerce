@@ -1,0 +1,38 @@
+@import '../../mixins';
+
+.cart {
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__line-items-table {
+    @include responsive-table;
+  }
+  
+  &__line-item {
+    &:nth-of-type(odd) {
+      background-color: var(--pale-bg);
+    }
+
+    td:first-child {
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    td#{&}__actions {
+      display: flex;
+      justify-content: center;
+
+      button {
+        @include buttons;
+        border-radius: 5px;
+        background-color: transparent;
+        border: 1px solid gray;
+        padding: 3px 8px;
+        color: inherit;
+        box-shadow: none;
+      }
+    }
+  }
+}
