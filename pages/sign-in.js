@@ -17,7 +17,7 @@ export default function signIn(props) {
     ]);
 
   let [email, setEmail] = useState('');
-  let [mainContent, setMainContent] = useState('');
+  let [mainContent, setMainContent] = useState('form');
   let [authProgress, setAuthProgress] = useState({
     event: '',
     data: '',
@@ -197,10 +197,10 @@ export default function signIn(props) {
 
 signIn.getInitialProps = async ()=> {
   try {
-    //const categoryTree = await getCategoryTree();
+    const categoryTree = await getCategoryTree();
 
     return {
-      categoryTree: [],
+      categoryTree,
     };
   }
 
