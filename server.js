@@ -27,7 +27,6 @@ app.use((req, res, next)=> {
 // Mount api endpoints.
 mountEndpoints(app);
 
-app.use('/eventpage', express.static('eventsource'));
 app.use('/shop', (req, res)=> {
   // @ts-ignore
   nextJs.render(req, res, '/', req.parsedUrl.query)
@@ -36,7 +35,6 @@ app.use('/shop', (req, res)=> {
 // @ts-ignore
 app.use((req, res) => nextJsHandler(req, res, req.parsedUrl));
 
-console.log(process.env.PORT);
 const PORT = process.env.PORT || 3000;
 
 nextJs.prepare().then(() => {
