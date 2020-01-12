@@ -17,12 +17,15 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 //app.use(bodyParser.urlencoded({extended: false}));
+
 app.use((req, res, next)=> {
   // req.parsedUrl.pathname, req.parsedUrl.query
   // @ts-ignore
   req.parsedUrl = parse(req.url, true);
   next();
 })
+
+app.use(checkAuth);
 
 // Mount api endpoints.
 mountEndpoints(app);
