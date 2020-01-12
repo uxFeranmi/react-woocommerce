@@ -53,36 +53,3 @@ const authenticate = (email, callback)=> {
 };
 
 export default authenticate;
-
-/*const authenticate = (email, callback)=> {
-  setTimeout(()=> {
-    const {type: event, data} = {type: "received"};
-    callback({event, data});
-    console.log(`${event}: ${data}`);
-  }, 3000);
-
-  setTimeout(()=> {
-    const {type: event, data} = {type: "mailsent"};
-    callback({event, data});
-    console.log(`${event}: ${data}`);
-  }, 6000);
-
-  setTimeout(()=> {
-    const {type: event, data} = {type: "authenticated"};
-    callback({event, data});
-    console.log(`${event}: ${data}`);
-  }, 9000);
-
-  setTimeout(()=> {
-    const {type: event, data} = {type: "timeout"};
-    callback({event, data});
-    console.log(`${event}: ${data}`);
-  }, 12000);
-
-  setTimeout(()=> {
-    const {type: event, data} = {type: 'error'};
-    callback({event, data});
-    console.log(`${event}: ${data}`);
-  }, 15000);
-};
-*/

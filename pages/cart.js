@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react';
 import AppShell from '../app_shell';
 import getCategoryTree from '../utils/category_tree';
 
-import getCart from '../utils/get_cart';
+import shop from '../utils/shop';
 
 import './styles/cart.scss';
 
 const Cart = (_props)=> {
   let [categoryTree, setCategoryTree] = useState([]);
-  let [isAuth, setAuth] = useState(false);
+  //let [isAuth, setAuth] = useState(false);
 
   let [lineItems, setLineItems] = useState([]);
   let [coupons, setCoupons] = useState([]);
@@ -18,7 +18,7 @@ const Cart = (_props)=> {
 
   useEffect(()=> {
     getCategoryTree().then(setCategoryTree);
-    getCart(isAuth).then((cart)=> {
+    shop.get('cart').then((cart)=> {
       setLineItems(cart.lineItems);
       setCoupons(cart.appliedCoupons);
       setCartTotals(cart.totals);
@@ -26,10 +26,8 @@ const Cart = (_props)=> {
   }, []);
 
   return (
-    <AppShell {...{setAuth, categoryTree}}>
+    <AppShell {...{categoryTree}}>
       <section className="cart">
-        <p>{''+isAuth}</p>
-
         <table className="cart__line-items-table">
           <thead>
             <tr>

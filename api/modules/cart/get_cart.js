@@ -1,14 +1,13 @@
 const { getWooCart } = require('../../services/woo_cart');
 
 const getCart = async (req, res)=> {
-  if (!req.auth) 
-    return res.status(401)
-      .send('User is not signed in.');
+  if (!) return res.status(401)
 
-  const cart = await getWooCart(req.auth.id);
+  const cart = req.auth ?
+    await getWooCart(req.auth.id)
+  : getCookieCart(req);
 
-  res.setHeader('Content-Type', 'application/json');
-  res.send(cart); //Cart is json string. No need to use res.json().
+  res.status(200).json(cart);
 };
 
 module.exports = getCart;

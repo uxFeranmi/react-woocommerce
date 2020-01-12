@@ -32,7 +32,7 @@ const AppShell = (props)=> {
   const {setAuth, categoryTree} = props;
 
   useEffect(()=> {
-    shop.get('auth').then((a)=> {console.log(a); return a;})
+    shop.get('auth').then((a)=> console.log('isAuth: ', a) || a)
     .then(setAuth);
   }, []);
 
