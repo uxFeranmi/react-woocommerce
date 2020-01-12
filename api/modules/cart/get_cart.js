@@ -18,6 +18,8 @@ const getCart = async (req, res = null)=> {
     cart = req.cookies.cart;
   }
 
+  if (!res) return JSON.parse(cart);
+
   res.setHeader('Content-Type', 'application/json');
   res.send(cart); //Cart is json string. No need to use res.json().
 };
