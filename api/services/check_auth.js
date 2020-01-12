@@ -7,7 +7,7 @@ const checkAuth = (req, _res, next)=> {
 
   if (!token) return next();
 
-  jwt.verify(token, JWT_SECRET, function(err, decoded) {
+  jwt.verify(token, JWT_SECRET, (err, decoded)=> {
     if (err) {
       console.log('Seems we received an invalid token from a client');
       return next();

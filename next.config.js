@@ -6,6 +6,7 @@ const {
   WOO_CONSUMER_SECRET,
   WOO_CONSUMER_KEY,
   FEATURED_CATEGORY_ID,
+  DOMAIN_NAME,
 } = process.env;
 
 console.log(nodeEnv);
@@ -35,5 +36,6 @@ module.exports = withSass({
     //staticPath: nodeEnv === 'production' ? 'http://itsupplies.co/static' : '',
     FEATURED_CATEGORY_ID,
     nodeEnv,
+    DOMAIN_NAME,
   },
 });

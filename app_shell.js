@@ -2,6 +2,9 @@
 import Head from 'next/head';
 import Router from "next/router";
 import NProgress from "nprogress";
+import { useEffect } from 'react';
+
+import shop from './utils/shop';
 
 import Header from './components/header';
 import Footer from './components/footer';
@@ -25,8 +28,10 @@ NProgress.inc();
 NProgress.inc(0.2);
 */
 
-export default function AppShell(props) {
-  //const routerHook = useRouter();
+const AppShell = (props)=> {
+  const {setAuth} = props;
+
+  useEffect(()=> shop.get('auth').then(setAuth), []);
 
   return [ //Return an array of elements to keep header out of the <main> tag.
     (<Head key={'Document Head'}>
@@ -36,7 +41,7 @@ export default function AppShell(props) {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>),
 
-    <Header categories={props.categories} key={'Page Header'} />,
+    <Header categories={props.categoryTree} key={'Page Header'} />,
 
     (<main className="app-shell" key={'Main Content'}>
       {props.children}
@@ -45,3 +50,5 @@ export default function AppShell(props) {
     <Footer key={'Page Footer'} />
   ];
 }
+
+export default AppShell;

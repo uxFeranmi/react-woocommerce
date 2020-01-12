@@ -12,7 +12,6 @@ const setAuthCookie = (req, res)=> {
     return;
   }
 
-  // @ts-ignore
   const secure = DOMAIN_NAME.startsWith('https:') ? 'Secure;' : '';
 
   res.writeHead(201, {

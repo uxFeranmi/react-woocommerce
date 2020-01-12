@@ -9,6 +9,7 @@ import './styles/cart.scss';
 const Cart = (_props)=> {
   let [categoryTree, setCategoryTree] = useState([]);
   let [lineItems, setLineItems] = useState([1, 2]);
+  let [isAuth, setAuth] = useState(false);
 
   useEffect(()=> {
     getCategoryTree().then(setCategoryTree);
@@ -16,7 +17,7 @@ const Cart = (_props)=> {
   }, []);
 
   return (
-    <AppShell categories={categoryTree}>
+    <AppShell {...{setAuth, categoryTree}}>
       <section className="cart">
         <table className="cart__line-items-table">
         <thead>

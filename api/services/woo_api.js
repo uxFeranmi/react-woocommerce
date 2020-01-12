@@ -1,4 +1,4 @@
-const {default: WooCommerceRestApi} = require("@woocommerce/woocommerce-rest-api");
+const WooCommerceRestApi = require("@woocommerce/woocommerce-rest-api").default;
 
 // @ts-ignore
 const wooApi = new WooCommerceRestApi({

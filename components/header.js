@@ -46,7 +46,7 @@ const Header = (props) => (
 
         <DropdownMenu
           label="Categories"
-          items={props.categories}
+          items={props.categoryTree}
           className="main-nav__dropdown" 
         />
       </nav>

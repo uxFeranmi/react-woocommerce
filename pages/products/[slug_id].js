@@ -144,8 +144,7 @@ export default function ProductPage(props) {
               return (
                 <ProductReviews className="full-details__wrapper"
                   {...{reviews, gotReviews, renderNewReview}}
-                  //reviews={reviews} gotReviews={gotReviews}
-                  product={props.product} //renderNewReview={renderNewReview}
+                  product={props.product}
                 />
               );
             default:

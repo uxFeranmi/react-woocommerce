@@ -68,7 +68,7 @@ export default function signIn(props) {
   };
 
   return (
-    <AppShell categories={props.categoryTree}>
+    <AppShell {...{categoryTree}}>
       <section className="sign-in" aria-live="polite">
       {(()=> {
         switch (mainContent) {

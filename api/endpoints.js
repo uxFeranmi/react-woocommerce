@@ -1,7 +1,9 @@
 const auth = require('./modules/auth/auth');
-const cart = require('./cart/cart'); { get, add, remove }
+const cart = require('./cart/cart');
 
 const mountEndpoints = (app)=> {
+  app.get('/api/auth', (req, res)=> res.json(!!req.auth));
+  
   app.use('/api/auth/sign-in', auth.initiate);
   app.use('/api/auth/magic-:authKey', auth.finalize); 
   app.use('/api/auth/set-cookie', auth.setCookie);

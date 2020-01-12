@@ -38,7 +38,7 @@ export default function Homepage(props) {
   }, []);
 
   return (
-    <AppShell categories={props.categoryTree}>
+    <AppShell {...{categoryTree}}>
       <section className="landing-section">
         <Carousel mediaItems={welcomeBanners} />
       </section>
