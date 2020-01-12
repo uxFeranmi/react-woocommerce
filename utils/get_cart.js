@@ -1,6 +1,6 @@
 const getCart = async (isAuth)=> {
   let cart = {
-    lineItems: [],
+    lineItems: [1, 2],
     appliedCoupons: [],
     totals: {},
   };

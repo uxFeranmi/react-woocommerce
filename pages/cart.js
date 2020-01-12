@@ -12,7 +12,7 @@ const Cart = (_props)=> {
   let [categoryTree, setCategoryTree] = useState([]);
   let [isAuth, setAuth] = useState(false);
 
-  let [lineItems, setLineItems] = useState([1, 2]);
+  let [lineItems, setLineItems] = useState([]);
   let [coupons, setCoupons] = useState([]);
   let [cartTotals, setCartTotals] = useState({});
 
