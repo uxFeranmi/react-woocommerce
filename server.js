@@ -25,7 +25,7 @@ app.use((req, res, next)=> {
 })
 
 // Verify jwt.
-app.use(checkAuth);
+app.use('/api', checkAuth);
 
 // Mount api endpoints.
 mountEndpoints(app);
