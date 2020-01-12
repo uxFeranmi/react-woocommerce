@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -12,6 +13,8 @@ const mountEndpoints = require('./api/endpoints');
 
 const app = express();
 const nextJsHandler = nextJs.getRequestHandler();
+
+console.log(process.env.DOMAIN_NAME); 
 
 app.use(cors());
 app.use(bodyParser.json());
