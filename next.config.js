@@ -9,7 +9,7 @@ const {
   DOMAIN_NAME,
 } = process.env;
 
-console.log(nodeEnv);
+console.log('NODE_ENV: ', nodeEnv);
 
 module.exports = withSass({
   /*webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
