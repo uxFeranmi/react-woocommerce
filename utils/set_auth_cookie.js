@@ -5,7 +5,7 @@ const setAuthCookie = async (token = '')=> {
     headers: {'Authorization': `Bearer ${token}`},
   });
 
-  console.log(response);
+  console.log('setAuthCookie: ', response);
 }
 
 export default setAuthCookie;

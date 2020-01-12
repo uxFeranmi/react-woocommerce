@@ -32,7 +32,8 @@ export default function signIn(props) {
         break;
       case 'authenticated':
         setAuthCookie(data)
-          .then(()=> console.log('auth cookie set', setMainContent('authenticated')))
+          .then(()=> console.log('auth cookie set'))
+          .then(setMainContent('authenticated'))
           .catch((err)=> {
             let res = err.response;
             console.log('auth cookie not set');
