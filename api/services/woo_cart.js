@@ -23,4 +23,8 @@ const setWooCart = async (cart, customerId)=> {
   await wooApi.put(`customers/${customerId}`, data)
 };
 
+const fetchCartItems = (cartContentIds)=> {
+  return cart;
+}
+
 module.exports = { getWooCart, setWooCart };
