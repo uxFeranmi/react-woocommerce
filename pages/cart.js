@@ -33,7 +33,7 @@ const Cart = (_props)=> {
           {lineItems.map((lineItem, index)=> (
             <tr className="cart__line-item" key={index}>
               <td>
-                <img className="is-label"
+                <img
                   src="https://www-konga-com-res.cloudinary.com/image/upload/w_auto,f_auto,fl_lossy,dpr_auto,q_auto/c_pad,dpr_1.0,f_auto,h_77,q_auto,w_88/media/catalog/product/F/W/_1576485754.jpg"
                 />
                 <span>Cosmos</span>

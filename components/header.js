@@ -33,7 +33,7 @@ const Header = (props) => (
               </i>              
             </a>
           </Link>
-          <Link href="#">
+          <Link href="/cart">
             <a>
               <i className="fa fa-shopping-cart"
                 aria-label="Your shopping cart">
