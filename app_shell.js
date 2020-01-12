@@ -32,7 +32,8 @@ const AppShell = (props)=> {
   const {setAuth, categoryTree} = props;
 
   useEffect(()=> {
-    shop.get('auth').then(setAuth);
+    shop.get('auth').then((a)=> {console.log(a); return a;})
+    .then(setAuth);
   }, []);
 
   return [ //Return an array of elements to keep header out of the <main> tag.

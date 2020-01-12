@@ -19,7 +19,7 @@ const Cart = (_props)=> {
   return (
     <AppShell {...{setAuth, categoryTree}}>
       <section className="cart">
-        <p>{isAuth}</p>
+        <p>{''+isAuth}</p>
 
         <table className="cart__line-items-table">
           <thead>
