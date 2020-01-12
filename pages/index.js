@@ -25,6 +25,7 @@ export default function Homepage(props) {
       <p>{JSON.stringify(props.error)}</p>
     ]);
 
+  const {categoryTree} = props;
   let [welcomeBanners, setWelcomeBanners] = useState(props.carousel);
 
   useEffect(()=> {
