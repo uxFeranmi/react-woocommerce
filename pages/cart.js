@@ -68,7 +68,7 @@ const Cart = (_props)=> {
             </tr>
           ))}
         </tbody>
-      </table>
+        </table>
       </section>
     </AppShell>
   );

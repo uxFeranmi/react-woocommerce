@@ -90,6 +90,7 @@ const auth = {
   },
 
   finalize: (req, res)=> verifyMagicLink(req, res, pendingClientMethods),
+  
   setCookie: setAuthCookie,
 }
 
