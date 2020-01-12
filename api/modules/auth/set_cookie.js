@@ -12,12 +12,6 @@ const setAuthCookie = (req, res)=> {
     return;
   }
 
-  /* To set multiple cookies...
-  res.setHeader('Set-Cookie', [
-    'userid=ninja; HttpOnly; Max-Age=31540000',
-    'language=javascript',
-  ]);*/
-
   // @ts-ignore
   const secure = DOMAIN_NAME.startsWith('https:') ? 'Secure;' : '';
 
