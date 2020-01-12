@@ -29,9 +29,11 @@ NProgress.inc(0.2);
 */
 
 const AppShell = (props)=> {
-  const {setAuth} = props;
+  const {setAuth, categoryTree} = props;
 
-  useEffect(()=> shop.get('auth').then(setAuth), []);
+  useEffect(()=> {
+    shop.get('auth').then(setAuth);
+  }, []);
 
   return [ //Return an array of elements to keep header out of the <main> tag.
     (<Head key={'Document Head'}>
@@ -41,7 +43,7 @@ const AppShell = (props)=> {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
     </Head>),
 
-    <Header categories={props.categoryTree} key={'Page Header'} />,
+    <Header {...{categoryTree, key:'Page Header'}} />,
 
     (<main className="app-shell" key={'Main Content'}>
       {props.children}
