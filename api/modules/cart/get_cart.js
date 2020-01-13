@@ -1,7 +1,19 @@
 const { getWooCart, fetchCartItems } = require('../../services/woo_cart');
 
 const calculateCartTotals = (cart)=> {
+  const {lineItems, appliedCoupons} = cart;
 
+  const subtotal = lineItems.reduce((sum, lineItem)=> {
+    
+  });
+
+  const discounts = appliedCoupons.reduce((sum, coupon)=> {
+
+  });
+
+  const total = subtotal - discounts;
+
+  return {subtotal, discounts, total};
 };
 
 const getCart = async (req, res)=> {
