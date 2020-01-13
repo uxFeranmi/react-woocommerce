@@ -1,28 +1,15 @@
-const { getWooCart, fetchCartItems } = require('../../services/woo_cart');
+const { getCartId } = require('../../services/woo_cart');
 
-const calculateCartTotals = (cart)=> {
-  const {lineItems, appliedCoupons} = cart;
+const getCart = async (req, res = null)=> {
+  const cartId = req.auth ?
+    await getCartId(req.auth.id)
+  : req.cookie.cartId;
 
-  const subtotal = lineItems.reduce((sum, lineItem)=> {
-    
-  });
+  const cart = cartId ?
+    await wooApi.get(`orders/${cartId}`)
+  : null;
 
-  const discounts = appliedCoupons.reduce((sum, coupon)=> {
-
-  });
-
-  const total = subtotal - discounts;
-
-  return {subtotal, discounts, total};
-};
-
-const getCart = async (req, res)=> {
-  const cartContentIds = req.auth ?
-    await getWooCart(req.auth.id)
-  : req.cookie.cart;
-
-  const cart = await fetchCartItems(cartContentIds);
-  cart.totals = calculateCartTotals(cart);
+  if (!res) return cart;
 
   res.status(200).json(cart);
 };
