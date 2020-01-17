@@ -16,7 +16,7 @@ const nextJsHandler = nextJs.getRequestHandler();
 
 console.log(process.env.DOMAIN_NAME); 
 
-app.use(cors());
+//app.use(cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 //app.use(bodyParser.urlencoded({extended: false}));

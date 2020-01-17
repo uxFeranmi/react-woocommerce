@@ -12,13 +12,15 @@ const Cart = (_props)=> {
   let [categoryTree, setCategoryTree] = useState([]);
   //let [isAuth, setAuth] = useState(false);
 
-  let [lineItems, setLineItems] = useState([]);
+  let [lineItems, setLineItems] = useState([1, 2]);
   let [coupons, setCoupons] = useState([]);
   let [cartTotals, setCartTotals] = useState({});
 
   useEffect(()=> {
     getCategoryTree().then(setCategoryTree);
+
     shop.get('cart').then((cart)=> {
+      if (!cart) return;
       setLineItems(cart.lineItems);
       setCoupons(cart.appliedCoupons);
       setCartTotals(cart.totals);
