@@ -6,7 +6,6 @@ const addToCart = async (req, res)=> {
   const {productId, quantity} = req.body;
 
   let cart = getCart(req);
-  //const product = await wooApi.get(`products/${productId}`);
 
   const payload = {
     line_items: [
@@ -41,4 +40,24 @@ const removeFromCart = async (req, res)=> {
   res.status(200).json(cart);
 };
 
-module.exports = { addToCart, removeFromCart };
+const updateLineItem = async (req, res)=> {
+  const {productId, quantity, lineItemId} = req.body;
+
+  let cart = getCart(req);
+
+  const payload = {
+    line_items: [
+      {
+        id: lineItemId,
+        product_id: productId,
+        quantity,
+      },
+    ],
+  };
+  
+  cart = await wooApi.put(`orders/${cart.id}`, payload);
+
+  res.status(200).json(cart);
+};
+
+module.exports = { addToCart, removeFromCart, updateLineItem };
