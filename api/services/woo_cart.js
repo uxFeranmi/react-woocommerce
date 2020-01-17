@@ -1,7 +1,9 @@
 const wooApi = require('./woo_api');
 
-const getCartId = async (customerId)=> {
-  const customer = await wooApi.get(`customers/${customerId}`);
+const getCartId = async (auth, cookies)=> {
+  if (!auth) return cookies.cartId;
+
+  const customer = await wooApi.get(`customers/${auth.id}`);
 
   for (metaData of customer.meta_data)
     if (metaData.key === 'cartId')
@@ -11,7 +13,10 @@ const getCartId = async (customerId)=> {
   return null;
 };
 
-const setCartId = async (cartId, customerId)=> {
+const setCartId = async (cartId, auth, res)=> {
+  if (!auth)
+    return res.cookie('cartId', cartId);
+
   const data = {
     meta_data: [
       {
@@ -21,7 +26,7 @@ const setCartId = async (cartId, customerId)=> {
     ],
   };
 
-  await wooApi.put(`customers/${customerId}`, data)
+  await wooApi.put(`customers/${auth.id}`, data)
 };
 
 

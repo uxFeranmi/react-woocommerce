@@ -1,11 +1,10 @@
 const { getCartId, setCartId } = require('../../services/woo_cart');
-const getCart = require('./get_cart');
 const wooApi = require('../../services/woo_api');
 
 const addToCart = async (req, res)=> {
   const {productId, quantity} = req.body;
-
-  let cart = getCart(req);
+  let cart;
+  const cartId = await getCartId(req.auth, req.cookies);
 
   const payload = {
     line_items: [
@@ -16,34 +15,41 @@ const addToCart = async (req, res)=> {
     ],
   };
   
-  if (!cart) {
+  if (!cartId) {
     cart = await wooApi.post("orders", payload);
-    await setCartId(cart.id, req.auth.id);
+    await setCartId(cart.id, req.auth, res);
   }
   else
-    cart = await wooApi.put(`orders/${cart.id}`, payload);
+    cart = await wooApi.put(`orders/${cartId}`, payload);
 
   res.status(200).json(cart);
 };
 
 const removeFromCart = async (req, res)=> {
-  const data = {
-    "line_items":[
+  const {lineItemId} = req.params;
+  let cart;
+  const cartId = await getCartId(req.auth, req.cookies);
+
+  const payload = {
+    line_items: [
       {
-        "id":19,
-        "product_id":null,
-        "quantity":0
-      }
-    ]
+        id: lineItemId,
+        product_id: null,
+        quantity: 0,
+      },
+    ],
   };
+  
+  cart = await wooApi.put(`orders/${cartId}`, payload);
 
   res.status(200).json(cart);
 };
 
 const updateLineItem = async (req, res)=> {
-  const {productId, quantity, lineItemId} = req.body;
-
-  let cart = getCart(req);
+  const {lineItemId} = req.params;
+  const {productId, quantity} = req.body;
+  let cart;
+  const cartId = await getCartId(req.auth, req.cookies);
 
   const payload = {
     line_items: [
@@ -55,7 +61,7 @@ const updateLineItem = async (req, res)=> {
     ],
   };
   
-  cart = await wooApi.put(`orders/${cart.id}`, payload);
+  cart = await wooApi.put(`orders/${cartId}`, payload);
 
   res.status(200).json(cart);
 };

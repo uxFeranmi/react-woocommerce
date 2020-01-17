@@ -10,7 +10,8 @@ const mountEndpoints = (app)=> {
 
   app.get('/api/cart', cart.get);
   app.post('/api/cart', cart.add);
-  app.delete('/api/cart/:productId', cart.remove);
+  app.delete('/api/cart/:lineItemId', cart.remove);
+  app.patch('/api/cart/:lineItemId', cart.update);
 }
 
 module.exports = mountEndpoints;
