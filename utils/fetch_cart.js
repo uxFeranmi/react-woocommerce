@@ -1,9 +1,17 @@
+import shop from './shop';
 
-    shop.get('cart').then(async (cart)=> {
-        if (!cart) return;
+const fetchCart = async ()=> {
+  let cart = await shop.get('cart');
   
-        const lineItems = await getLineItems(cart.line_items);
-        setLineItems(lineItems);
-  
-        setCoupons(cart.coupon_lines);
-      });
+  if (!cart) return {line_items: [1, 2]};
+
+  cart.line_items.forEach(async (item, index)=> {
+    item.product = await shop.get(`products/${item.product_id}`);
+
+    cart.line_items[index] = item;
+  });
+
+  return cart;
+}
+
+export default fetchCart;

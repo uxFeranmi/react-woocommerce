@@ -3,22 +3,18 @@ import { useState, useEffect } from 'react';
 
 import AppShell from '../app_shell';
 import getCategoryTree from '../utils/category_tree';
-
-import shop from '../utils/shop';
+import fetchCart from '../utils/fetch_cart';
 
 import './styles/cart.scss';
 
 const Cart = (_props)=> {
   let [categoryTree, setCategoryTree] = useState([]);
-  //let [isAuth, setAuth] = useState(false);
 
-  let [cart, setCart] = useState([1, 2]);
-  let [coupons, setCoupons] = useState([]);
-  let [cartTotals, setCartTotals] = useState({});
+  let [cart, setCart] = useState({});
 
   useEffect(()=> {
     getCategoryTree().then(setCategoryTree);
-
+    fetchCart().then(setCart);
   }, []);
 
   return (
@@ -35,7 +31,7 @@ const Cart = (_props)=> {
             </tr>
           </thead>
           <tbody>
-            {lineItems.map((lineItem, index)=> (
+            {cart.line_items && cart.line_items.map((lineItem, index)=> (
               <tr className="cart__line-item" key={index}>
                 <td>
                   <img
