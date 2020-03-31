@@ -23,7 +23,7 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "nanoid": "^2.1.8",
-    "next": "^9.1.4",
+    "next": "^9.3.2",
     "node-mailjet": "^3.3.1",
     "node-sass": "^4.13.0",
     "nprogress": "^0.2.0",
